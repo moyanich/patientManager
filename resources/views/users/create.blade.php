@@ -97,7 +97,6 @@
                         </div>
                     </div>
                     <div class="text-end mt-4">
-                        <button type="button" class="btn btn-sm btn-neutral me-2">Cancel</button>
                         {{ Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) }}
                     </div>
 
