@@ -4,7 +4,15 @@
 	vertical-align: text-bottom;
 }
 
+.btn-outline-primary-muted {
+	color: $purple-300;
+    border-color: $purple-300;
 
+	&:hover {
+		background-color: $purple-300;
+		color: $white;
+	}
+}
 
 /*
 

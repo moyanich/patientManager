@@ -75,21 +75,21 @@
 			<ul class="navbar-nav mb-md-4">
 			<li class="nav-item">
 				<a class="nav-link" href="#settings-collapse" data-bs-toggle="collapse" href="#settings-collapse" role="button" aria-expanded="false" aria-controls="settings-collapse">
-					<i data-feather="gear"></i> Settings
+					{{ __('Settings') }}
 				</a>
 				<li>
 					<div class="collapse show" id="settings-collapse">
 						<ul class="nav flex-column mb-2">
 							<li class="nav-item">
 								<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
-									<i data-feather="circle"></i>
-									{{ __('Manage Users') }}
+									<i class="bi bi-people"></i>
+									{{ __('Users') }}
 								</x-navlink>
 							</li>
 							<li class="nav-item">
 								<x-navlink :href="route('roles.index')" class="{{ request()->routeIs('roles.index') ? 'active' : '' }} ">
-									<i data-feather="circle"></i>
-									{{ __('Manage Roles') }}
+									<i class="bi bi-gear"></i>
+									{{ __('Roles') }}
 								</x-navlink>
 							</li>
 						</ul>

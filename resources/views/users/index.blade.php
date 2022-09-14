@@ -37,14 +37,13 @@
 		<div class="table-responsive">
 			<table class="table table-hover table-nowrap">
 					<thead class="table-light">
-					<tr>
-						<th scope="col">{{ __('#') }}</th>
-						<th scope="col">{{ __('Name') }}</th>
-						<th scope="col">{{ __('Email') }}</th>
-						<th scope="col">{{ __('Roles') }}</th>
-						<th scope="col">{{ __('Actions') }}</th>
-						<th></th>
-					</tr>
+						<tr>
+							<th scope="col">{{ __('#') }}</th>
+							<th scope="col">{{ __('Name') }}</th>
+							<th scope="col">{{ __('Email') }}</th>
+							<th scope="col">{{ __('Roles') }}</th>
+							<th></th>
+						</tr>
 					</thead>
 				<tbody>
 					@foreach ($data as $key => $user)
@@ -55,24 +54,15 @@
 							<td>
 								@if(!empty($user->getRoleNames()))
 									@foreach($user->getRoleNames() as $createdUser)
-										<span class="badge rounded-pill bg-primary px-4">{{ $createdUser }}</span>
+										<span class="badge rounded-pill bg-primary px-4 py-2">{{ $createdUser }}</span>
 									@endforeach
 								@endif
 							</td>
-							<td>
-								<a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-neutral">View</a>
-								<button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover" data-bs-toggle="modal" data-bs-target="#delUserModal">
-									<i class="bi bi-trash"></i>
-								</button>
+							<td class="text-end">
+								<a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-primary">View</a>
 
-								<a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-success btn-circle btn-sm">
-									<span data-feather="eye"></span>
-								</a>
-								<a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-warning btn-circle btn-sm">
-									<span data-feather="edit-2"></span>
-								</a>
-								<a href="{{-- route('users.edit',$user->id) --}}#" class="btn btn-outline-danger btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#delUserModal">
-									<span data-feather="trash-2"></span>
+								<a href="#" class="btn btn-outline-danger btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#delUserModal">
+									<i class="bi bi-trash"></i>
 								</a>
 							</td>
 						</tr>

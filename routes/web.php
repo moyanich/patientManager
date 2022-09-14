@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Admin\PatientsController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Admin\PatientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +33,11 @@ Route::get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except('edit');
 });
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('/patients', PatientsController::class);
-
 
 });
 
