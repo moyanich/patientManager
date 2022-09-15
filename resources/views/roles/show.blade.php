@@ -24,31 +24,37 @@
 
 @section('content')
 
-    <div class="col-xl-7 mx-auto">
+    <div class="col-12 mx-auto">
         <div class="card mb-7 p-5">
             <div class="card-header">
-                <h5 class="mb-0">{{ __('Role') }}</h5>
+                <h5 class="mb-0">{{ __('Edit Role') }}</h5>
             </div>
             <div class="card-body">
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <h4><strong>Role Name:</strong> {{ $role->name }}</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <h4><strong>Permissions:</strong></h4>
-                            @if(!empty($rolePermissions))
-                                @foreach($rolePermissions as $v)
-                                    <span class="badge rounded-pill text-bg-dark">{{ $v->name }}</span>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">{{ __('Role Name') }}</th>
+                                <th scope="col">{{ __('Permissions') }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $role->name }}</td>
+                                <td> 
+                                    @if(!empty($rolePermissions))
+                                        @foreach($rolePermissions as $v)
+                                            <label class="badge rounded-pill text-dark bg-gradient bg-info px-4 py-2 mb-2">{{ $v->name }}</label>
+                                        @endforeach
+                                    @endif
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
         </div>
     </div>
