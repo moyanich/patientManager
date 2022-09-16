@@ -1,21 +1,37 @@
 @extends('layouts.dashboard')
+
+@section('header')
+    <div class="row align-items-center">
+        <div class="col-md-6 col-12 mb-3 mb-md-0">
+            <!-- Title -->
+            <h1 class="h2 mb-0 ls-tight">{{ __('New Patient Onboarding') }}</h1>
+        </div>
+        <!-- Actions -->
+        <div class="col-md-6 col-12 text-md-end">
+            <div class="mx-n1">
+                <a href="{{ route('roles.index') }}" class="btn d-inline-flex btn-sm btn-primary mx-1">
+					<span class=" pe-2">
+						<i class="bi bi-arrow-left"></i>
+					</span>
+                	<span>{{ __('Back') }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+@endsection
+
+
 @section('content')
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">{{ __('New Patient Onboarding') }}</h1>
-    </div>
-
-    {{-- Messages --}}
-    <x-messages />
-    {{-- End Messages --}}
-
-    <div class="card shadow p-0">
+    <div class="card mb-7 p-5">
         <div class="card-header">
-            <h2>Onboard Patient</h2>
+            <h5 class="mb-0">{{ __('Create Patient') }}</h5>
         </div>
-        <div class="card-body p-4">
-            
-            {!! Form::open(['action' => 'App\Http\Controllers\Admin\PatientsController@store', 'method' => 'POST']) !!}
+        <div class="card-body">
+
+            <x-messages />
+
+            {!! Form::open(['action' => 'App\Http\Controllers\PatientsController@store', 'method' => 'POST']) !!}
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
@@ -110,20 +126,23 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="text-end">
-                            <a href="{{ route('admin.patients.index') }}" class="btn btn-outline">
-                                {{ __('Cancel') }}
-                            </a>
 
-                            {{ Form::submit('Save', ['class' => 'btn btn-secondary']) }}                           
-                        </div>
-                    </div><!--end col-->
+                    <div class="text-end mt-4">
+                        <a href="{{ route('patients.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                            {{ __('Cancel') }}
+                        </a>
+                        {{ Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) }}
+                    </div>
                 </div><!--end row-->
             
             {!! Form::close() !!}
+
         </div>
     </div>
+
+
+
+
 
 @endsection
 

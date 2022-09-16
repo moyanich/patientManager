@@ -11,6 +11,21 @@ use Illuminate\Http\Request;
 
 class PatientsController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+        $this->middleware('permission:patient-list|patient-create|patient-edit|patient-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:patient-create', ['only' => ['create','store']]);
+        $this->middleware('permission:patient-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:patient-delete', ['only' => ['destroy']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +62,7 @@ class PatientsController extends Controller
     {
         $patient = new Patients();
         $patient->patient_no = $request->input('patientID');
-        $patient->name = $request->input('firstname');
+        $patient->first_name = $request->input('firstname');
         $patient->last_name = $request->input('lastname');
         $patient->gender_id = $request->input('gender');
         $patient->email = $request->input('email');

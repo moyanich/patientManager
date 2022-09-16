@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li><a href="{{ route('admin.patients.index') }}">Dashboard</a></li>
+                        <li><a href="{{ route('patients.index') }}">Dashboard</a></li>
                     
                     </ul>
 

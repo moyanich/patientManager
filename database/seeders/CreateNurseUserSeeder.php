@@ -8,8 +8,8 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Str;
-  
-class CreateAdminUserSeeder extends Seeder
+
+class CreateNurseUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,19 +19,22 @@ class CreateAdminUserSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'Admin',
-            'username' => 'admin',
-            'email' => 'test@admin.com',
+            'name' => 'Nurse',
+            'username' => 'nurse',
+            'email' => 'test@nurse.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
         ]);
     
-        $role = Role::create(['name' => 'Admin']);
-     
-        $permissions = Permission::pluck('id', 'id')->all();
-   
-        $role->syncPermissions($permissions);
+    
+        $role = Role::create(['name' => 'Nurse'])
+            ->givePermissionTo([ 
+                'patient-list',
+                'patient-create',
+                'patient-edit'
+            ]);
+        
      
         $user->assignRole([$role->id]);
     }
