@@ -27,7 +27,7 @@
     <div class="col-12 mx-auto">
         <div class="card mb-7 p-5">
             <div class="card-header">
-                <h5 class="mb-0">{{ __('Edit Role') }}</h5>
+                <h5 class="mb-0">{{ __('View Role') }}</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -36,18 +36,19 @@
                             <tr>
                                 <th scope="col">{{ __('Role Name') }}</th>
                                 <th scope="col">{{ __('Permissions') }}</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{ $role->name }}</td>
                                 <td> 
-                                    @if(!empty($rolePermissions))
-                                        @foreach($rolePermissions as $v)
-                                            <label class="badge rounded-pill text-dark bg-gradient bg-info px-4 py-2 mb-2">{{ $v->name }}</label>
-                                        @endforeach
-                                    @endif
+                                    <div class="d-flex flex-wrap">
+                                        @if(!empty($rolePermissions))
+                                            @foreach($rolePermissions as $v)
+                                                <label class="badge rounded-pill text-dark bg-gradient bg-info px-4 py-2 m-1">{{ $v->name }}</label>
+                                            @endforeach
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

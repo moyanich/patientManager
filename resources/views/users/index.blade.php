@@ -52,14 +52,16 @@
 							<td>{{ $user->name }}</td>
 							<td>{{ $user->email }}</td>
 							<td>
-								@if(!empty($user->getRoleNames()))
-									@foreach($user->getRoleNames() as $createdUser)
-										<span class="badge rounded-pill bg-primary px-4 py-2">{{ $createdUser }}</span>
-									@endforeach
-								@endif
+								<div class="d-flex flex-wrap">
+									@if(!empty($user->getRoleNames()))
+										@foreach($user->getRoleNames() as $createdUser)
+											<span class="badge rounded-pill bg-primary px-4 py-2 m-1">{{ $createdUser }}</span>
+										@endforeach
+									@endif
+								</div>
 							</td>
 							<td class="text-end">
-								<a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-primary">View</a>
+								<a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
 
 								<a href="#" class="btn btn-outline-danger btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#delUserModal">
 									<i class="bi bi-trash"></i>

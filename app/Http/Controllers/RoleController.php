@@ -96,7 +96,7 @@ class RoleController extends Controller
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
     
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+        return view('roles.edit',compact('role', 'permission', 'rolePermissions'));
     }
 
     /**
@@ -119,7 +119,7 @@ class RoleController extends Controller
     
         $role->syncPermissions($request->input('permission'));
     
-        return redirect()->route('roles.index')->with('success','Role updated successfully');
+        return redirect()->route('roles.index')->with('success', ''. $role->name . ' updated successfully');
     }
 
     /**
@@ -130,7 +130,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('roles.index')->with('success','Role deleted successfully');
+        DB::table("roles")->where('id', $id)->delete();
+        return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
     }
 }

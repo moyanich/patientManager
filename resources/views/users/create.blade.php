@@ -29,9 +29,7 @@
             </div>
             <div class="card-body">
 
-                {{-- Messages --}}
                 <x-messages />
-                {{-- End Messages --}}
 
                 {!! Form::open(['action' => 'App\Http\Controllers\UserController@store', 'method' => 'POST']) !!}
                     <div class="row mb-5 g-5">
