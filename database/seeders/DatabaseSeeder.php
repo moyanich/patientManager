@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CreateAdminUserSeeder::class,
             CreateNurseUserSeeder::class,
+            CreateDoctorUserSeeder::class,
            // RoleSeeder::class,
             GendersSeeder::class,
             ParishSeeder::class,
