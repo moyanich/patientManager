@@ -30,11 +30,10 @@
             </div>
             <div class="card-body">
 
-                {{-- Messages --}}
-                    <x-messages />
-                {{-- End Messages --}}
+                <x-messages />
 
                 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
+
                     <div class="row mb-5 g-5">
                         <div class="col-md-12">
                             <div class="">
@@ -63,7 +62,9 @@
                     <div class="text-end mt-4">
                         {{ Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) }}
                     </div>
+
                 {!! Form::close() !!}
+
             </div>
         </div>
     </div>

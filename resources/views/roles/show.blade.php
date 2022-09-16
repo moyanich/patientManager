@@ -30,7 +30,6 @@
                 <h5 class="mb-0">{{ __('Edit Role') }}</h5>
             </div>
             <div class="card-body">
-
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap">
                         <thead class="table-light">
@@ -50,7 +49,6 @@
                                         @endforeach
                                     @endif
                                 </td>
-                                
                             </tr>
                         </tbody>
                     </table>
