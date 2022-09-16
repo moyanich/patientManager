@@ -40,7 +40,7 @@
                             {{Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => ''])}}
 
                             @error('lastname')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             {{Form::text('middlename', '', ['class' => 'form-control', 'placeholder' => ''])}}
 
                             @error('middlename')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div><!--end col-->
@@ -62,7 +62,7 @@
                             {{Form::text('lastname', '', ['class' => 'form-control', 'placeholder' => ''])}}
 
                             @error('lastname')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>                    
@@ -75,7 +75,7 @@
                             {{ Form::text('patientID', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('patientID')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                             {{ Form::date('dob', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('dob')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                             {!! Form::select('gender', $genders, '', ['class' => 'form-select']) !!}
 
                             @error('gender')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                             {{ Form::tel('home_phone', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('home_phone')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                             {{ Form::tel('cell_number', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('cell_number')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                             {{ Form::date('registration_date', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('registration_date')
-                                <p class="text-red-600">{{ $message }}</p>
+                                <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
