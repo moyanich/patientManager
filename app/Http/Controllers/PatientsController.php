@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientsRequest;
@@ -22,7 +22,7 @@ class PatientsController extends Controller
         $patients = Patients::select(['id', 'name', 'last_name', 'registration_date'])->orderBy('id', 'asc')->paginate(20);
        // $fullName = $patients->name;
 
-        return view('admin.patients.index', compact('patients'));
+        return view('patients.index', compact('patients'));
     }
 
     /**
@@ -33,7 +33,7 @@ class PatientsController extends Controller
     public function create()
     {
         $genders = Genders::pluck('name', 'id')->toArray(); 
-        return view('admin.patients.create', compact('genders'));
+        return view('patients.create', compact('genders'));
        // return view('admin.patients.create')->with('genders', $genders);
     }
 
@@ -66,7 +66,7 @@ $table->string('cell_number')->nullable();
 
         $patient->save();
 
-        return redirect()->route('admin.patients.index', $request->input('id'))->with('success', 'New employee created successfully. Go ahead and complete the employee profile. Activation email sent!'); // Redirect to employee profile
+        return redirect()->route('patients.index', $request->input('id'))->with('success', 'New employee created successfully. Go ahead and complete the employee profile. Activation email sent!'); // Redirect to employee profile
     }
 
     /**

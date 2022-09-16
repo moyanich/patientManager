@@ -27,12 +27,14 @@
 			<h5 class="mb-0">{{ __('Users') }}</h5>
 		</div>
 		
-		@if ($message = Session::get('success'))
+		{{--  @if ($message = Session::get('success'))
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<strong><p>{{ $message }}</p></strong>
 				<button type="button" class="btn-close text-xs text-success" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
-		@endif
+		@endif--}}
+
+		<x-messages />
 
 		<div class="table-responsive">
 			<table class="table table-hover table-nowrap">
