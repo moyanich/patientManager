@@ -7,7 +7,9 @@ use App\Http\Requests\StorePatientsRequest;
 use App\Http\Requests\UpdatePatientsRequest;
 use App\Models\Genders;
 use App\Models\Patients;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 
 class PatientsController extends Controller
 {
@@ -34,7 +36,8 @@ class PatientsController extends Controller
     public function index(Request $request)
     {
         
-        $patients = Patients::select(['id', 'name', 'last_name', 'registration_date'])->orderBy('id', 'asc')->paginate(20);
+        $patients = Patients::select(['id', 'first_name', 'last_name', 'patient_no', 'registration_date'])->orderBy('id', 'asc')->paginate(20);
+        
        // $fullName = $patients->name;
 
         return view('patients.index', compact('patients'));
@@ -61,18 +64,24 @@ class PatientsController extends Controller
     public function store(StorePatientsRequest $request)
     {
         $patient = new Patients();
-        $patient->patient_no = $request->input('patientID');
         $patient->first_name = $request->input('firstname');
+        $patient->middle_name = $request->input('middlename');
         $patient->last_name = $request->input('lastname');
+        $patient->patient_no = $request->input('patientID');
+        $patient->registration_date = $request->input('registration_date');
         $patient->gender_id = $request->input('gender');
         $patient->email = $request->input('email');
-        $patient->registration_date = $request->input('registration_date');
+        $patient->dob = $request->input('dob');
+        $patient->home_phone = $request->input('home_phone');
+        $patient->cell_number = $request->input('cell_number');
+        
+        
 
         /*
         home_phone
 $table->string('cell_number')->nullable();
             $table->string('emergency_number')->nullable();
-            $table->string('email', 50)->nullable();
+          
             $table->char('nis', 9)->nullable()->unique();
             $table->char('trn', 9)->nullable()->unique();
             $table->mediumText('city')->nullable();

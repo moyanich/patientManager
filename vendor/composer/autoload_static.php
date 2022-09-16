@@ -38,6 +38,7 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
+        '9eb92a60b23a168bdc5f3366f76ebf52' => __DIR__ . '/../..' . '/app/helpers/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -530,7 +531,6 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Http\\Controllers\\Admin\\PatientsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PatientsController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -539,6 +539,7 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\PatientsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PatientsController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -565,6 +566,7 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\View\\Components\\Messages' => __DIR__ . '/../..' . '/app/View/Components/Messages.php',
         'App\\View\\Components\\Navlink' => __DIR__ . '/../..' . '/app/View/Components/Navlink.php',
+        'App\\View\\Components\\PageHeading' => __DIR__ . '/../..' . '/app/View/Components/PageHeading.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -686,6 +688,8 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'Database\\Factories\\RolesFactory' => __DIR__ . '/../..' . '/database/factories/RolesFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\CreateAdminUserSeeder' => __DIR__ . '/../..' . '/database/seeders/CreateAdminUserSeeder.php',
+        'Database\\Seeders\\CreateDoctorUserSeeder' => __DIR__ . '/../..' . '/database/seeders/CreateDoctorUserSeeder.php',
+        'Database\\Seeders\\CreateNurseUserSeeder' => __DIR__ . '/../..' . '/database/seeders/CreateNurseUserSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\GendersSeeder' => __DIR__ . '/../..' . '/database/seeders/GendersSeeder.php',
         'Database\\Seeders\\ParishSeeder' => __DIR__ . '/../..' . '/database/seeders/ParishSeeder.php',

@@ -23,10 +23,11 @@ class CreatePatientsTable extends Migration
             $table->unsignedBigInteger('gender_id')->nullable();
             $table->date('dob')->nullable();
             $table->date('registration_date');
-            $table->string('home_phone')->nullable();
-            $table->string('cell_number')->nullable();
-            $table->string('emergency_number')->nullable();
+            $table->string('home_phone', 10)->nullable();
+            $table->string('cell_number', 10)->nullable();
             $table->string('email', 50)->nullable();
+
+            $table->string('emergency_number')->nullable();
             $table->char('nis', 9)->nullable()->unique();
             $table->char('trn', 9)->nullable()->unique();
             $table->mediumText('city')->nullable();

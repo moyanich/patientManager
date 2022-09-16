@@ -34,9 +34,14 @@ class Patients extends Model
         'gender_id',
         'dob',
         'registration_date',
-       /* 'phone_number',
+        'home_phone',
+        'cell_number',
+
+       /* 
+
+
         'emergency_number',
-        'date_of_birth',
+       
         'retirement_date',
         'hire_date',
         'nis',
@@ -53,7 +58,7 @@ class Patients extends Model
     ];
 
     protected $dates = [
-       // 'retirement_date',
+       'registration_date',
         'dob'
     ];
 

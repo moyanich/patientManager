@@ -27,7 +27,11 @@ class StorePatientsRequest extends FormRequest
             'patient_no' => 'patientID|unique:patients',
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'email',
+            'gender' => 'required',
+            'email' => 'sometimes|email',
+            'dob' => 'required',
+            'home_phone' => 'numeric|max:10', 
+            'cell_number' => 'numeric|max:10',
             'registration_date' => 'required|date',
         ];
     }
@@ -40,7 +44,14 @@ class StorePatientsRequest extends FormRequest
     public function messages()
     {
         return [
-            'registration_date' => 'Patient registration date is required',
+            'firstname.required' => 'First Name is required',
+            'lastname.required' => 'Last Name is required',
+            'registration_date.required' => 'Patient registration date is required',
+            'dob.required' => 'The Date of Birth field is required',
+            'home_phone.numeric' => 'Phone number must be a number',
+            'home_phone.max' => 'Phone number must not be greater than 10',
+            'cell_number.numeric' => 'Mobile phone must be a number',
+            'cell_number.max' => 'Mobile phone  must not be greater than 10',
             /*'education.required' => 'An Education Type is required',
             'school.required' => 'An Institution is required',
             'course.required' => 'Course Name is required',

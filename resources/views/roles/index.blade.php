@@ -12,7 +12,7 @@
                 @can('role-create')
                     <a href="{{ route('roles.create') }}" class="btn d-inline-flex btn-sm btn-primary mx-1">
                         <span class=" pe-2">
-                            <span data-feather="plus"></span>
+                            <i class="bi bi-plus-lg"></i>
                         </span>
                         <span>{{ __('Create New Role') }}</span>
                     </a>
