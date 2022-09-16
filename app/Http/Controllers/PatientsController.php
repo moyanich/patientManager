@@ -90,7 +90,7 @@ $table->string('cell_number')->nullable();
 
         $patient->save();
 
-        return redirect()->route('patients.index', $request->input('id'))->with('success', 'New employee created successfully. Go ahead and complete the employee profile. Activation email sent!'); // Redirect to employee profile
+        return redirect()->route('patients.index', $request->input('id'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); // Redirect to employee profile
     }
 
     /**

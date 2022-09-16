@@ -107,7 +107,7 @@
                         <div class="mb-3">
                             {{ Form::label('home_phone', 'Phone Number (Home)', ['class' => 'form-label mb-2']) }}
 
-                            {{ Form::tel('home_phone', '', ['class' => 'form-control', 'placeholder' => '']) }}
+                            {{ Form::text('home_phone', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('home_phone')
                                 <p class="text-xs text-danger">{{ $message }}</p>
@@ -118,7 +118,7 @@
                         <div class="mb-3">
                             {{ Form::label('cell_number', 'Phone Number (Mobile)', ['class' => 'form-label mb-2']) }}
 
-                            {{ Form::tel('cell_number', '', ['class' => 'form-control', 'placeholder' => '']) }}
+                            {{ Form::text('cell_number', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('cell_number')
                                 <p class="text-xs text-danger">{{ $message }}</p>
