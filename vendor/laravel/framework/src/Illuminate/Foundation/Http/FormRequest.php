@@ -230,7 +230,15 @@ class FormRequest extends Request implements ValidatesWhenResolved
      */
     public function attributes()
     {
-        return [];
+        return [
+            'patient_no' => 'patient number',
+            'email' => 'email address',
+            'home_phone' => 'home phone',
+            'cell_number' => 'mobile phone',
+            'firstname' => 'first name',
+            'lastname' => 'last name',
+            'dob' => 'date of birth',
+        ];
     }
 
     /**

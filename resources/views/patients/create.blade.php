@@ -39,7 +39,7 @@
 
                             {{Form::text('firstname', '', ['class' => 'form-control', 'placeholder' => ''])}}
 
-                            @error('lastname')
+                            @error('firstname')
                                 <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
@@ -70,11 +70,11 @@
                 <div class="row"><!--end col-->
                     <div class="col-12 col-md-4">
                         <div class="mb-3">
-                            {{ Form::label('patientID', 'Patient No.', ['class' => 'form-label mb-2']) }}
+                            {{ Form::label('patient_no', 'Patient No.', ['class' => 'form-label mb-2']) }}
 
-                            {{ Form::text('patientID', '', ['class' => 'form-control', 'placeholder' => '']) }}
+                            {{ Form::text('patient_no', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
-                            @error('patientID')
+                            @error('patient_no')
                                 <p class="text-xs text-danger">{{ $message }}</p>
                             @enderror
                         </div>
@@ -107,7 +107,7 @@
                         <div class="mb-3">
                             {{ Form::label('home_phone', 'Phone Number (Home)', ['class' => 'form-label mb-2']) }}
 
-                            {{ Form::text('home_phone', '', ['class' => 'form-control', 'placeholder' => '']) }}
+                            {{ Form::tel('home_phone', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                             @error('home_phone')
                                 <p class="text-xs text-danger">{{ $message }}</p>

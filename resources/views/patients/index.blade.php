@@ -40,6 +40,8 @@
 			<h5 class="mb-0">{{ __('All Patients') }}</h5>
 		</div>
 
+		<x-messages />
+
 		<div class="table-responsive">
 			<table class="table table-hover table-nowrap">
 					<thead class="table-light">
@@ -48,7 +50,6 @@
 							<th scope="col">{{ __('Patient Name') }}</th>
 							<th scope="col">{{ __('Patient No.') }}</th>
 							<th scope="col">{{ __('Assigned Doctor') }}</th>
-							<th scope="col">{{ __('Prescriptions') }}</th>
 							<th scope="col">{{ __('Registration Date') }}</th>
 							<th></th>
 						</tr>
@@ -59,9 +60,6 @@
 							<td>{{ $loop->iteration }}</td>
 							<td>{{ $patient->first_name . ' ' . $patient->last_name }}</td>
 							<td>{{ $patient->patient_no }}</td>
-							<td>  
-								
-							</td>
 							<td>{{ $patient->home_phone }}</td>
 							<td>{{ format_date_long($patient->registration_date) }}</td>
 
@@ -72,41 +70,10 @@
 									<i class="bi bi-trash"></i>
 								</a>
 							</td>
-						</tr>
-					
+						</tr>					
 					@endforeach
 				</tbody>
 			</table>
-		</div>
-	</div>
-
-
-
-	<!-- Modal -->
-	<div class="modal" id="delPatientModal" tabindex="-1" aria-labelledby="delPatientModal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content shadow-3">
-				<div class="modal-header">
-					<h5 class="modal-title">{{ __('Delete User') }}</h5>
-					<div class="text-xs ms-auto">
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-				</div>
-				<div class="modal-body">
-					<p class="text-sm text-gray-500">
-						{{ __('Are you sure you want to delete the patient record for ') }}<strong>{{ $patient->first_name . ' ' . $patient->last_name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
-
-					{!! Form::open(['method' => 'DELETE', 'route' => ['patients.destroy', $patient->id],'style'=>'display:inline']) !!}
-
-						{{ Form::submit('Delete', ['class' => 'btn btn-sm btn-danger cursor-pointer']) }}
-
-					{!! Form::close() !!}
-				</div>
-			</div>
 		</div>
 	</div>
 

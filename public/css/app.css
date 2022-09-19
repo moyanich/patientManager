@@ -109438,6 +109438,17 @@ p {
   color: #FFF;
 }
 
+.patient-profile .list-group {
+  border-radius: 0;
+}
+.patient-profile .list-group-item {
+  border-left: none;
+  border-right: none;
+}
+.patient-profile .list-group-item:last-child {
+  border-bottom: none;
+}
+
 /*
 
 

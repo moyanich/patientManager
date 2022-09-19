@@ -24,14 +24,14 @@ class StorePatientsRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_no' => 'patientID|unique:patients',
             'firstname' => 'required',
             'lastname' => 'required',
+            'patient_no' => 'required|unique:patients,patient_no|max:6',
+            'dob' => 'required',
             'gender' => 'required',
             'email' => 'sometimes|email',
-            'dob' => 'required',
-            'home_phone' => 'numeric', 
-            'cell_number' => 'numeric',
+            'home_phone' => 'max:14', 
+            'cell_number' => 'max:14',
             'registration_date' => 'required|date',
         ];
     }
@@ -44,14 +44,11 @@ class StorePatientsRequest extends FormRequest
     public function messages()
     {
         return [
-            'firstname.required' => 'First Name is required',
-            'lastname.required' => 'Last Name is required',
             'registration_date.required' => 'Patient registration date is required',
-            'dob.required' => 'The Date of Birth field is required',
-            'home_phone.numeric' => 'Phone number must be a number',
-            'home_phone.max' => 'Phone number must not be greater than 10',
-            'cell_number.numeric' => 'Mobile phone must be a number',
-            'cell_number.max' => 'Mobile phone  must not be greater than 10',
+            
+            //'home_phone.numeric' => 'Phone number must be a number',
+            //'home_phone.max' => 'Phone number must not be greater than 10',
+           // 'cell_number.max' => 'Mobile phone  must not be greater than 10',
             /*'education.required' => 'An Education Type is required',
             'school.required' => 'An Institution is required',
             'course.required' => 'Course Name is required',

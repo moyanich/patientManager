@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePatientsRequest;
 use App\Models\Genders;
 use App\Models\Patients;
 use Carbon\Carbon;
+// use Datatables;
 use Illuminate\Http\Request;
 
 
@@ -35,11 +36,25 @@ class PatientsController extends Controller
      */
     public function index(Request $request)
     {
-        
         $patients = Patients::select(['id', 'first_name', 'last_name', 'patient_no', 'registration_date'])->orderBy('id', 'asc')->paginate(20);
-        
-       // $fullName = $patients->name;
 
+        /*
+        if ($request->ajax()) {
+            $jobs = Jobs::latest()->get();
+            return Datatables::of($jobs)->addIndexColumn()
+            ->addColumn('action', function($row){
+                $actionBtn = '
+                    <td class="px-6 py-4 text-right">
+                        <a href="' . route('admin.jobs.show', $row->id) . '" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    </td>
+                ';
+                return $actionBtn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        } 
+        */
+        
         return view('patients.index', compact('patients'));
     }
 
@@ -67,7 +82,7 @@ class PatientsController extends Controller
         $patient->first_name = $request->input('firstname');
         $patient->middle_name = $request->input('middlename');
         $patient->last_name = $request->input('lastname');
-        $patient->patient_no = $request->input('patientID');
+        $patient->patient_no = $request->input('patient_no');
         $patient->registration_date = $request->input('registration_date');
         $patient->gender_id = $request->input('gender');
         $patient->email = $request->input('email');
@@ -75,22 +90,21 @@ class PatientsController extends Controller
         $patient->home_phone = $request->input('home_phone');
         $patient->cell_number = $request->input('cell_number');
         
-        
 
         /*
-        home_phone
-$table->string('cell_number')->nullable();
-            $table->string('emergency_number')->nullable();
-          
-            $table->char('nis', 9)->nullable()->unique();
-            $table->char('trn', 9)->nullable()->unique();
-            $table->mediumText('city')->nullable();
-            $table->integer('parish_id')->unsigned()->nullable();
-            */
+        $table->string('cell_number')->nullable();
+        $table->string('emergency_number')->nullable();
+        
+        $table->char('nis', 9)->nullable()->unique();
+        $table->char('trn', 9)->nullable()->unique();
+        $table->mediumText('city')->nullable();
+        $table->integer('parish_id')->unsigned()->nullable();
+        */
+
 
         $patient->save();
 
-        return redirect()->route('patients.index', $request->input('id'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); // Redirect to employee profile
+        return redirect()->route('patients.show', ['patient' => $patient])->with('success', 'New patient created successfully. Go ahead and complete the patient profile below'); // Redirect to patient profile
     }
 
     /**
@@ -99,9 +113,15 @@ $table->string('cell_number')->nullable();
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function show(Patients $patients)
+    public function show($id)
     {
-        //
+        $patient = Patients::find($id);
+        $gender = Genders::find($patient->gender_id);
+       // $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
+    
+       // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+
+       return view('patients.show', compact('patient', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**
@@ -122,9 +142,11 @@ $table->string('cell_number')->nullable();
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePatientsRequest $request, Patients $patients)
+    public function update(UpdatePatientsRequest $request, Patients $patient)
     {
         //
+
+        return view('patients.update', ['patient' => $patient]); // 
     }
 
     /**
