@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientsRequest;
 use App\Http\Requests\UpdatePatientsRequest;
+use App\Models\Address;
 use App\Models\Genders;
 use App\Models\Patients;
+
 use Carbon\Carbon;
+use DB;
 // use Datatables;
 use Illuminate\Http\Request;
 
@@ -117,11 +120,12 @@ class PatientsController extends Controller
     {
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
+        $address = Address::find($patient->patient_id);
        // $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
 
-       return view('patients.show', compact('patient', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+       return view('patients.show', compact('patient', 'gender', 'address'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**
@@ -144,9 +148,59 @@ class PatientsController extends Controller
      */
     public function update(UpdatePatientsRequest $request, Patients $patient)
     {
-        //
+        $patient = Patients::findOrFail($patient->id);
+       /* $patient->first_name = $request->input('firstname');
+        $patient->middle_name = $request->input('middlename');
+        $patient->last_name = $request->input('lastname');
+        $patient->gender_id = $request->input('gender');
+        $patient->email = $request->input('email');
+        $patient->dob = $request->input('dob');
+        $patient->home_phone = $request->input('home_phone');
+        $patient->cell_number = $request->input('cell_number'); */
 
-        return view('patients.update', ['patient' => $patient]); // 
+
+        $address = $request->input('address1');
+        $address = $request->input('address2');
+
+
+        $patient->save();
+
+        //$address = DB::table('address')->where('patient_id', $patient->id)->insert(['address1', $patient->address1]);
+      //  $address = DB::table('address')->updateOrCreate(['patient_id' => $patient->id, 'address1' => $address->address1]);
+
+        $patient->address()->updateOrCreate([
+            ['patient_id' => $patient->id],
+            ['address1' => $address->address1]
+    ]);
+
+        //dd($address);
+
+
+        //$patient->address()->save( $address );
+
+
+        
+
+       // $patient->address()->sync($request->input('address1'));
+
+      /*  $patient->address()->firstOrCreate([
+            'address1' => $request->input('address1'),
+        ]);
+*/
+
+       // return redirect()->route('admin.employees.show', $patient->id)->with('success', 'Education updated');
+      // return redirect()->back()->with('success', 'Employee profile updated sucessfully!!');
+     /* $response = [
+        'success' => true,
+        'data' => $patient,
+        'message' => 'sucess update',
+      ]; */
+
+     // Log::debug((array), $response);
+
+
+        return redirect()->back()->with('success', 'Employee profile updated sucessfully!!');
+       // return view('patients.show', ['patient' => $patient]); // 
     }
 
     /**

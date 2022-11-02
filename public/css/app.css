@@ -109521,6 +109521,10 @@ body {
 }
 
 /* === Core Styles === */
+.form-control {
+  font-size: 0.875rem;
+}
+
 /*
 @import "background";
 @import "typography";

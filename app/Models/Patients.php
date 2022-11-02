@@ -81,4 +81,9 @@ class Patients extends Model
     {
         return $this->hasOne(Parish::class, 'parish_id');
     }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'patient_id');
+    }
 }
