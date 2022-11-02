@@ -31,6 +31,10 @@ class Address extends Model
      */
     protected $fillable = ['patient_id', 'address1', 'address2', 'city'];
 
+    public function patients()
+    {
+       return $this->belongsTo('App\Models\Patients', 'patient_id');
+    }
    
 
 }

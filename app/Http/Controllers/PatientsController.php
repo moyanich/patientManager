@@ -120,7 +120,10 @@ class PatientsController extends Controller
     {
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
-        $address = Address::find($patient->patient_id);
+       
+        $address = Address::where('patient_id', $id)->firstOrFail();
+
+
        // $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
@@ -168,20 +171,16 @@ class PatientsController extends Controller
         //$address = DB::table('address')->where('patient_id', $patient->id)->insert(['address1', $patient->address1]);
       //  $address = DB::table('address')->updateOrCreate(['patient_id' => $patient->id, 'address1' => $address->address1]);
 
-        $patient->address()->updateOrCreate([
+   /* $address2 = DB::table('address')->updateOrCreate([
             ['patient_id' => $patient->id],
             ['address1' => $address->address1]
-    ]);
-
-        //dd($address);
-
-
-        //$patient->address()->save( $address );
+        ]);
+        */
 
 
         
 
-       // $patient->address()->sync($request->input('address1'));
+        $patient->address()->sync($request->input('address1'));
 
       /*  $patient->address()->firstOrCreate([
             'address1' => $request->input('address1'),
@@ -199,7 +198,7 @@ class PatientsController extends Controller
      // Log::debug((array), $response);
 
 
-        return redirect()->back()->with('success', 'Employee profile updated sucessfully!!');
+        //return redirect()->back()->with('success', 'Employee profile updated sucessfully!!');
        // return view('patients.show', ['patient' => $patient]); // 
     }
 

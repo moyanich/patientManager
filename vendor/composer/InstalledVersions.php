@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b34b3b0df0408244628f507270dabfdf7789fa1c',
+    'reference' => '6c5c5267fd0d6d31020215fa38b86d3686ddc7d4',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -32,6 +32,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '73e5b88775c64ccc0b84fb60836b30dc9d92ac4a',
+    ),
+    'barryvdh/laravel-debugbar' => 
+    array (
+      'pretty_version' => 'v3.7.0',
+      'version' => '3.7.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3372ed65e6d2039d663ed19aa699956f9d346271',
     ),
     'brick/math' => 
     array (
@@ -458,7 +467,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b34b3b0df0408244628f507270dabfdf7789fa1c',
+      'reference' => '6c5c5267fd0d6d31020215fa38b86d3686ddc7d4',
     ),
     'laravel/sail' => 
     array (
@@ -558,6 +567,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'ff6248ea87a9f116e78edd6002e39e5128a0d4dd',
+    ),
+    'maximebf/debugbar' => 
+    array (
+      'pretty_version' => 'v1.18.1',
+      'version' => '1.18.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ba0af68dd4316834701ecb30a00ce9604ced3ee9',
     ),
     'mockery/mockery' => 
     array (
