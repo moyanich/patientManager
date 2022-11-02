@@ -18,7 +18,8 @@ class CreateAddressTable extends Migration
             $table->string('address1', 255)->nullable();
             $table->string('address2', 255)->nullable();
             $table->string('city', 55)->nullable();
-            $table->integer('patient_id')->unsigned();
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')->references('id')->on('patients');
             $table->timestamps();            
         });
     }

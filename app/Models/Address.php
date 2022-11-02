@@ -31,10 +31,15 @@ class Address extends Model
      */
     protected $fillable = ['patient_id', 'address1', 'address2', 'city'];
 
-    public function patients()
+   /**
+     * The roles that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+   /* public function patients()
     {
-       return $this->belongsTo('App\Models\Patients', 'patient_id');
-    }
-   
+        return $this->belongsTo(Address::class, 'address', 'patient_id');
+    } */
+
 
 }

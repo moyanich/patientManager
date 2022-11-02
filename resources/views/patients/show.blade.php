@@ -124,6 +124,14 @@
 									</div>
 								</div>
 
+								<div class="mb-3 row">
+									{{ Form::label('city', 'City', ['class' => 'col-sm-2 col-form-label']) }}
+									<div class="col-sm-10">
+										{{ Form::text('city', $patient->city, ['class' => 'form-control', 'placeholder' => '']) }}
+									</div>
+								</div>
+
+
 							</div>
 						</div>
 					</div>

@@ -121,14 +121,14 @@ class PatientsController extends Controller
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
        
-        $address = Address::where('patient_id', $id)->firstOrFail();
+       // $address = Address::where('patient_id', $id)->firstOrFail();
 
 
        // $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
 
-       return view('patients.show', compact('patient', 'gender', 'address'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+       return view('patients.show', compact('patient', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**
@@ -152,53 +152,28 @@ class PatientsController extends Controller
     public function update(UpdatePatientsRequest $request, Patients $patient)
     {
         $patient = Patients::findOrFail($patient->id);
-       /* $patient->first_name = $request->input('firstname');
+        $patient->first_name = $request->input('firstname');
         $patient->middle_name = $request->input('middlename');
         $patient->last_name = $request->input('lastname');
         $patient->gender_id = $request->input('gender');
         $patient->email = $request->input('email');
         $patient->dob = $request->input('dob');
         $patient->home_phone = $request->input('home_phone');
-        $patient->cell_number = $request->input('cell_number'); */
-
-
-        $address = $request->input('address1');
-        $address = $request->input('address2');
-
+        $patient->cell_number = $request->input('cell_number');
 
         $patient->save();
 
-        //$address = DB::table('address')->where('patient_id', $patient->id)->insert(['address1', $patient->address1]);
-      //  $address = DB::table('address')->updateOrCreate(['patient_id' => $patient->id, 'address1' => $address->address1]);
-
-   /* $address2 = DB::table('address')->updateOrCreate([
+        Address::updateOrCreate(
             ['patient_id' => $patient->id],
-            ['address1' => $address->address1]
-        ]);
-        */
+            [
+                'address1' => $request->input('address1'), 
+                'address2' => $request->input('address2'), 
+                'city' => $request->input('city')
+            ]
+        );
 
+       return redirect()->back()->with('success', 'Patient profile updated sucessfully!!');
 
-        
-
-        $patient->address()->sync($request->input('address1'));
-
-      /*  $patient->address()->firstOrCreate([
-            'address1' => $request->input('address1'),
-        ]);
-*/
-
-       // return redirect()->route('admin.employees.show', $patient->id)->with('success', 'Education updated');
-      // return redirect()->back()->with('success', 'Employee profile updated sucessfully!!');
-     /* $response = [
-        'success' => true,
-        'data' => $patient,
-        'message' => 'sucess update',
-      ]; */
-
-     // Log::debug((array), $response);
-
-
-        //return redirect()->back()->with('success', 'Employee profile updated sucessfully!!');
        // return view('patients.show', ['patient' => $patient]); // 
     }
 
