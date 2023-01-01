@@ -26,3 +26,21 @@ if(! function_exists('format_date_long')) {
         return ($date instanceof DateTime) ? Carbon::parse($date)->format('j F Y') : null;
     }
 }
+
+/**
+ * Calculate Age from Date of Birth
+ * 
+ */
+if(! function_exists('calc_age')) {
+    function calc_age($dob) {
+        $dateOfBirth = Carbon::parse($dob)->format('d-M-Y');
+        $today = date("Y-m-d");
+        $diff = date_diff(date_create($dateOfBirth), date_create($today));
+        return $diff->format('%y');
+        
+        
+        //$diff->format('%y');
+
+        
+    }
+}

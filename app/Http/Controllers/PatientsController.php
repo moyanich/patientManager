@@ -133,6 +133,7 @@ class PatientsController extends Controller
     public function edit(Patients $patients)
     {
         //
+        return view('patients.edit');
     }
 
     /**

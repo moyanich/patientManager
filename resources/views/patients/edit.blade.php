@@ -1,3 +1,7 @@
+here
+
+{{--  
+
 <div class="card mb-7 p-5">
     <div class="card-body">
         {!! Form::open(['action' => ['App\Http\Controllers\PatientsController@update', $patient->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
@@ -65,6 +69,8 @@
 
                     {{--  {!! Form::select('gender', $genders, $patient->gender_id, '', ['class' => 'form-select']) !!}--}}
 
+                    {{--
+
                     @error('gender')
                         <p class="text-xs text-danger">{{ $message }}</p>
                     @enderror
@@ -124,7 +130,10 @@
     $table->char('nis', 9)->nullable()->unique();
     $table->char('trn', 9)->nullable()->unique();
     $table->mediumText('city')->nullable();
-    $table->integer('parish_id')->unsigned()->nullable();--}}
+    $table->integer('parish_id')->unsigned()->nullable();
+
+
+
         <div class="row">
             <div class="text-end mt-4">
                 <a href="{{ route('patients.index') }}" class="btn btn-sm bg-gray-100 me-2">
@@ -142,3 +151,4 @@
     </div>
 </div>
 
+--}}
