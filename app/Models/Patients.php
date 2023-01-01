@@ -81,4 +81,17 @@ class Patients extends Model
     {
         return $this->hasOne(Parish::class, 'parish_id');
     }
+
+    /**
+     * The roles that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    /*  public function addresses()
+    {
+        return $this->belongsTo(Address::class, 'address', 'patient_id');
+    } */
+
+
+    
 }

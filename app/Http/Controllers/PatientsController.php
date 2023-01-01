@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientsRequest;
 use App\Http\Requests\UpdatePatientsRequest;
+use App\Models\Address;
 use App\Models\Genders;
 use App\Models\Patients;
+
 use Carbon\Carbon;
+use DB;
 // use Datatables;
 use Illuminate\Http\Request;
 
@@ -117,6 +120,10 @@ class PatientsController extends Controller
     {
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
+       
+       // $address = Address::where('patient_id', $id)->firstOrFail();
+
+
        // $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
@@ -145,9 +152,30 @@ class PatientsController extends Controller
      */
     public function update(UpdatePatientsRequest $request, Patients $patient)
     {
-        //
+        $patient = Patients::findOrFail($patient->id);
+        $patient->first_name = $request->input('firstname');
+        $patient->middle_name = $request->input('middlename');
+        $patient->last_name = $request->input('lastname');
+        $patient->gender_id = $request->input('gender');
+        $patient->email = $request->input('email');
+        $patient->dob = $request->input('dob');
+        $patient->home_phone = $request->input('home_phone');
+        $patient->cell_number = $request->input('cell_number');
 
-        return view('patients.update', ['patient' => $patient]); // 
+        $patient->save();
+
+        Address::updateOrCreate(
+            ['patient_id' => $patient->id],
+            [
+                'address1' => $request->input('address1'), 
+                'address2' => $request->input('address2'), 
+                'city' => $request->input('city')
+            ]
+        );
+
+       return redirect()->back()->with('success', 'Patient profile updated sucessfully!!');
+
+       // return view('patients.show', ['patient' => $patient]); // 
     }
 
     /**
