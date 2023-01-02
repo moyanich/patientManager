@@ -213,3 +213,69 @@
 		
 @endsection
 
+
+
+<ul class="list-group">
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('Patient No:') }}</div>
+			{{ $patient->patient_no }}	
+		</div>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('Full Name:') }}</div>
+			{{ $patient->first_name . ' ' . ' ' . $patient->middle_name . ' ' . $patient->last_name }}	
+		</div>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('Home Phone:') }}</div>
+			{{ $patient->home_phone }}	
+		</div>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('Mobile Phone:') }}</div>
+			{{ $patient->cell_number }}	
+		</div>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('Email:') }}</div>
+			{{ $patient->email }}	
+		</div>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('D.O.B.:') }}</div>
+			{{ format_date_long($patient->dob) }}	
+		</div>
+	</li>
+
+	@if (@empty($patient->dob))
+		<li class="list-group-item d-flex justify-content-between align-items-start">
+			{{ __('Update DOB Field') }}
+		</li>
+	@else
+		<li class="list-group-item d-flex justify-content-between align-items-start">
+			<div class="ms-2 me-auto">
+				<div class="font-bold">{{__('Age:') }}</div>
+				{{ calc_age($patient->dob) }}	
+			</div>
+		</li>
+	@endif
+
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('Gender:') }}</div>
+			{{ $gender->name }}	
+		</div>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-start">
+		<div class="ms-2 me-auto">
+			<div class="font-bold">{{__('Address:') }}</div>
+			
+		</div>
+	</li>
+</ul>-

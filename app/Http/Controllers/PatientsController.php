@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePatientsRequest;
 use App\Models\Address;
 use App\Models\Genders;
 use App\Models\Patients;
+use Illuminate\Support\Facades\Storage;
 
 use Carbon\Carbon;
 use DB;
@@ -120,6 +121,8 @@ class PatientsController extends Controller
     {
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
+
+        $blood_group = json_decode(Storage::get("/public/bloodgroup.json"));
        
        // $address = Address::where('patient_id', $id)->firstOrFail();
 
@@ -128,7 +131,7 @@ class PatientsController extends Controller
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
 
-       return view('patients.show', compact('patient', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+       return view('patients.show', compact('patient', 'gender', 'blood_group'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**
