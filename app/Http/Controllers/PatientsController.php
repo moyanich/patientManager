@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientsRequest;
 use App\Http\Requests\UpdatePatientsRequest;
 use App\Models\Address;
+use App\Models\BloodGroups;
 use App\Models\Genders;
 use App\Models\Patients;
 use Illuminate\Support\Facades\Storage;
@@ -110,6 +111,22 @@ class PatientsController extends Controller
 
         return redirect()->route('patients.show', ['patient' => $patient])->with('success', 'New patient created successfully. Go ahead and complete the patient profile below'); // Redirect to patient profile
     }
+    
+    /**
+     * Display the specified resource.
+     * 
+     * @param  \App\Models\Patients  $patients
+     * @return \Illuminate\Http\Response
+     */
+
+    public function summary($id){
+
+        $patient = Patients::find($id);
+        $gender = Genders::find($patient->gender_id);
+        return view('patients.summary', compact('patient', 'gender')); 
+    }
+
+
 
     /**
      * Display the specified resource.
@@ -122,7 +139,7 @@ class PatientsController extends Controller
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
 
-        $blood_group = json_decode(Storage::get("/public/bloodgroup.json"));
+       // $blood_group = json_decode(Storage::get("/public/bloodgroup.json"));
        
        // $address = Address::where('patient_id', $id)->firstOrFail();
 
@@ -131,7 +148,7 @@ class PatientsController extends Controller
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
 
-       return view('patients.show', compact('patient', 'gender', 'blood_group'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+       return view('patients.show', compact('patient', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**
@@ -142,7 +159,9 @@ class PatientsController extends Controller
      */
     public function edit(Patients $patients)
     {
-        //
+
+        $blood_group = BloodGroups::pluck('bloodtype', 'id')->toArray(); 
+
         return view('patients.edit');
     }
 
@@ -191,4 +210,8 @@ class PatientsController extends Controller
     {
         //
     }
+
+
+    
+
 }

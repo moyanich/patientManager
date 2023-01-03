@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
             CreateDoctorUserSeeder::class,
            // RoleSeeder::class,
             GendersSeeder::class,
+            BloodGroupsSeeder::class,
             ParishSeeder::class,
+            PatientsSeeder::class,
             
         ]);
     }

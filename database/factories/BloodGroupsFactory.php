@@ -14,7 +14,16 @@ class BloodGroupsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'bloodtype' => $this->faker->unique()->randomElement([
+                'O+',
+                'O-',
+                'A+',
+                'A-',
+                'B+',
+                'B-',
+                'AB+',
+                'AB-',
+            ]),
         ];
     }
 }

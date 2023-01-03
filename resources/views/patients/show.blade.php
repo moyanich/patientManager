@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard', ['page' => __('Patient Management')])
 
 @section('header')
     <div class="row align-items-center">
@@ -26,12 +26,192 @@
 			</div>
 		</div>
     </div>
+
 @endsection
 
 @section('content')
 
+	<div class="row align-items-start">
+		<div class="col p-0">
+			<ul class="nav nav-pills mb-3" id="pills-tab">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('patients.summary', $patient->id) }}">Summary</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{ route('patients.show', $patient->id) }}">Patient Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('patients.edit', $patient->id) }}">Patient Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('patients.edit', $patient->id) }}">Patient Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('patients.edit', $patient->id) }}">Patient Profile</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 	<x-messages />
 
+	<div class="row">
+		<div class="col-12">
+			<h4 class="d-block my-4">{{ __('Patient Information') }}</h4>
+		</div>
+	</div>
+
+	<div class="row align-items-start">
+		<div class="col col-md-6">
+			<div class="card">
+				<div class="card-body">
+					<form>
+						<div class="row mb-3">
+							{{Form::label('patientno', 'Patient No', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('patientno', $patient->patient_no, ['class' => 'form-control', 'placeholder' => '', 'disabled' ]) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('first_name', 'First Name', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('first_name', $patient->first_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('middle_name', 'Middle Name', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('middle_name', $patient->middle_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('last_name', 'Last Name', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('last_name', $patient->last_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
+						</div>
+						
+						
+
+							
+								
+								
+						</div>
+
+					</form>
+					
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+{{-- 
+        <div class="row align-items-start">
+            <div class="col col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <table class="table table-borderless table-sm">
+                            <tbody>
+                                <tr>
+                                    <td><div class="font-bold">{{__('TRN:') }}</div></td>
+                                    <td>---</td>
+                                    <td><div class="font-bold">{{__('Gender/Sex:') }}</div></td>
+                                    <td>{{ $gender->name }}</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><div class="font-bold">{{__('NIS:') }}</div></td>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="font-bold">{{__('D.O.B.:') }}</div></td>
+                                    <td>@if (@empty($patient->dob)) {{__('----') }}   @else {{ format_date_long($patient->dob) }}@endif</td>
+                                    <td><div class="font-bold">{{__('Age:') }}</div></td>
+                                    <td>{{ calc_age($patient->dob) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        address
+
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <table class="table table-borderless compact-table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td><div class="font-bold">{{__('Email:') }}</div></td>
+                                    <td>{{ $patient->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="font-bold">{{__('Home #:') }}</div></td>
+                                    <td>{{ $patient->home_phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="font-bold">{{__('Cellphone #:') }}</div></td>
+                                    <td>{{ hyphenate($patient->cell_number) }}</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="font-bold">{{__('Work #:') }}</div></td>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="font-bold">{{__('Employer:') }}</div></td>
+                                    <td>---</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <table class="table table-borderless table-sm">
+                            <tbody>
+                                <tr>
+                                    <td><div class="font-bold">{{__('Patient No:') }}</div></td>
+                                    <td>{{ $patient->patient_no }}</td>
+                                    <td><div class="font-bold">{{__('Docket No:') }}</div></td>
+                                    <td>----</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-md-2">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        photo
+                        <img src="..." class="card-img" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ --}}
+
+
+	{{-- 
+		 
 	<section class="patient-profile bg-white">
 
 		<div class="row g-6 mb-6 p-4">
@@ -49,10 +229,7 @@
 				<div class="table-responsive">
 					<table class="table table-hover table-nowrap table-no-padding">
 						<tbody>
-							<tr>
-								<td><div class="font-bold">{{__('Patient No:') }}</div></td>
-								<td><div class="font-bold">{{ $patient->patient_no }}</div></td>
-							</tr>
+							
 							<tr>
 								<td><div class="font-bold">{{__('Status:') }}</div></td>
 								<td><div class="font-bold">--</div></td>
@@ -121,7 +298,7 @@
 								<div class="media">
 									<div class="media-body">
 										<p class="text-muted font-weight-medium">Blood Type</p>
-										<h4 class="mb-0">{{-- $blood_group->name --}}</h4>
+										<h4 class="mb-0">{{-- $blood_group->name </h4>
 									</div>
 								</div>
 							</div>
@@ -227,7 +404,7 @@
 
 		</div>
 	</section>
-
+--}}
 
 
 @endsection

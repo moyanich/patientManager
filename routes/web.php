@@ -34,7 +34,17 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class)->except('edit');
+
+    Route::get('/patients/summary/{patients}', [PatientsController::class, 'summary'])->name('patients.summary');
+
+ 
+
     Route::resource('/patients', PatientsController::class);
+
+   /* Route::get('/profile{patient}', function ($id) {
+        
+    }); */
+    //Route::resource('/patients//{patients}/profile', PatientsController::class);
 
 });
 

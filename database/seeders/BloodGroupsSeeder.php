@@ -13,6 +13,6 @@ class BloodGroupsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\BloodGroups::factory(8)->create();
     }
 }

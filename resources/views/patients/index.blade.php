@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard', ['page' => __('Patients')])
 
 @section('header')
     <div class="row align-items-center">
@@ -64,6 +64,7 @@
 							<td>{{ format_date_long($patient->registration_date) }}</td>
 
 							<td class="text-end">
+								<a href="{{ route('patients.summary', $patient->id) }}" class="btn btn-sm btn-outline-primary">View</a>
 								<a href="{{ route('patients.show', $patient->id) }}" class="btn btn-sm btn-outline-primary">View</a>
 								<a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
 								<a href="#" class="btn btn-outline-danger btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#delPatientModal">
