@@ -36,6 +36,8 @@ class Patients extends Model
         'registration_date',
         'home_phone',
         'cell_number',
+        'work_phone',
+        
 
        /* 
 

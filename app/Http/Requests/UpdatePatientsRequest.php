@@ -24,7 +24,13 @@ class UpdatePatientsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'firstname' => 'required',
+            'lastname' => 'required',
+            //'dob' => 'required',
+            //'gender' => 'required',
+            'email' => 'sometimes|email',
+            'homephone' => 'size:10', 
+            'cellnumber' => 'size:10',
         ];
     }
 
@@ -38,7 +44,8 @@ class UpdatePatientsRequest extends FormRequest
         return [
             //'registration_date.required' => 'Patient registration date is required',
             
-            //'home_phone.numeric' => 'Phone number must be a number',
+            'homephone.size' => 'Phone number must have 10 numbers',
+            'cellnumber' => 'Phone number must have 10 numbers',
             //'home_phone.max' => 'Phone number must not be greater than 10',
            // 'cell_number.max' => 'Mobile phone  must not be greater than 10',
             /*'education.required' => 'An Education Type is required',

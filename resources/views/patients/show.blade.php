@@ -96,19 +96,40 @@
 						<div class="row mb-3">
 							{{Form::label('address2', 'Address 2', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('address2', '$address->address2', ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@if (@empty($address->address2))
+									{{ Form::text('address2', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@else 
+								{{ Form::text('address2', $address->address2, ['class' => 'form-control', 'placeholder' => '' ]) }}
+									@error('address2')
+										<p class="text-xs text-red-600">{{$message}}</p>
+									@enderror
+								@endif
 							</div>
 						</div>
 						<div class="row mb-3">
 							{{Form::label('city', 'City', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('city', '$address->city', ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@if (@empty($address->city))
+									{{ Form::text('address2', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@else 
+								{{ Form::text('address2', $address->city, ['class' => 'form-control', 'placeholder' => '' ]) }}
+									@error('city')
+										<p class="text-xs text-red-600">{{$message}}</p>
+									@enderror
+								@endif
 							</div>
 						</div>
 						<div class="row mb-3">
 							{{Form::label('parish', 'Parish', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('parish', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@if (@empty($address->city))
+									{{ Form::text('parish', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@else 
+								{{ Form::text('parish', 'parishy', ['class' => 'form-control', 'placeholder' => '' ]) }}
+									@error('city')
+										<p class="text-xs text-red-600">{{$message}}</p>
+									@enderror
+								@endif
 							</div>
 						</div>
 					</div>
@@ -120,11 +141,67 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="row mb-3">
-							{{Form::label('patientno', 'Home Tel#.', ['class' => 'col-sm-4 col-form-label'])}}
+							{{Form::label('homephone', 'Home Phone', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('patientno', $patient->home_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
+								{{ Form::text('homephone', $patient->home_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('homephone')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
 							</div>
 						</div>
+
+						<div class="row mb-3">
+							{{Form::label('cellnumber', 'Cell Phone', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('cellnumber', $patient->cell_number, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('cellnumber')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('workphone', 'Work Phone', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('workphone', $patient->work_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('workphone')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('gender', 'Gender', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								@if (@empty($patient->gender_id))
+								{!! Form::select('gender', $genders, null, ['class' => 'form-select form-control']) !!}
+								@else 
+									{!! Form::select('gender', $genders, $patient->gender_id, ['class' => 'form-select form-control']) !!}
+
+									@error('gender')
+										<p class="text-xs text-red-600">{{ $message }}</p>
+									@enderror
+								@endif
+
+
+								
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('dob', 'Date of Birth', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::date('dob', $patient->dob, ['class' => 'form-control']) }}
+
+								@error('dob')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+
+
+
+						
 
 					</div>
 				</div>

@@ -70,7 +70,7 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        $genders = Genders::pluck('name', 'id')->toArray(); 
+        $genders = Genders::pluck('name', 'id')->prepend('Choose Gender', ''); 
         return view('patients.create', compact('genders'));
        // return view('admin.patients.create')->with('genders', $genders);
     }
@@ -127,8 +127,6 @@ class PatientsController extends Controller
         return view('patients.summary', compact('patient', 'gender', 'address')); 
     }
 
-
-
     /**
      * Display the specified resource.
      *
@@ -141,6 +139,7 @@ class PatientsController extends Controller
         $gender = Genders::find($patient->gender_id);
         $address = Address::where('patient_id', $id)->first();
 
+        $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
 
        // $address = Address::find($patient->patient_id);
 
@@ -151,7 +150,7 @@ class PatientsController extends Controller
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
 
-       return view('patients.show', compact('patient', 'gender', 'address'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+       return view('patients.show', compact('patient', 'genders', 'gender', 'address'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**
@@ -184,8 +183,10 @@ class PatientsController extends Controller
         $patient->gender_id = $request->input('gender');
         $patient->email = $request->input('email');
         $patient->dob = $request->input('dob');
-        $patient->home_phone = $request->input('home_phone');
-        $patient->cell_number = $request->input('cell_number');
+        $patient->home_phone = $request->input('homephone');
+        $patient->work_phone = $request->input('workphone');
+        $patient->cell_number = $request->input('cellnumber');
+        $patient->gender_id = $request->input('gender');
 
         $patient->save();
 

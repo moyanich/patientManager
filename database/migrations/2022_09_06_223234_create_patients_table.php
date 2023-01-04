@@ -24,7 +24,9 @@ class CreatePatientsTable extends Migration
             $table->date('registration_date');
             $table->string('home_phone', 14)->nullable();
             $table->string('cell_number', 14)->nullable();
+            $table->string('work_phone', 14)->nullable();
             $table->string('email', 50)->nullable();
+
 
             $table->string('emergency_number')->nullable();
             $table->char('nis', 9)->nullable()->unique();

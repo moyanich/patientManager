@@ -1,3 +1,8 @@
 table.table-no-padding {
     padding-left: 0;
 }
+
+.card-profile .list-group-item {
+    color: #16192C;
+}
+

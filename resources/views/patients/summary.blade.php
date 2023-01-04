@@ -1,6 +1,5 @@
 @extends('layouts.dashboard', ['page' => __('Patient Management')])
 
-
 @section('header')
     <div class="row align-items-center">
         <div class="col-md-8 col-12 mb-3 mb-md-0">
@@ -30,10 +29,8 @@
 @endsection
 
 @section('content')
-
     @include('partials.nav')
     
-
     <div class="row">
         <div class="col-12">
             <h4 class="d-block my-4">{{ __('Patient Information') }}</h4>
@@ -42,44 +39,56 @@
 
     <div class="row align-items-start">
         <div class="col col-md-4">
-            <div class="card mb-4">
+            <div class="card card-profile mb-4">
                 <div class="card-body">
-                    <table class="table table-borderless table-sm">
-                        <tbody>
-                            <tr>
-                                <td><div class="font-bold">{{__('TRN:') }}</div></td>
-                                <td>---</td>
-                                <td><div class="font-bold">{{__('Gender/Sex:') }}</div></td>
-                                <td>
-                                    @if (@empty( $gender->name)) 
-                                        {{__('---') }} 
-                                    @else 
-                                        {{  $gender->name  }} 
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><div class="font-bold">{{__('NIS:') }}</div></td>
-                                <td>---</td>
-                            </tr>
-                            <tr>
-                                <td><div class="font-bold">{{__('D.O.B.:') }}</div></td>
-                                <td>@if (@empty($patient->dob)) {{__('----') }}   @else {{ format_date_long($patient->dob) }}@endif</td>
-                                <td><div class="font-bold">{{__('Age:') }}</div></td>
-                                <td>{{ calc_age($patient->dob) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
+                    <div class="list-group">
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{__('TRN:') }}</h5>
+                            </div>
+                            <p class="mb-1">---</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{__('NIS:') }}</h5>
+                            </div>
+                            <p class="mb-1">---</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{__('Gender/Sex:') }}</h5>
+                            </div>
+                            <p class="mb-1">{{  $gender->name ?? '' }} </p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{__('D.O.B.:') }}</h5>
+                            </div>
+                            <p class="mb-1">{{ format_date_long($patient->dob) ?? '' }}</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{__('Age:') }}</h5>
+                            </div>
+                            <p class="mb-1">{{ calc_age($patient->dob) }}</p>
+                        </div>
+                       
+                    </div>
+
                 </div>
             </div>
 
             <div class="card mb-4">
                 <div class="card-body">
-                    @if (@empty($address->address1))
-                        {{__('----') }}   
-                    @else 
-                        {{ $address->address1 }}
-                    @endif
+                    <p>{{ $address->address1 ?? '' }}</p> 
+                    <p>{{ $address->address2 ?? '' }}</p> 
+                    <p>{{ $address->city ?? '' }}</p> 
                 </div>
             </div>
 

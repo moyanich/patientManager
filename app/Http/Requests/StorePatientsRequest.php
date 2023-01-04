@@ -30,8 +30,9 @@ class StorePatientsRequest extends FormRequest
             'dob' => 'required',
             'gender' => 'required',
             'email' => 'sometimes|email',
-            'home_phone' => 'max:14', 
-            'cell_number' => 'max:14',
+            'home_phone' => 'size:10', 
+            'cell_number' => 'size:10',
+            'work_phone' => 'size:10',
             'registration_date' => 'required|date',
         ];
     }
