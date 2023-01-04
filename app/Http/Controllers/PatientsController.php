@@ -138,17 +138,19 @@ class PatientsController extends Controller
     {
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
+        $address = Address::where('patient_id', $id)->firstOrFail();
+
+
+       // $address = Address::find($patient->patient_id);
 
        // $blood_group = json_decode(Storage::get("/public/bloodgroup.json"));
        
-       // $address = Address::where('patient_id', $id)->firstOrFail();
-
-
+    
        // $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
     
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
 
-       return view('patients.show', compact('patient', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+       return view('patients.show', compact('patient', 'gender', 'address'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**

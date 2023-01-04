@@ -61,11 +61,13 @@
 		</div>
 	</div>
 
-	<div class="row align-items-start">
-		<div class="col col-md-6">
-			<div class="card">
-				<div class="card-body">
-					<form>
+
+	{!! Form::open(['action' => ['App\Http\Controllers\PatientsController@update', $patient->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+		<div class="row align-items-start">
+
+			<div class="col col-md-6">
+				<div class="card">
+					<div class="card-body">
 						<div class="row mb-3">
 							{{Form::label('patientno', 'Patient No', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
@@ -73,38 +75,78 @@
 							</div>
 						</div>
 						<div class="row mb-3">
-							{{Form::label('first_name', 'First Name', ['class' => 'col-sm-4 col-form-label'])}}
+							{{Form::label('firstname', 'First Name', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('first_name', $patient->first_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
+								{{ Form::text('firstname', $patient->first_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@error('firstname')
+									<p class="text-xs text-danger">{{ $message }}</p>
+								@enderror
 							</div>
 						</div>
 						<div class="row mb-3">
-							{{Form::label('middle_name', 'Middle Name', ['class' => 'col-sm-4 col-form-label'])}}
+							{{Form::label('middlename', 'Middle Name', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('middle_name', $patient->middle_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
+								{{ Form::text('middlename', $patient->middle_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
 							</div>
 						</div>
 						<div class="row mb-3">
-							{{Form::label('last_name', 'Last Name', ['class' => 'col-sm-4 col-form-label'])}}
+							{{Form::label('lastname', 'Last Name', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('last_name', $patient->last_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
+								{{ Form::text('lastname', $patient->last_name, ['class' => 'form-control', 'placeholder' => '' ]) }}
 							</div>
 						</div>
-						
-						
-
-							
-								
-								
+						<div class="row mb-3">
+							{{Form::label('address1', 'Address 1', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('address1', $address->address1, ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
 						</div>
-
-					</form>
-					
+						<div class="row mb-3">
+							{{Form::label('address2', 'Address 2', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('address2', $address->address2, ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('city', 'City', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('city', $address->city, ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
+						</div>
+						<div class="row mb-3">
+							{{Form::label('parish', 'Parish', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('parish', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
+						</div>
+					</div>
 				</div>
 
-
 			</div>
+
+			<div class="col col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="row mb-3">
+							{{Form::label('patientno', 'Home Tel#.', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('patientno', $patient->home_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
 		</div>
+
+
+		{{ Form::submit('Update', ['class' => 'btn btn-sm btn-primary']) }}
+
+	{{ Form::hidden('_method', 'PUT') }}
+{!! Form::close() !!}
+		
 
 	</div>
 

@@ -71,8 +71,13 @@
                                 <td><div class="font-bold">{{__('TRN:') }}</div></td>
                                 <td>---</td>
                                 <td><div class="font-bold">{{__('Gender/Sex:') }}</div></td>
-                                <td>{{ $gender->name }}</td>
-                                
+                                <td>
+                                    @if (@empty( $gender->name)) 
+                                        {{__('---') }} 
+                                    @else 
+                                        {{  $gender->name  }} 
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td><div class="font-bold">{{__('NIS:') }}</div></td>

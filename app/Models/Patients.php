@@ -87,10 +87,10 @@ class Patients extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    /*  public function addresses()
+    public function addresses()
     {
-        return $this->belongsTo(Address::class, 'address', 'patient_id');
-    } */
+        return $this->belongsTo(Address::class, 'address1', 'patient_id');
+    }
 
 
     
