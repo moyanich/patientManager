@@ -37,8 +37,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/patients/summary/{patients}', [PatientsController::class, 'summary'])->name('patients.summary');
 
- 
-
     Route::resource('/patients', PatientsController::class);
 
    /* Route::get('/profile{patient}', function ($id) {

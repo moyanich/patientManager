@@ -123,7 +123,8 @@ class PatientsController extends Controller
 
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
-        return view('patients.summary', compact('patient', 'gender')); 
+        $address = Address::where('patient_id', $id)->first();
+        return view('patients.summary', compact('patient', 'gender', 'address')); 
     }
 
 
@@ -138,7 +139,7 @@ class PatientsController extends Controller
     {
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
-        $address = Address::where('patient_id', $id)->firstOrFail();
+        $address = Address::where('patient_id', $id)->first();
 
 
        // $address = Address::find($patient->patient_id);

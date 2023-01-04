@@ -27,34 +27,13 @@
 			</div>
 		</div>
     </div>
-
-
 @endsection
 
 @section('content')
 
-    <div class="row align-items-start">
-        <div class="col p-0">
-            <ul class="nav nav-pills mb-3" id="pills-tab">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('patients.summary', $patient->id) }}">Summary</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('patients.show', $patient->id) }}">Patient Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('patients.edit', $patient->id) }}">Patient Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('patients.edit', $patient->id) }}">Patient Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('patients.edit', $patient->id) }}">Patient Profile</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-   
+    @include('partials.nav')
+    
+
     <div class="row">
         <div class="col-12">
             <h4 class="d-block my-4">{{ __('Patient Information') }}</h4>
@@ -96,8 +75,11 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    address
-
+                    @if (@empty($address->address1))
+                        {{__('----') }}   
+                    @else 
+                        {{ $address->address1 }}
+                    @endif
                 </div>
             </div>
 
@@ -159,5 +141,4 @@
         </div>
     </div>
   
-
 @endsection
