@@ -120,11 +120,31 @@
 						</div>
 
 						<div class="row mb-3">
-							{{Form::label('parish', 'Parish', ['class' => 'col-sm-4 col-form-label'])}}
+							{{Form::label('parish_id', 'Parish', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								{{ Form::text('parish', 'parishy', ['class' => 'form-control', 'placeholder' => '' ]) }}
-								@error('city')
+								{!! Form::select('parish_id', $parishes, $patient->parish_id ?? '', ['class' => 'form-select form-control']) !!}
+								@error('parish_id')
 									<p class="text-xs text-red-600">{{$message}}</p>
+								@enderror
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							{{Form::label('trn', 'TRN', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('trn',  $patient->trn, ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@error('trn')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							{{Form::label('nis', 'NIS', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('nis',  $patient->nis, ['class' => 'form-control', 'placeholder' => '' ]) }}
+								@error('nis')
+									<p class="text-xs text-red-600">{{ $message }}</p>
 								@enderror
 							</div>
 						</div>
@@ -200,11 +220,12 @@
 				</div>
 			</div>
 
-
 		</div>
 
-
-		{{ Form::submit('Update', ['class' => 'btn btn-sm btn-primary']) }}
+		<div class="col-12 pt-3">
+			{{ Form::submit('Update', ['class' => 'btn btn-sm btn-primary']) }}
+		</div>
+		
 
 	{{ Form::hidden('_method', 'PUT') }}
 	{!! Form::close() !!}

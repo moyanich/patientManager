@@ -109358,10 +109358,6 @@ p {
   font-size: 0.875rem;
 }
 
-.text-red-500 {
-  color: #FF3366;
-}
-
 /*
 body {
   font-size: $font-size-base;
@@ -109473,6 +109469,9 @@ p {
   border-bottom: 1px solid #E7EAF0;
   padding: 0.5rem 0.5rem;
 }
+.card-profile .list-group-item p {
+  color: #525F7F;
+}
 
 /*
 
@@ -109548,6 +109547,10 @@ body {
 /* === Core Styles === */
 .form-control {
   font-size: 0.875rem;
+}
+
+.text-red-600 {
+  color: red;
 }
 
 table.table-no-padding {

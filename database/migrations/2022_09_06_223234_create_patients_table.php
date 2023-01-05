@@ -26,13 +26,17 @@ class CreatePatientsTable extends Migration
             $table->string('cell_number', 14)->nullable();
             $table->string('work_phone', 14)->nullable();
             $table->string('email', 50)->nullable();
-
-
-            $table->string('emergency_number')->nullable();
             $table->char('nis', 9)->nullable()->unique();
             $table->char('trn', 9)->nullable()->unique();
-            $table->mediumText('city')->nullable();
+
             $table->integer('parish_id')->unsigned()->nullable();
+
+            $table->string('emergency_number')->nullable();
+            
+
+
+            
+            
             $table->timestamps();
             $table->foreign('gender_id')->references('id')->on('genders');            
         });

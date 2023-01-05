@@ -38,7 +38,8 @@
     </div>
 
     <div class="row gx-2 align-items-start bg-white p-2">
-        <div class="col col-md-4">
+
+        <div class="col-12 col-md-4">
             <div class="card card-profile mb-2">
                 <div class="card-body">
                     photo
@@ -48,27 +49,27 @@
 
             <div class="card card-profile mb-2">
                 <div class="card-body">
-                    <h4 class="mb-1">Emergency Contact Name</h4>
+                    <h4 class="mb-1">Profile</h4>
                     <div class="list-group">
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">{{__('TRN:') }}</h6>
                             </div>
-                            <p class="mb-1">---</p>
+                            <p class="mb-1">{{ $patient->trn ?? '' }}</p>
                         </div>
 
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">{{__('NIS:') }}</h6>
                             </div>
-                            <p class="mb-1">---</p>
+                            <p class="mb-1">{{ $patient->nis ?? '' }}</p>
                         </div>
 
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">{{__('Gender/Sex:') }}</h6>
                             </div>
-                            <p class="mb-1">{{  $gender->name ?? '' }} </p>
+                            <p class="mb-1">{{  $gender->name ?? '' }}</p>
                         </div>
 
                         <div class="list-group-item">
@@ -88,64 +89,142 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col col-md-4">
-           
             <div class="card card-profile mb-2">
                 <div class="card-body">
                     <h4 class="mb-1">Address</h4>
                     <p>{{ $address->address1 ?? '' }}</p> 
                     <p>{{ $address->address2 ?? '' }}</p> 
                     <p>{{ $address->city ?? '' }}</p> 
+                    <p>{{ $parish->name }}</p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card card-profile mb-2">
+                <div class="card-body">
+                    <h4 class="mb-1">Contact Information</h4>
+
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Email:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{ $patient->email }}</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Home Phone #:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{ hyphenate($patient->home_phone) }}</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Mobile Phone #:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{ hyphenate($patient->cell_number) }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-profile mb-2">
+                <div class="card-body">
+                    <h4 class="mb-1">Employment Information</h4>
+
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Employer:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{-- $patient->email --}}</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Employer Address:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{-- $patient->email --}}</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Work Email:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{-- $patient->email --}}</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Work Phone #:') }}</h6>
+                            </div>
+                            <p class="mb-1">----</p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
             <div class="card card-profile mb-2">
                 <div class="card-body">
-                    <h4 class="mb-1">Contact Information</h4>
-                    <table class="table table-borderless compact-table table-sm">
-                        <tbody>
-                            <tr>
-                                <td><div class="font-bold">{{__('Email:') }}</div></td>
-                                <td>{{ $patient->email }}</td>
-                            </tr>
-                            <tr>
-                                <td><div class="font-bold">{{__('Home #:') }}</div></td>
-                                <td>{{ hyphenate($patient->home_phone) }}</td>
-                            </tr>
-                            <tr>
-                                <td><div class="font-bold">{{__('Cellphone #:') }}</div></td>
-                                <td>{{ hyphenate($patient->cell_number) }}</td>
-                            </tr>
-                            <tr>
-                                <td><div class="font-bold">{{__('Work #:') }}</div></td>
-                                <td>---</td>
-                            </tr>
-                            <tr>
-                                <td><div class="font-bold">{{__('Employer:') }}</div></td>
-                                <td>---</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h4 class="mb-1">Emergency Contact Information</h4>
+
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Employer:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{-- $patient->email --}}</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Employer Address:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{-- $patient->email --}}</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Work Email:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{-- $patient->email --}}</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Work Phone #:') }}</h6>
+                            </div>
+                            <p class="mb-1">----</p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            
+
         </div>
 
-        <div class="col col-md-4">
+
+        <div class="col-12 col-md-4">
             <div class="card card-profile mb-4">
                 <div class="card-body">
-                    <table class="table table-borderless table-sm">
-                        <tbody>
-                            <tr>
-                                <td><div class="font-bold">{{__('Patient No:') }}</div></td>
-                                <td>{{ $patient->patient_no }}</td>
-                                <td><div class="font-bold">{{__('Docket No:') }}</div></td>
-                                <td>----</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h4 class="mb-1">Docket Information</h4>
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Patient Number:') }}</h6>
+                            </div>
+                            <p class="mb-1"><strong>{{ $patient->patient_no }}</strong></p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{__('Document Number:') }}</h6>
+                            </div>
+                            <p class="mb-1">{{-- $patient->patient_no --}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

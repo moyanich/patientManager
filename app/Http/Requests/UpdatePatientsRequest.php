@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePatientsRequest extends FormRequest
@@ -31,6 +32,19 @@ class UpdatePatientsRequest extends FormRequest
             'email' => 'sometimes|email',
             'homephone' => 'size:10', 
             'cellnumber' => 'size:10',
+            'trn' => [
+                'nullable',
+                'max:9',
+                Rule::unique('patients', 'trn')
+                ->ignore($this->patient)
+            ],
+            'nis' => [
+                'nullable',
+                'max:9',
+                Rule::unique('patients', 'nis')
+                ->ignore($this->patient),
+            ],
+            
         ];
     }
 
@@ -46,6 +60,8 @@ class UpdatePatientsRequest extends FormRequest
             
             'homephone.size' => 'Phone number must have 10 numbers',
             'cellnumber' => 'Phone number must have 10 numbers',
+
+
             //'home_phone.max' => 'Phone number must not be greater than 10',
            // 'cell_number.max' => 'Mobile phone  must not be greater than 10',
             /*'education.required' => 'An Education Type is required',

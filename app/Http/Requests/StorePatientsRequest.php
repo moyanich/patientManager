@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StorePatientsRequest extends FormRequest
 {
@@ -32,6 +33,8 @@ class StorePatientsRequest extends FormRequest
             'email' => 'sometimes|email',
             'home_phone' => 'size:10', 
             'cell_number' => 'size:10',
+            //'nis' => ['nullable', 'max:9'], Rule::unique('patients')->ignore($id, 'id'),
+           // 'trn' => ['nullable', Rule::unique('App\Models\Employees')->ignore($id, 'id'),  'min:9', 'max:9'],
             'work_phone' => 'size:10',
             'registration_date' => 'required|date',
         ];

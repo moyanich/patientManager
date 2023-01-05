@@ -8,8 +8,11 @@ use App\Http\Requests\UpdatePatientsRequest;
 use App\Models\Address;
 use App\Models\BloodGroups;
 use App\Models\Genders;
+use App\Models\Parish;
 use App\Models\Patients;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+
 
 use Carbon\Carbon;
 use DB;
@@ -124,7 +127,8 @@ class PatientsController extends Controller
         $patient = Patients::find($id);
         $gender = Genders::find($patient->gender_id);
         $address = Address::where('patient_id', $id)->first();
-        return view('patients.summary', compact('patient', 'gender', 'address')); 
+        $parish = Parish::find($patient->parish_id);
+        return view('patients.summary', compact('patient', 'gender', 'address', 'parish')); 
     }
 
     /**
@@ -141,16 +145,14 @@ class PatientsController extends Controller
 
         $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
 
+        $parishes['parishes'] = Parish::pluck('name', 'id')->prepend('Select Parish', ''); // Get Parish Table
+
+
        // $address = Address::find($patient->patient_id);
 
-       // $blood_group = json_decode(Storage::get("/public/bloodgroup.json"));
-       
-    
-       // $genders['genders'] = Genders::pluck('name', 'id')->toArray(); // Get Genders Table
-    
        // return view('patients.show', compact('patient', 'genders', 'gender'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
 
-       return view('patients.show', compact('patient', 'genders', 'gender', 'address'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
+       return view('patients.show', compact('patient', 'genders', 'gender', 'address', 'parishes'))->with('success', 'New patient created successfully. Go ahead and complete the patient profile'); 
     }
 
     /**
@@ -161,7 +163,6 @@ class PatientsController extends Controller
      */
     public function edit(Patients $patients)
     {
-
         $blood_group = BloodGroups::pluck('bloodtype', 'id')->toArray(); 
 
         return view('patients.edit');
@@ -187,6 +188,9 @@ class PatientsController extends Controller
         $patient->work_phone = $request->input('workphone');
         $patient->cell_number = $request->input('cellnumber');
         $patient->gender_id = $request->input('gender');
+        $patient->trn = $request->input('trn');
+        $patient->nis = $request->input('nis');
+        $patient->parish_id = $request->input('parish_id');
 
         $patient->save();
 

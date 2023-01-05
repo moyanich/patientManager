@@ -37,18 +37,14 @@ class Patients extends Model
         'home_phone',
         'cell_number',
         'work_phone',
-        
+        'nis',
+        'trn',
 
        /* 
 
 
         'emergency_number',
        
-        'retirement_date',
-        'hire_date',
-        'nis',
-        'trn',
-        'gender_id',
         'current_address',
         'permanent_address',
         'city',
