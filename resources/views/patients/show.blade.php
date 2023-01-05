@@ -46,13 +46,16 @@
 
 			<div class="col col-md-6">
 				<div class="card">
+					
 					<div class="card-body">
+
 						<div class="row mb-3">
 							{{Form::label('patientno', 'Patient No', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
 								{{ Form::text('patientno', $patient->patient_no, ['class' => 'form-control', 'placeholder' => '', 'disabled' ]) }}
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('firstname', 'First Name', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
@@ -62,6 +65,7 @@
 								@enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('middlename', 'Middle Name', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
@@ -71,6 +75,7 @@
                                 @enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('lastname', 'Last Name', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
@@ -80,58 +85,50 @@
                                 @enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('address1', 'Address 1', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								@if (@empty($address->address1))
-									{{ Form::text('address1', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
-								@else 
-									{{ Form::text('address1', $address->address1, ['class' => 'form-control', 'placeholder' => '' ]) }}
-									@error('address1')
-										<p class="text-xs text-red-600">{{$message}}</p>
-									@enderror
-								@endif
+								{{ Form::text('address1', $address->address1 ?? '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('address1')
+									<p class="text-xs text-red-600">{{$message}}</p>
+								@enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('address2', 'Address 2', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								@if (@empty($address->address2))
-									{{ Form::text('address2', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
-								@else 
-								{{ Form::text('address2', $address->address2, ['class' => 'form-control', 'placeholder' => '' ]) }}
-									@error('address2')
-										<p class="text-xs text-red-600">{{$message}}</p>
-									@enderror
-								@endif
+								{{ Form::text('address2', $address->address2 ?? '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('address2')
+									<p class="text-xs text-red-600">{{$message}}</p>
+								@enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('city', 'City', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								@if (@empty($address->city))
-									{{ Form::text('address2', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
-								@else 
-								{{ Form::text('address2', $address->city, ['class' => 'form-control', 'placeholder' => '' ]) }}
-									@error('city')
-										<p class="text-xs text-red-600">{{$message}}</p>
-									@enderror
-								@endif
+								{{ Form::text('city', $address->city ?? '', ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('city')
+									<p class="text-xs text-red-600">{{$message}}</p>
+								@enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('parish', 'Parish', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								@if (@empty($address->city))
-									{{ Form::text('parish', '', ['class' => 'form-control', 'placeholder' => '' ]) }}
-								@else 
 								{{ Form::text('parish', 'parishy', ['class' => 'form-control', 'placeholder' => '' ]) }}
-									@error('city')
-										<p class="text-xs text-red-600">{{$message}}</p>
-									@enderror
-								@endif
+								@error('city')
+									<p class="text-xs text-red-600">{{$message}}</p>
+								@enderror
 							</div>
 						</div>
+						
 					</div>
 				</div>
 
@@ -161,6 +158,7 @@
 								@enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('workphone', 'Work Phone', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
@@ -171,23 +169,18 @@
 								@enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('gender', 'Gender', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">
-								@if (@empty($patient->gender_id))
-								{!! Form::select('gender', $genders, null, ['class' => 'form-select form-control']) !!}
-								@else 
-									{!! Form::select('gender', $genders, $patient->gender_id, ['class' => 'form-select form-control']) !!}
+								{!! Form::select('gender', $genders, $patient->gender_id ?? '', ['class' => 'form-select form-control']) !!}
 
-									@error('gender')
-										<p class="text-xs text-red-600">{{ $message }}</p>
-									@enderror
-								@endif
-
-
-								
+								@error('gender')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
 							</div>
 						</div>
+
 						<div class="row mb-3">
 							{{Form::label('dob', 'Date of Birth', ['class' => 'col-sm-4 col-form-label'])}}
 							<div class="col-sm-8">

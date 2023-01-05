@@ -1,4 +1,13 @@
 /* Typography */
+body {
+  font-size: $font-size-base;
+}
+
+p {
+  font-size: $font-size-base;
+}
+
+
 
 .text-red-500 {
   color: $red-500;

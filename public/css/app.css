@@ -58371,7 +58371,7 @@ a.text-current:hover {
   --x-font-monospace: var(--x-font-monospace);
   --x-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --x-body-font-family: var(--x-font-sans-serif);
-  --x-body-font-size: 0.9375rem;
+  --x-body-font-size: 0.875rem;
   --x-body-font-weight: 400;
   --x-body-line-height: 1.6;
   --x-body-color: #343a40;
@@ -64332,7 +64332,7 @@ textarea.form-control-lg {
   align-items: center;
   width: 100%;
   padding: 1.5rem 1.25rem;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: #525F7F;
   text-align: left;
   background-color: transparent;
@@ -65674,7 +65674,7 @@ textarea.form-control-lg {
 .popover-header {
   padding: 0.75rem 0.75rem;
   margin-bottom: 0;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: #16192C;
   background-color: #FFF;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -109350,6 +109350,14 @@ textarea.form-control-lg {
 }
 /* === Core Styles === */
 /* Typography */
+body {
+  font-size: 0.875rem;
+}
+
+p {
+  font-size: 0.875rem;
+}
+
 .text-red-500 {
   color: #FF3366;
 }
@@ -109438,15 +109446,32 @@ p {
   color: #FFF;
 }
 
-.patient-profile .list-group {
+/*
+.patient-profile {
+	.list-group {
+		border-radius: 0;
+	}
+	.list-group-item {
+		border-left: none;
+		border-right: none;
+	}
+	.list-group-item:last-child {
+		border-bottom: none;
+	}
+}
+*/
+.card-profile {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0;
+  box-shadow: none;
+}
+.card-profile .list-group {
   border-radius: 0;
 }
-.patient-profile .list-group-item {
-  border-left: none;
-  border-right: none;
-}
-.patient-profile .list-group-item:last-child {
-  border-bottom: none;
+.card-profile .list-group-item {
+  border: none;
+  border-bottom: 1px solid #E7EAF0;
+  padding: 0.5rem 0.5rem;
 }
 
 /*
@@ -109525,6 +109550,10 @@ body {
   font-size: 0.875rem;
 }
 
+table.table-no-padding {
+  padding-left: 0;
+}
+
 /*
 @import "background";
 @import "typography";
@@ -109534,7 +109563,8 @@ body {
 @import "demo";
 @import "dashboard";
 
-/* === Layout === 
+
+/*=== Layout === 
 @import "navbar";
 @import "sidebar";
 @import "footer";

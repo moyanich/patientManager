@@ -37,37 +37,43 @@
         </div>
     </div>
 
-    <div class="row align-items-start">
+    <div class="row gx-2 align-items-start bg-white p-2">
         <div class="col col-md-4">
-            <div class="card card-profile mb-4">
+            <div class="card card-profile mb-2">
                 <div class="card-body">
-                    
+                    photo
+                    <img src="..." class="card-img" alt="...">
+                </div>
+            </div>
+
+            <div class="card card-profile mb-2">
+                <div class="card-body">
+                    <h4 class="mb-1">Emergency Contact Name</h4>
                     <div class="list-group">
-
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{__('TRN:') }}</h5>
+                                <h6 class="mb-1">{{__('TRN:') }}</h6>
                             </div>
                             <p class="mb-1">---</p>
                         </div>
 
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{__('NIS:') }}</h5>
+                                <h6 class="mb-1">{{__('NIS:') }}</h6>
                             </div>
                             <p class="mb-1">---</p>
                         </div>
 
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{__('Gender/Sex:') }}</h5>
+                                <h6 class="mb-1">{{__('Gender/Sex:') }}</h6>
                             </div>
                             <p class="mb-1">{{  $gender->name ?? '' }} </p>
                         </div>
 
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{__('D.O.B.:') }}</h5>
+                                <h6 class="mb-1">{{__('D.O.B.:') }}</h6>
                             </div>
                             <p class="mb-1">{{ format_date_long($patient->dob) ?? '' }}</p>
                         </div>
@@ -80,20 +86,24 @@
                         </div>
                        
                     </div>
-
                 </div>
             </div>
+        </div>
 
-            <div class="card mb-4">
+        <div class="col col-md-4">
+           
+            <div class="card card-profile mb-2">
                 <div class="card-body">
+                    <h4 class="mb-1">Address</h4>
                     <p>{{ $address->address1 ?? '' }}</p> 
                     <p>{{ $address->address2 ?? '' }}</p> 
                     <p>{{ $address->city ?? '' }}</p> 
                 </div>
             </div>
 
-            <div class="card mb-4">
+            <div class="card card-profile mb-2">
                 <div class="card-body">
+                    <h4 class="mb-1">Contact Information</h4>
                     <table class="table table-borderless compact-table table-sm">
                         <tbody>
                             <tr>
@@ -102,7 +112,7 @@
                             </tr>
                             <tr>
                                 <td><div class="font-bold">{{__('Home #:') }}</div></td>
-                                <td>{{ $patient->home_phone }}</td>
+                                <td>{{ hyphenate($patient->home_phone) }}</td>
                             </tr>
                             <tr>
                                 <td><div class="font-bold">{{__('Cellphone #:') }}</div></td>
@@ -123,8 +133,8 @@
             
         </div>
 
-        <div class="col col-md-6">
-            <div class="card mb-4">
+        <div class="col col-md-4">
+            <div class="card card-profile mb-4">
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
                         <tbody>
@@ -140,14 +150,7 @@
             </div>
         </div>
 
-        <div class="col col-md-2">
-            <div class="card mb-2">
-                <div class="card-body">
-                    photo
-                    <img src="..." class="card-img" alt="...">
-                </div>
-            </div>
-        </div>
+        
     </div>
   
 @endsection
