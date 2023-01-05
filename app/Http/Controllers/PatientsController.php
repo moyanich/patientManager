@@ -185,12 +185,16 @@ class PatientsController extends Controller
         $patient->email = $request->input('email');
         $patient->dob = $request->input('dob');
         $patient->home_phone = $request->input('homephone');
-        $patient->work_phone = $request->input('workphone');
         $patient->cell_number = $request->input('cellnumber');
         $patient->gender_id = $request->input('gender');
         $patient->trn = $request->input('trn');
         $patient->nis = $request->input('nis');
         $patient->parish_id = $request->input('parish_id');
+        $patient->employer = $request->input('employer');
+        $patient->work_phone = $request->input('workphone');
+        $patient->work_email = $request->input('work_email');
+        $patient->emp_address = $request->input('emp_address');
+        
 
         $patient->save();
 

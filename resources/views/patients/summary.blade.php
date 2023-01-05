@@ -96,7 +96,7 @@
                     <p>{{ $address->address1 ?? '' }}</p> 
                     <p>{{ $address->address2 ?? '' }}</p> 
                     <p>{{ $address->city ?? '' }}</p> 
-                    <p>{{ $parish->name }}</p>
+                    <p>{{ $parish->name ?? ''}}</p>
                 </div>
             </div>
 
@@ -143,26 +143,26 @@
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">{{__('Employer:') }}</h6>
                             </div>
-                            <p class="mb-1">{{-- $patient->email --}}</p>
+                            <p class="mb-1">{{ $patient->employer }}</p>
                         </div>
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">{{__('Employer Address:') }}</h6>
                             </div>
-                            <p class="mb-1">{{-- $patient->email --}}</p>
+                            <p class="mb-1">{{ $patient->emp_address }}</p>
                         </div>
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">{{__('Work Email:') }}</h6>
                             </div>
-                            <p class="mb-1">{{-- $patient->email --}}</p>
+                            <p class="mb-1">{{ $patient->work_email }}</p>
                         </div>
 
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">{{__('Work Phone #:') }}</h6>
                             </div>
-                            <p class="mb-1">----</p>
+                            <p class="mb-1">{{ hyphenate($patient->work_phone) }}</p>
                         </div>
 
                     </div>

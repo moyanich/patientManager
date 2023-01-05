@@ -148,47 +148,6 @@
 								@enderror
 							</div>
 						</div>
-						
-					</div>
-				</div>
-
-			</div>
-
-			<div class="col col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="row mb-3">
-							{{Form::label('homephone', 'Home Phone', ['class' => 'col-sm-4 col-form-label'])}}
-							<div class="col-sm-8">
-								{{ Form::text('homephone', $patient->home_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
-
-								@error('homephone')
-									<p class="text-xs text-red-600">{{ $message }}</p>
-								@enderror
-							</div>
-						</div>
-
-						<div class="row mb-3">
-							{{Form::label('cellnumber', 'Cell Phone', ['class' => 'col-sm-4 col-form-label'])}}
-							<div class="col-sm-8">
-								{{ Form::text('cellnumber', $patient->cell_number, ['class' => 'form-control', 'placeholder' => '' ]) }}
-
-								@error('cellnumber')
-									<p class="text-xs text-red-600">{{ $message }}</p>
-								@enderror
-							</div>
-						</div>
-
-						<div class="row mb-3">
-							{{Form::label('workphone', 'Work Phone', ['class' => 'col-sm-4 col-form-label'])}}
-							<div class="col-sm-8">
-								{{ Form::text('workphone', $patient->work_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
-
-								@error('workphone')
-									<p class="text-xs text-red-600">{{ $message }}</p>
-								@enderror
-							</div>
-						</div>
 
 						<div class="row mb-3">
 							{{Form::label('gender', 'Gender', ['class' => 'col-sm-4 col-form-label'])}}
@@ -211,11 +170,100 @@
 								@enderror
 							</div>
 						</div>
+						
+					</div>
+				</div>
 
+			</div>
 
+			<div class="col col-md-6">
+				<div class="card mb-3">
+					<div class="card-body">
+
+						<div class="row mb-3">
+							{{Form::label('email', 'Email Address', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::email('email', $patient->email, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('email')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							{{Form::label('homephone', 'Home Phone', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('homephone', $patient->home_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('homephone')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							{{Form::label('cellnumber', 'Cell Phone', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('cellnumber', $patient->cell_number, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('cellnumber')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<div class="row mb-3">
+							{{Form::label('employer', 'Employer', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('employer', $patient->employer, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('employer')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							{{Form::label('workphone', 'Work Phone', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('workphone', $patient->work_phone, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('workphone')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							{{Form::label('work_email', 'Work Email', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::text('work_email', $patient->work_email, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('work_email')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
 
 						
 
+
+						<div class="row mb-3">
+							{{Form::label('emp_address', 'Employer Address', ['class' => 'col-sm-4 col-form-label'])}}
+							<div class="col-sm-8">
+								{{ Form::textarea('emp_address', $patient->emp_address, ['class' => 'form-control', 'placeholder' => '' ]) }}
+
+								@error('workphone')
+									<p class="text-xs text-red-600">{{ $message }}</p>
+								@enderror
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

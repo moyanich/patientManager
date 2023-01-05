@@ -30,8 +30,10 @@ class UpdatePatientsRequest extends FormRequest
             //'dob' => 'required',
             //'gender' => 'required',
             'email' => 'sometimes|email',
+            'work_email' => 'sometimes|email',
             'homephone' => 'size:10', 
             'cellnumber' => 'size:10',
+            'workphone' => 'size:10',
             'trn' => [
                 'nullable',
                 'max:9',
@@ -60,7 +62,7 @@ class UpdatePatientsRequest extends FormRequest
             
             'homephone.size' => 'Phone number must have 10 numbers',
             'cellnumber' => 'Phone number must have 10 numbers',
-
+            'workphone' => 'Phone number must have 10 numbers',
 
             //'home_phone.max' => 'Phone number must not be greater than 10',
            // 'cell_number.max' => 'Mobile phone  must not be greater than 10',

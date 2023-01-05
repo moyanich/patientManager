@@ -28,6 +28,9 @@ class CreatePatientsTable extends Migration
             $table->string('email', 50)->nullable();
             $table->char('nis', 9)->nullable()->unique();
             $table->char('trn', 9)->nullable()->unique();
+            $table->string('employer', 255)->nullable();
+            $table->string('emp_address', 255)->nullable();
+            
 
             $table->integer('parish_id')->unsigned()->nullable();
 
