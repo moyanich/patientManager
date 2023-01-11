@@ -178,6 +178,7 @@ class PatientsController extends Controller
     public function update(UpdatePatientsRequest $request, Patients $patient)
     {
         $patient = Patients::findOrFail($patient->id);
+        $patient->salutation = $request->input('salutation');
         $patient->first_name = $request->input('firstname');
         $patient->middle_name = $request->input('middlename');
         $patient->last_name = $request->input('lastname');
@@ -194,6 +195,10 @@ class PatientsController extends Controller
         $patient->work_phone = $request->input('workphone');
         $patient->work_email = $request->input('work_email');
         $patient->emp_address = $request->input('emp_address');
+        $patient->kin_name = $request->input('kin_name');
+        $patient->kin_phone = $request->input('kin_phone');
+        $patient->kin_address = $request->input('kin_address');
+        
         
 
         $patient->save();

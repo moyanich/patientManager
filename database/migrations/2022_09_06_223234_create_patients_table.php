@@ -16,6 +16,7 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('patient_no', 24)->unique();
+            $table->char('salutation', 4)->nullable();
             $table->string('first_name', 150);
             $table->string('middle_name')->nullable();
             $table->string('last_name', 255);
@@ -24,20 +25,26 @@ class CreatePatientsTable extends Migration
             $table->date('registration_date');
             $table->string('home_phone', 14)->nullable();
             $table->string('cell_number', 14)->nullable();
-            $table->string('work_phone', 14)->nullable();
             $table->string('email', 50)->nullable();
             $table->char('nis', 9)->nullable()->unique();
             $table->char('trn', 9)->nullable()->unique();
+
+            $table->string('kin_name', 255)->nullable();
+            $table->string('kin_phone', 14)->nullable();
+            $table->string('kin_address', 255)->nullable();
+
+
             $table->string('employer', 255)->nullable();
             $table->string('emp_address', 255)->nullable();
-            
+            $table->string('work_phone', 14)->nullable();
+            $table->string('work_email', 50)->nullable();
 
-            $table->integer('parish_id')->unsigned()->nullable();
+           
 
             $table->string('emergency_number')->nullable();
             
 
-
+            $table->integer('parish_id')->unsigned()->nullable();
             
             
             $table->timestamps();

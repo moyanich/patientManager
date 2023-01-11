@@ -27,6 +27,7 @@ class PatientsFactory extends Factory
             'id'                => $this->faker->numberBetween($min = 1000, $max = 9000),
             'patient_no'        => $this->faker->numberBetween($min = 1000, $max = 9000),
             'first_name'         => $this->faker->firstName($gender = 'male'|'female'),
+            'first_name'         => $this->faker->firstName($gender = 'male'|'female'),
             'middle_name'        => $this->faker->lastName(),
             'last_name'          => $this->faker->lastName(),
             'gender_id'         => Genders::all()->random(), // Get the data from the the Genders Table

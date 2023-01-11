@@ -5,7 +5,7 @@
         <div class="col-md-8 col-12 mb-3 mb-md-0">
             <!-- Title -->
             <h6 class="text-uppercase">{{__('Patient Profile') }}</h6>
-			<h1 class="h2 mb-0 ls-tight">{{ $patient->first_name . ' ' . ' ' . $patient->middle_name . ' ' . $patient->last_name }}</h1>
+			<h1 class="h2 mb-0 ls-tight">{{ $patient->salutation . ' ' . $patient->first_name . ' ' . ' ' . $patient->middle_name . ' ' . $patient->last_name }}</h1>
         </div>
         <!-- Actions -->
 
@@ -35,6 +35,38 @@
         <div class="col-12">
             <h4 class="d-block my-4">{{ __('Patient Information') }}</h4>
         </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-12 col-md-2 bg-dark">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-12 col-md-3 bg-light">
+
+            1
+        </div>
+
+        <div class="col-12 col-md-7 bg-light">
+
+            1
+        </div>
+
+       
+
     </div>
 
     <div class="row gx-2 align-items-start bg-white p-2">

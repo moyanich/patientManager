@@ -27,6 +27,7 @@ class Patients extends Model
      */
     protected $fillable = [
         'patient_no',
+        'salutation',
         'name',
         'middle_name',
         'last_name',
@@ -42,6 +43,10 @@ class Patients extends Model
         'emp_address',
         'work_phone',
         'work_email',
+        'kin_name',
+        'kin_phone',
+        'kin_address',
+
 
        /* 
 
