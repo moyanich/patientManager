@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DoctorsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PatientsController;
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/patients/summary/{patients}', [PatientsController::class, 'summary'])->name('patients.summary');
 
+    Route::resource('doctors', DoctorsController::class);
     Route::resource('/patients', PatientsController::class);
 
    /* Route::get('/profile{patient}', function ($id) {

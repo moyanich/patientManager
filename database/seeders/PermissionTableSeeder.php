@@ -26,7 +26,11 @@ class PermissionTableSeeder extends Seeder
             'patient-list',
             'patient-create',
             'patient-edit',
-            'patient-delete'
+            'patient-delete',
+            'doctor-list',
+            'doctor-create',
+            'doctor--edit',
+            'doctor-delete',
          ];
       
         foreach ($permissions as $permission) {

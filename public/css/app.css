@@ -109553,6 +109553,12 @@ body {
   color: red;
 }
 
+.required-text:after {
+  content: "*";
+  position: relative;
+  color: red;
+}
+
 table.table-no-padding {
   padding-left: 0;
 }

@@ -93,6 +93,37 @@
 			<!-- Navigation -->
 			<ul class="navbar-nav mb-md-4">
 				<li class="nav-item">
+					<a class="nav-link" href="#doctor-collapse" data-bs-toggle="collapse" href="#doctor-collapse" role="button" aria-expanded="false" aria-controls="settings-collapse">
+						<i class="bi bi-person-video2 text-lg"></i> {{ __('Doctors') }}
+					</a>
+					<li>
+						<div class="collapse show" id="doctor-collapse">
+							<ul class="nav flex-column mb-2">
+								<li class="nav-item">
+									<x-navlink :href="route('doctors.index')" class="{{ request()->routeIs('doctors.index') ? 'active' : '' }} ">
+										<i class="bi bi-person-rolodex"></i>
+										{{ __('All Doctors') }}
+									</x-navlink>
+								</li>
+								<li class="nav-item">
+									<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
+										<i class="bi bi-person-plus"></i>
+										{{ __('New Doctor') }}
+									</x-navlink>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</li>
+			</ul>
+			<!-- Push content down -->
+
+
+			<!-- Divider -->
+			<hr class="navbar-divider my-5 opacity-20">
+			<!-- Navigation -->
+			<ul class="navbar-nav mb-md-4">
+				<li class="nav-item">
 					<a class="nav-link" href="#settings-collapse" data-bs-toggle="collapse" href="#settings-collapse" role="button" aria-expanded="false" aria-controls="settings-collapse">
 						<i class="bi bi-sliders text-lg"></i> {{ __('Settings') }}
 					</a>

@@ -4,4 +4,10 @@
 
 .text-red-600 {
     color: red;
-  }
+}
+
+.required-text:after {
+    content: '*';
+    position: relative;
+    color: red;
+}
