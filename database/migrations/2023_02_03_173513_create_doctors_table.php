@@ -20,17 +20,23 @@ class CreateDoctorsTable extends Migration
             $table->string('last_name', 255);
             $table->string('email', 55)->nullable();
             $table->string('designation', 255)->nullable();
-            $table->string('degrees', 255)->nullable();
+            
+            $table->string('department', 255)->nullable();
+            $table->string('specialist_area', 255)->nullable();
+            
+            $table->date('dob')->nullable();
+            $table->unsignedBigInteger('gender_id')->nullable();
 
 
-
+            $table->string('degree', 255)->nullable();
 
             $table->string('contact_1', 14)->nullable();
             $table->string('contact_2', 14)->nullable();
             
-            $table->string('degree', 255)->nullable();
+           
            // $table->integer('experience', 10);
             $table->timestamps();
+            $table->foreign('gender_id')->references('id')->on('genders'); 
         });
     }
 
@@ -49,17 +55,17 @@ class CreateDoctorsTable extends Migration
 /*
 
 Password
-Designation
-Department
+
+
 
 Address
 Phone No
 Mobile No
 Short Biography
 Picture
-Specialist Area
-Date of Birth
-Gender
+
+
+
 Blood Group
 Education/Degree
 

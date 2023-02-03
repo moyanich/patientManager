@@ -60,7 +60,7 @@ class DoctorsController extends Controller
         $doctor->last_name = $request->input('last_name');
         $doctor->email = $request->input('email');
         $doctor->designation = $request->input('designation');
-        $doctor->degrees = $request->input('degrees');
+        $doctor->degree = $request->input('degrees');
 
         
 

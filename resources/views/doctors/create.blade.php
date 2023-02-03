@@ -111,7 +111,7 @@
                         <div class="mb-3 row">
                             {{ Form::label('degrees', 'Degrees', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-8">
-                                {{Form::text('degrees', '', ['class' => 'form-control', 'placeholder' => '']) }}
+                                {{Form::textarea('degrees', '', ['class' => 'form-control', 'placeholder' => '']) }}
 
                                 @error('degrees')
                                     <p class="text-xs text-danger">{{ $message }}</p>

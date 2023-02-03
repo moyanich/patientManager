@@ -30,12 +30,23 @@ class Doctors extends Model
         'email',
         'designation',
         'degrees',
-
-
-
+        'department',
+        'specialist_area',
+        'dob',
+        'gender_id',
         'contact_1',
         'contact_2',
         'title',
         'degree',
     ];
+
+    protected $dates = [
+        'dob'
+    ];
+
+
+
+    
 }
+
+
