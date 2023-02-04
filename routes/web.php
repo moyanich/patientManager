@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\DoctorsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class)->except('edit');
 
     Route::get('/patients/summary/{patients}', [PatientsController::class, 'summary'])->name('patients.summary');
+
+    Route::resource('departments', DepartmentsController::class);
 
     Route::resource('doctors', DoctorsController::class);
     Route::resource('/patients', PatientsController::class);

@@ -142,6 +142,12 @@
 										{{ __('Roles') }}
 									</x-navlink>
 								</li>
+								<li class="nav-item">
+									<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('roles.index') ? 'active' : '' }} ">
+										<i class="bi bi-gear"></i>
+										{{ __('Departments') }}
+									</x-navlink>
+								</li>
 							</ul>
 						</div>
 					</li>
