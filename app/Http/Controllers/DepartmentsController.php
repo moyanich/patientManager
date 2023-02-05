@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
 use App\Models\Departments;
+use App\Models\Status;
 
 class DepartmentsController extends Controller
 {
@@ -41,7 +42,9 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
-        return view('departments.create');
+       // $status = Status::pluck('name', 'id')->prepend('Please select', '');
+        $status = Status::where('name', 'like', '%active%')->pluck('name', 'id');
+        return view('departments.create', compact('status'));
     }
 
     /**
@@ -55,7 +58,7 @@ class DepartmentsController extends Controller
         $department = new Departments();
         $department->name = $request->input('name');
         $department->description = $request->input('description');
-        $department->status = status($request->input('status'));
+        $department->status = $request->input('status');
         $department->save();
 
        /* $job->status_id = ($job->end_date >= $today_date || is_null($job->end_date) ) ? StatusCodes::active_status() : StatusCodes::inactive_status();
@@ -85,9 +88,12 @@ class DepartmentsController extends Controller
      * @param  \App\Models\Departments  $departments
      * @return \Illuminate\Http\Response
      */
-    public function edit(Departments $departments)
+    public function edit(Departments $department)
     {
-        //
+        //$user = User::find($id);
+        //return view('departments.edit');
+        $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
+        return view('departments.edit', ['department' => $department, 'statuses' => $statuses ]);        
     }
 
     /**

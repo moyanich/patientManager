@@ -60,7 +60,7 @@
             </header>
             <main class="py-10 bg-surface-secondary">
                 <!-- Container -->
-                <div class="container-xxl gap-6">
+                <div class="container-xl gap-6">
 
                    @yield('content')
 

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['page' => __('Patient Management')])
+@extends('layouts.dashboard', ['page' => __('Department Management')])
 
 @section('header')
     <div class="row align-items-center">
