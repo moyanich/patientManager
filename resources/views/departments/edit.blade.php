@@ -27,7 +27,7 @@
     <div class="card">
         <h5 class="card-header bg-gradient bg-secondary">Department Information</h5>
         <div class="card-body">
-            {!! Form::open(['action' => 'App\Http\Controllers\DepartmentsController@store', 'method' => 'POST']) !!}
+            {!! Form::open(['action' => ['App\Http\Controllers\DepartmentsController@update', $department->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
                 <div class="row">
                     <div class="col-md-8">
@@ -62,13 +62,13 @@
                                 --}} 
                             
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" {{ $department->status==1 ? 'checked': '' }}/>
+                                    <input class="form-check-input" type="radio" name="status" value="1" {{ $department->status==1 ? 'checked': '' }}/>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                       Active
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" {{ $department->status==2 ? 'checked': '' }}/>
+                                    <input class="form-check-input" type="radio" name="status" value="2" {{ $department->status==2 ? 'checked': '' }}/>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                       Inactive
                                     </label>
@@ -92,6 +92,7 @@
                     </div>
                 </div>
 
+            {{Form::hidden('_method', 'PUT') }}
             {!! Form::close() !!}
 
         </div>

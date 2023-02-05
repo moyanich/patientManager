@@ -11,7 +11,6 @@ use App\Models\Genders;
 use App\Models\Parish;
 use App\Models\Patients;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 
 
 use Carbon\Carbon;
@@ -198,8 +197,6 @@ class PatientsController extends Controller
         $patient->kin_phone = $request->input('kin_phone');
         $patient->kin_address = $request->input('kin_address');
         
-        
-
         $patient->save();
 
         Address::updateOrCreate(

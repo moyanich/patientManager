@@ -90,8 +90,6 @@ class DepartmentsController extends Controller
      */
     public function edit(Departments $department)
     {
-        //$user = User::find($id);
-        //return view('departments.edit');
         $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
         return view('departments.edit', ['department' => $department, 'statuses' => $statuses ]);        
     }
@@ -103,9 +101,15 @@ class DepartmentsController extends Controller
      * @param  \App\Models\Departments  $departments
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDepartmentsRequest $request, Departments $departments)
+    public function update(UpdateDepartmentsRequest $request, Departments $department)
     {
-        //
+        $department = Departments::findOrFail($department->id);
+        $department->name = $request->input('name');
+        $department->description = $request->input('description');
+        $department->status = $request->input('status');
+        $department->save();
+
+        return redirect()->back()->with('success', 'Record updated sucessfully!!');
     }
 
     /**

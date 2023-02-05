@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateDepartmentsRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateDepartmentsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,28 @@ class UpdateDepartmentsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                Rule::unique('departments', 'name')
+                ->ignore($this->department->id)
+            ],
+
+          /*  'name' => 'required|unique:departments,name,'.$this->department->id,
+            'status' => 'required', */
+            
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     * 
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            
+            'status.required' => 'The Status field is required.',
         ];
     }
 }
