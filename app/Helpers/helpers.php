@@ -57,3 +57,31 @@ if(! function_exists('calc_age')) {
 
     }
 }
+
+/**
+ * Convert Status
+ */
+if(! function_exists('status')) {
+    function status($status_code) {
+
+        if($status_code == 'active') {
+            return 1;
+        } else if ($status_code == 'inactive'){
+            return 2;
+        }
+    }
+}
+
+/**
+ * Convert Status
+ */
+if(! function_exists('statusConvert')) {
+    function statusConvert($status_code) {
+
+        if($status_code == 1) {
+            return 'Active';
+        } else if ($status_code == 2){
+            return 'Inactive';
+        }
+    }
+}

@@ -13,7 +13,7 @@ class StoreDepartmentsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class StoreDepartmentsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:departments,name',
+            'status' => 'required',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     * 
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'The Department Name field is required.',
+            'name.unique' => 'The Department Name already exists'
         ];
     }
 }

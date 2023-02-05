@@ -36,7 +36,6 @@ class PatientsController extends Controller
         $this->middleware('permission:patient-delete', ['only' => ['destroy']]);
     }
 
-
     /**
      * Display a listing of the resource.
      *

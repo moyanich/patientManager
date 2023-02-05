@@ -24,28 +24,28 @@
 </head>
 <body>
 
-    <div class="d-flex flex-column flex-lg-row h-lg-full bg-gray-100">
-        
-        @include('partials.sidebar')
+    <div class="container-fluid px-0 bg-gray-100">
+
+        <div class="bg-surface-primary border-bottom py-6">
+            <div class="container-fluid">
+               <div class="mb-npx">
+                  <div class="row align-items-center">
+                     <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                        <h4 class="ls-tight"><span class="d-inline-block me-3">👋</span>Welcome! {{ Auth::user()->name }}</h4>
+                     </div>
+                     <div class="col-sm-6 col-12 text-sm-end">
+                        <div class="hstack gap-2 justify-content-end"><a href="https://webpixels.io/themes/clever-admin-dashboard-template" class="btn d-inline-flex btn-sm btn-neutral border-base">Learn more </a><a href="https://github.com/webpixels/bootstrap-dashboard-kit" class="btn btn-sm btn-dark"><span class="pe-2"><i class="bi bi-github"></i> </span><span>Download</span></a></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+        @include('partials.navbar')
         
         <!-- Main content -->
-        <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-
-            <div class="bg-surface-primary border-bottom py-6">
-                <div class="container-fluid">
-                   <div class="mb-npx">
-                      <div class="row align-items-center">
-                         <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-                            <h4 class="ls-tight"><span class="d-inline-block me-3">👋</span>Welcome! {{ Auth::user()->name }}</h4>
-                         </div>
-                         <div class="col-sm-6 col-12 text-sm-end">
-                            <div class="hstack gap-2 justify-content-end"><a href="https://webpixels.io/themes/clever-admin-dashboard-template" class="btn d-inline-flex btn-sm btn-neutral border-base">Learn more </a><a href="https://github.com/webpixels/bootstrap-dashboard-kit" class="btn btn-sm btn-dark"><span class="pe-2"><i class="bi bi-github"></i> </span><span>Download</span></a></div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-
+        
+           
             <header class="bg-surface-secondary border-top">
                 <div class="container-xl">
                     <div class="py-5 border-bottom">

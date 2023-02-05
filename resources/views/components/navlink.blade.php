@@ -3,8 +3,8 @@
 @php
 
 $classes = ($active ?? false)
-    ? 'nav-link'
-    : 'nav-link';
+    ? 'dropdown-item'
+    : 'dropdown-item';
 
 @endphp
 

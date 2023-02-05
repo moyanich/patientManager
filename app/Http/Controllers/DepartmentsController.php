@@ -2,20 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
 use App\Models\Departments;
 
 class DepartmentsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        //
+        $this->middleware('permission:department-list|department-create|department-edit|department-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:department-create', ['only' => ['create','store']]);
+        $this->middleware('permission:department-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:department-delete', ['only' => ['destroy']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $departments = Departments::orderBy('id', 'DESC')->paginate(5);
+        return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -25,7 +41,7 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('departments.create');
     }
 
     /**
@@ -36,7 +52,18 @@ class DepartmentsController extends Controller
      */
     public function store(StoreDepartmentsRequest $request)
     {
-        //
+        $department = new Departments();
+        $department->name = $request->input('name');
+        $department->description = $request->input('description');
+        $department->status = status($request->input('status'));
+        $department->save();
+
+       /* $job->status_id = ($job->end_date >= $today_date || is_null($job->end_date) ) ? StatusCodes::active_status() : StatusCodes::inactive_status();
+        $job->save(); */
+
+        
+
+        return redirect()->route('departments.create', ['department' => $department])->with('success', 'Department created successfully!'); //
     }
 
     /**
@@ -47,7 +74,9 @@ class DepartmentsController extends Controller
      */
     public function show(Departments $departments)
     {
-        //
+        //$departments = Departments::find($id);
+
+        return view('departments.show');
     }
 
     /**
