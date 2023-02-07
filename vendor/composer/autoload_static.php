@@ -37,7 +37,6 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
-        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
         '9eb92a60b23a168bdc5f3366f76ebf52' => __DIR__ . '/../..' . '/app/helpers/helpers.php',
     );
@@ -171,7 +170,6 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'C' => 
         array (
             'Cron\\' => 5,
-            'Collective\\Html\\' => 16,
             'Carbon\\' => 7,
         ),
         'B' => 
@@ -513,10 +511,6 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
-        'Collective\\Html\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
-        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -565,6 +559,7 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\PatientsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PatientsController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
+        'App\\Http\\Controllers\\StatusController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatusController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -579,10 +574,12 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'App\\Http\\Requests\\StoreDepartmentsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreDepartmentsRequest.php',
         'App\\Http\\Requests\\StoreDoctorsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreDoctorsRequest.php',
         'App\\Http\\Requests\\StorePatientsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StorePatientsRequest.php',
+        'App\\Http\\Requests\\StoreStatusRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreStatusRequest.php',
         'App\\Http\\Requests\\UpdateBloodGroupsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateBloodGroupsRequest.php',
         'App\\Http\\Requests\\UpdateDepartmentsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateDepartmentsRequest.php',
         'App\\Http\\Requests\\UpdateDoctorsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateDoctorsRequest.php',
         'App\\Http\\Requests\\UpdatePatientsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatePatientsRequest.php',
+        'App\\Http\\Requests\\UpdateStatusRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateStatusRequest.php',
         'App\\Models\\Address' => __DIR__ . '/../..' . '/app/Models/Address.php',
         'App\\Models\\BloodGroups' => __DIR__ . '/../..' . '/app/Models/BloodGroups.php',
         'App\\Models\\Departments' => __DIR__ . '/../..' . '/app/Models/Departments.php',
@@ -597,6 +594,7 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'App\\Policies\\DoctorsPolicy' => __DIR__ . '/../..' . '/app/Policies/DoctorsPolicy.php',
         'App\\Policies\\ParishPolicy' => __DIR__ . '/../..' . '/app/Policies/ParishPolicy.php',
         'App\\Policies\\PatientsPolicy' => __DIR__ . '/../..' . '/app/Policies/PatientsPolicy.php',
+        'App\\Policies\\StatusPolicy' => __DIR__ . '/../..' . '/app/Policies/StatusPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -604,6 +602,8 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Providers\\TelescopeServiceProvider' => __DIR__ . '/../..' . '/app/Providers/TelescopeServiceProvider.php',
         'App\\Rules\\CustomRule' => __DIR__ . '/../..' . '/app/Rules/CustomRule.php',
+        'App\\View\\Components\\Badges' => __DIR__ . '/../..' . '/app/View/Components/Badges.php',
+        'App\\View\\Components\\MenuDropdown' => __DIR__ . '/../..' . '/app/View/Components/MenuDropdown.php',
         'App\\View\\Components\\Messages' => __DIR__ . '/../..' . '/app/View/Components/Messages.php',
         'App\\View\\Components\\Navlink' => __DIR__ . '/../..' . '/app/View/Components/Navlink.php',
         'App\\View\\Components\\NavlinkDropdown' => __DIR__ . '/../..' . '/app/View/Components/NavlinkDropdown.php',
@@ -753,13 +753,6 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\TranslatorImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
         'Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
-        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
-        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
-        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
-        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
-        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
-        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
-        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -791,6 +784,7 @@ class ComposerStaticInit6cda8690b17114e53cda05955b9248c5
         'Database\\Seeders\\ParishSeeder' => __DIR__ . '/../..' . '/database/seeders/ParishSeeder.php',
         'Database\\Seeders\\PatientsSeeder' => __DIR__ . '/../..' . '/database/seeders/PatientsSeeder.php',
         'Database\\Seeders\\PermissionTableSeeder' => __DIR__ . '/../..' . '/database/seeders/PermissionTableSeeder.php',
+        'Database\\Seeders\\StatusSeeder' => __DIR__ . '/../..' . '/database/seeders/StatusSeeder.php',
         'DebugBar\\Bridge\\CacheCacheCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/CacheCacheCollector.php',
         'DebugBar\\Bridge\\DoctrineCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/DoctrineCollector.php',
         'DebugBar\\Bridge\\MonologCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/MonologCollector.php',
