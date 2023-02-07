@@ -13,6 +13,6 @@ class DepartmentsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Departments::factory(20)->create();
     }
 }

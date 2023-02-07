@@ -41,7 +41,7 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $department->name }}</td>
-                            <td>{{ $department->description }}</td>
+                            <td>{{ $department->description }}</td> {{-- //TODO: Fix text --}}
                             <td>
                                 <x-badges :status="strtolower($department->status)">
                                     {{ statusConvert($department->status) ?? '' }}
@@ -65,6 +65,7 @@
         </div>
 
         {!! $departments->render() !!}
+        {{-- //TODO: Fix Pagination --}}
         
     </div>
 
