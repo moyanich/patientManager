@@ -1,4 +1,9 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard', ['page' => __('Dashboard')])
+
+
+
+
+
 
 
 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">

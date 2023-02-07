@@ -61,6 +61,7 @@ if(! function_exists('calc_age')) {
 /**
  * Convert Status
  */
+/*
 if(! function_exists('status')) {
     function status($status_code) {
 
@@ -70,10 +71,14 @@ if(! function_exists('status')) {
             return 2;
         }
     }
-}
+} 
+*/
 
 /**
  * Convert Status
+ * 
+ * @param $status_code
+ * return String
  */
 if(! function_exists('statusConvert')) {
     function statusConvert($status_code) {

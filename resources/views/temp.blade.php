@@ -25,6 +25,16 @@
 @endsection
 
 
+  {{--  <span class="badge badge-lg badge-dot text-black">
+
+                                    @if(statusConvert($department->status == 1))
+                                        <i class="bg-success"></i> 
+                                    @else 
+                                        <i class="bg-danger"></i> 
+                                    @endif
+                                    {{ statusConvert($department->status) }}
+                                </span>--}}
+
 
 
 

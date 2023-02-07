@@ -26,14 +26,14 @@
 
     <div class="card mb-7">
         <div class="table-responsive">
-            <table class="table table-hover table-nowrap">
+            <table class="table table-hover table-nowrap table-striped">
                 <thead class="bg-gray-700 text-white">
                     <tr>
                         <th scope="col">{{ __('#') }}</th>
                         <th scope="col">{{ __('Department Name') }}</th>
                         <th scope="col">{{ __('Description') }}</th>
                         <th scope="col">{{ __('Status') }}</th>
-                        <th scope="col">{{ __('Action') }}</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,18 +42,21 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $department->name }}</td>
                             <td>{{ $department->description }}</td>
-                            <td>{{ statusConvert($department->status) }}</td>
                             <td>
+                                <x-badges :status="strtolower($department->status)">
+                                    {{ statusConvert($department->status) ?? '' }}
+                                </x-badges>
+                            </td>
+                            <td class="text-end">
                                 @can('department-edit')
                                     <a class="btn btn-sm btn-warning" href="{{ route('departments.edit', $department->id) }}"><i class="bi bi-pencil"></i></a>
                                 @endcan
 
                                 @can('department-delete')
-                                    <a href="#" class="btn btn-danger btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#delRoleModal">
+                                    <a href="#" class="btn btn-circle btn-sm btn btn-neutral text-danger-hover" data-bs-toggle="modal" data-bs-target="#delRoleModal">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 @endcan
-
                             </td>
                         </tr>
                     @endforeach

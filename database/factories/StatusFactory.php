@@ -14,7 +14,7 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->randomElement([
+           /* 'name' => $this->faker->unique()->randomElement([
                 'Inactive',
                 'Active',
                 'New',
@@ -23,7 +23,7 @@ class StatusFactory extends Factory
                 'Approved',
                 'Not Approved',
                 'Pending'
-            ])
+            ]) */
         ];
     }
 }

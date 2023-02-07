@@ -1,3 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-3">
+	<div class="container-xl">
+	  	<!-- Logo -->
+		<a class="navbar-brand" href="#">
+			<img src="https://preview.webpixels.io/web/img/logos/clever-light.svg" class="h-8" alt="...">
+		</a>
+		<!-- Navbar toggle -->
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Collapse -->
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<!-- Nav -->
+			<div class="navbar-nav mx-lg-auto">
+				<x-navlink :href="route('dashboard')" class="{{ request()->routeIs('dashboard') ? 'active' : '' }} ">
+					<i class="bi bi-speedometer2 text-lg"></i>
+					{{ __('Dashboard') }}
+				</x-navlink>
+				
+				<a class="nav-item nav-link" href="#" aria-current="page">Home</a>
+				<a class="nav-item nav-link" href="#">Product</a>
+				<a class="nav-item nav-link" href="#">Features</a>
+				<a class="nav-item nav-link" href="#">Pricing</a>
+
+                <div class="dropdown">
+                    <a class="nav-item nav-link dropdown-toggle" href="#" id="dropdownSettings" data-bs-toggle="dropdown" aria-expanded="false">  {{ __('Settings') }}</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownSettings">
+                        <x-menu-dropdown :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
+                            <i class="bi bi-people"></i>
+                            {{ __('Users') }}
+                        </x-menu-dropdown>
+                        <x-menu-dropdown :href="route('roles.index')" class="{{ request()->routeIs('roles.index') ? 'active' : '' }} ">
+                            <i class="bi bi-gear"></i>
+                            {{ __('Roles') }}
+                        </x-menu-dropdown>
+                    
+                        <x-menu-dropdown :href="route('departments.index')" class="{{ request()->routeIs('roles.index') ? 'active' : '' }} ">
+                            <i class="bi bi-gear"></i>
+                            {{ __('Departments') }}
+                        </x-menu-dropdown>
+                    
+
+
+
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                  </div>
+
+			</div>
+			<!-- Right navigation -->
+			<div class="navbar-nav ms-lg-4">
+				<a class="nav-item nav-link" href="#">Sign in</a>
+			</div>
+				<!-- Action -->
+			<div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+				<a class="btn btn-sm btn-primary w-full w-lg-auto" href="{{ route('logout') }}"
+					onclick="event.preventDefault();
+					document.getElementById('logout-form').submit();">
+					<i class="bi bi-box-arrow-left"></i>  {{ __('Logout') }}
+				</a>
+
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+					@csrf
+				</form>
+			</div>
+		</div>
+	</div>
+</nav>
+
+
+
+
+{{-- 
+
 <nav class="navbar navbar-top navbar-expand-lg" id="navbarTop">
     <div class="navbar-logo">
         <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTopCollapse" aria-controls="navbarTopCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
@@ -300,5 +381,5 @@
       </li>
     </ul>
 
-	 --}}
-</nav>
+	
+</nav> --}}
