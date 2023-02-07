@@ -39,7 +39,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/patients/summary/{patients}', [PatientsController::class, 'summary'])->name('patients.summary');
 
-    Route::resource('departments', DepartmentsController::class);
+    Route::resource('departments', DepartmentsController::class)->except([
+        'show'
+    ]);;
 
     Route::resource('doctors', DoctorsController::class);
     Route::resource('/patients', PatientsController::class);

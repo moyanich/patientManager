@@ -26,9 +26,22 @@
         <x-messages />
 
         <div class="card card-bordered">
-            <div class="card-body">
+            <div class="card-header d-flex">
                 <h4 class="card-title">Edit Department</h4>
+                @can('department-delete')
+                    <div class="ms-auto">
+                        <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#sDelDepModal-{{ $department->id }}">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                @endcan
+            </div>
+            <div class="card-body">
+                <div>
+                  
 
+                    
+                </div>
                 <form action="{{ route('departments.update', $department->id) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -104,6 +117,37 @@
             </div>
             </div>
     </div>
+
+
+    @can('department-delete')
+        <!-- Modal -->
+        <div class="modal" id="sDelDepModal-{{ $department->id }}" tabindex="-1" aria-labelledby="delDepModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content shadow-3">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><span class="text-danger text-md"><i class="bi bi-exclamation-diamond-fill"></i></span> {{ __('Delete Department') }}</h5>
+                        <div class="text-xs ms-auto">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-sm text-gray-500">
+                            {{ __('Are you sure you want to delete this record? All of your data will be permanently removed. This action cannot be undone.') }}
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                        
+                        <form action="{{ route('departments.destroy', $department->id) }}" method="POST" style="display: inline">
+                            @method('DELETE')
+                            @csrf
+                            <button href="" class="btn btn-sm btn-danger cursor-pointer">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endcan
 
 @endsection
 

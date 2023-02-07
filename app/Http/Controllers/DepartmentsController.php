@@ -18,7 +18,7 @@ class DepartmentsController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:department-list|department-create|department-edit|department-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:department-list|department-create|department-edit|department-delete', ['only' => ['index', 'edit']]);
         $this->middleware('permission:department-create', ['only' => ['create','store']]);
         $this->middleware('permission:department-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:department-delete', ['only' => ['destroy']]);
@@ -31,8 +31,8 @@ class DepartmentsController extends Controller
      */
     public function index(Request $request)
     {
-        $departments = Departments::orderBy('id', 'DESC')->paginate(5);
-        return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $departments = Departments::orderBy('id', 'DESC')->paginate(10);
+        return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -42,7 +42,6 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
-       // $status = Status::pluck('name', 'id')->prepend('Please select', '');
         $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
         return view('departments.create', ['statuses' => $statuses]);
     }
@@ -60,26 +59,7 @@ class DepartmentsController extends Controller
         $department->description = $request->input('description');
         $department->status = $request->input('status');
         $department->save();
-
-       /* $job->status_id = ($job->end_date >= $today_date || is_null($job->end_date) ) ? StatusCodes::active_status() : StatusCodes::inactive_status();
-        $job->save(); */
-
-        
-
         return redirect()->route('departments.create', ['department' => $department])->with('success', 'Department record created!'); //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Departments  $departments
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Departments $departments)
-    {
-        //$departments = Departments::find($id);
-
-        return view('departments.show');
     }
 
     /**
@@ -108,7 +88,6 @@ class DepartmentsController extends Controller
         $department->description = $request->input('description');
         $department->status = $request->input('status');
         $department->save();
-
         return redirect()->back()->with('success', 'Record updated sucessfully!!');
     }
 
@@ -118,8 +97,10 @@ class DepartmentsController extends Controller
      * @param  \App\Models\Departments  $departments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Departments $departments)
+    public function destroy(Departments $department)
     {
-        //
+        $department = Departments::findOrFail($department->id);
+        $department->delete();
+        return redirect()->route('departments.index', $department->id)->with('success', 'Department Name: ' . $department->name . ' removed sucessfully');
     }
 }

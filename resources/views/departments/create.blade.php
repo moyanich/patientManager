@@ -24,12 +24,9 @@
 
     <div class="offset-md-3 col-md-6">
         <x-messages />
-
         <div class="card card-bordered">
-       
             <div class="card-body">
                 <h4 class="card-title">Add Department</h4>
-
                 <form action="{{ route('departments.store') }}" method="POST">
                     @csrf
                     <div class="row">
