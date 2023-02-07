@@ -22,82 +22,88 @@
 
 @section('content')
 
-    <x-messages />
+    <div class="offset-md-3 col-md-6">
+        <x-messages />
 
-    <div class="card">
-        <h5 class="card-header bg-gradient bg-secondary">Department Information</h5>
-        <div class="card-body">
-            {!! Form::open(['action' => ['App\Http\Controllers\DepartmentsController@update', $department->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+        <div class="card card-bordered">
+            <div class="card-body">
+                <h4 class="card-title">Edit Department</h4>
 
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="mb-3 row">
-                            {{ Form::label('name', 'Department Name', ['class' => 'col-sm-4 col-form-label required-text']) }}
-                            <div class="col-sm-8">
-                                {{ Form::text('name', $department->name, ['class' => 'form-control', 'placeholder' => '']) }}
+                <form action="{{ route('departments.update', $department->id) }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
 
-                                @error('name')
-                                    <p class="text-xs text-danger">{{ $message }}</p>
-                                @enderror
+                    <div class="row">
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <label for="name" class="form-label mb-0 required-text">Department Name</label>
+                                <div class="ms-auto">
+                                <span class="text-sm text-muted">Required</span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            {{ Form::label('description', 'Description', ['class' => 'col-sm-4 col-form-label']) }}
-                            <div class="col-sm-8">
-                                {{ Form::textarea('description', $department->description, ['class' => 'form-control', 'placeholder' => '']) }}
-
-                                @error('description')
-                                    <p class="text-xs text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            {{ Form::label('status', 'Status', ['class' => 'col-sm-4 col-form-label required-text']) }}
-
-                            <div class="col-sm-8">                                
-                               {{-- 
-                                {!! Form::select('status', $statuses, $department->status, ['class' => 'form-select block w-full mt-1 border-0 px-3 py-3 placeholder-blueGray-400 text-gray-600 bg-gray-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150']) !!} 
-                                --}} 
+                            <input id="name"
+                                type="text"
+                                name="name"
+                                value="{{ $department->name }}"
+                                class="form-control @error('name') is-invalid @enderror">
                             
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" value="1" {{ $department->status==1 ? 'checked': '' }}/>
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                      Active
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" value="2" {{ $department->status==2 ? 'checked': '' }}/>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                      Inactive
-                                    </label>
-                                </div>
-
-                                @error('status[]')
-                                    <p class="text-xs text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            @error('name')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
-                    
-                        <div class="row">
-                            <div class="text-end mt-4">
-                                <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
-                                    {{ __('Cancel') }}
-                                </a>
-                                {{ Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) }}
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <label for="description" class="form-label">Description</label>
+                                <div class="ms-auto">
+                                <span class="text-sm text-muted">Optional</span>
+                                </div>
                             </div>
+                            <textarea id="description"
+                                name="description"
+                                style="height: 150px"
+                                class="form-control @error('description') is-invalid @enderror">{{ $department->description }}
+                            </textarea>
+                            
+                            @error('description')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <label for="title" class="form-label required-text">Status</label>
+                                <div class="ms-auto">
+                                <span class="text-sm text-muted">Required</span>
+                                </div>
+                            </div>
+                            <div class="form-floating">
+                                <select name="status" class="form-select @error('status') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
+                                    @foreach($statuses as $key => $value)
+                                        <option value="{{ $key }}" @if($key == $department->status) selected @endif>
+                                            {{ $value }} 
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="floatingSelect">Choose a status</label>
+                            </div>
 
+                            @error('status')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
-            {{Form::hidden('_method', 'PUT') }}
-            {!! Form::close() !!}
-
-        </div>
+                    <div class="row">
+                        <div class="text-end mt-4">
+                            <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                                {{ __('Cancel') }}
+                            </a>
+                            <input type="submit" value="Submit" class="btn btn-sm btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
     </div>
-
 
 @endsection
 

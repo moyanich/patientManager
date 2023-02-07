@@ -43,8 +43,8 @@ class DepartmentsController extends Controller
     public function create()
     {
        // $status = Status::pluck('name', 'id')->prepend('Please select', '');
-        $status = Status::where('name', 'like', '%active%')->pluck('name', 'id');
-        return view('departments.create', compact('status'));
+        $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
+        return view('departments.create', ['statuses' => $statuses]);
     }
 
     /**
@@ -66,7 +66,7 @@ class DepartmentsController extends Controller
 
         
 
-        return redirect()->route('departments.create', ['department' => $department])->with('success', 'Department created successfully!'); //
+        return redirect()->route('departments.create', ['department' => $department])->with('success', 'Department record created!'); //
     }
 
     /**

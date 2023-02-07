@@ -45,7 +45,8 @@ class UpdateDepartmentsRequest extends FormRequest
     public function messages()
     {
         return [
-            
+            'name.required' => 'The Department Name field is required.',
+            'name.unique' => 'The Department Name already exists',
             'status.required' => 'The Status field is required.',
         ];
     }

@@ -22,70 +22,84 @@
 
 @section('content')
 
-    <x-messages />
+    <div class="offset-md-3 col-md-6">
+        <x-messages />
 
-    <div class="card">
-        <h5 class="card-header bg-gradient bg-secondary">Add Department</h5>
-        <div class="card-body">
-            {!! Form::open(['action' => 'App\Http\Controllers\DepartmentsController@store', 'method' => 'POST']) !!}
+        <div class="card card-bordered">
+       
+            <div class="card-body">
+                <h4 class="card-title">Add Department</h4>
 
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="mb-3 row">
-                            {{ Form::label('name', 'Department Name', ['class' => 'col-sm-4 col-form-label required-text']) }}
-                            <div class="col-sm-8">
-                                {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => '']) }}
-
-                                @error('name')
-                                    <p class="text-xs text-danger">{{ $message }}</p>
-                                @enderror
+                <form action="{{ route('departments.store') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <label for="name" class="form-label mb-0 required-text">Department Name</label>
+                                <div class="ms-auto">
+                                  <span class="text-sm text-muted">Required</span>
+                                </div>
                             </div>
+                            <input id="name"
+                                type="text"
+                                name="name"
+                                class="form-control @error('name') is-invalid @enderror">
+                            
+                            @error('name')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="mb-3 row">
-                            {{ Form::label('description', 'Description', ['class' => 'col-sm-4 col-form-label']) }}
-                            <div class="col-sm-8">
-                                {{ Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => '']) }}
-
-                                @error('description')
-                                    <p class="text-xs text-danger">{{ $message }}</p>
-                                @enderror
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <label for="description" class="form-label">Description</label>
+                                <div class="ms-auto">
+                                  <span class="text-sm text-muted">Optional</span>
+                                </div>
                             </div>
+                            <textarea id="description"
+                                name="description"
+                                style="height: 150px"
+                                class="form-control @error('description') is-invalid @enderror">
+                            </textarea>
+                            
+                            @error('description')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="mb-3 row">
-                            {{ Form::label('status', 'Status', ['class' => 'col-sm-4 col-form-label required-text']) }}
-
-                            <div class="col-sm-8">
-                               
-                               {{--   {{ Form::radio('status', 'active', ['class' => 'form-control form-check-input', 'placeholder' => '']) }}
-                                <label class="form-check-label ms-1 me-2" for="inlineRadio1">Active</label>
-
-                                {{ Form::radio('status', 'inactive', ['class' => 'form-control form-check-input', 'placeholder' => '']) }}
-                                <label class="form-check-label ms-1" for="inlineRadio2">Inactive</label>--}}
-
-                                {!! Form::select('status', $status, '', ['class' => 'form-select block w-full mt-1 border-0 px-3 py-3 placeholder-blueGray-400 text-gray-600 bg-gray-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150']) !!}
-
-                                @error('status')
-                                    <p class="text-xs text-danger">{{ $message }}</p>
-                                @enderror
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <label for="title" class="form-label required-text">Status</label>
+                                <div class="ms-auto">
+                                  <span class="text-sm text-muted">Required</span>
+                                </div>
                             </div>
-                        </div>
-                    
-                        <div class="row">
-                            <div class="text-end mt-4">
-                                <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
-                                    {{ __('Cancel') }}
-                                </a>
-                                {{ Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) }}
+                            <div class="form-floating">
+                                <select name="status" class="form-select @error('status') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
+                                    @foreach($statuses as $key => $value)
+                                        <option value="{{ $key }}"> 
+                                            {{ $value }} 
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="floatingSelect">Choose a status</label>
                             </div>
-                        </div>
 
+                            @error('status')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
-            {!! Form::close() !!}
-
+                    <div class="row">
+                        <div class="text-end mt-4">
+                            <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                                {{ __('Cancel') }}
+                            </a>
+                            <input type="submit" value="Submit" class="btn btn-sm btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

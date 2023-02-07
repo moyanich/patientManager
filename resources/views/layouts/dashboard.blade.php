@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </header>
-            <main class="py-10 bg-surface-secondary">
+            <main class="py-10 bg-surface-primary">
                 <!-- Container -->
                 <div class="container-xl gap-6">
 

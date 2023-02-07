@@ -2,8 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @import "@webpixels/css";
+// Import the default variables and function
+@import "@webpixels/css/core/functions";
+
 // Variables
 @import 'variables';
+
+// Webpixels CSS
+@import "@webpixels/css/base";
+@import "@webpixels/css/forms";
+@import "@webpixels/css/components";
+
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -20,6 +29,8 @@
 
 
 /* === Core Styles === */
+@import "badges";
+@import "cards";
 @import "forms";
 @import "tables";
 /*

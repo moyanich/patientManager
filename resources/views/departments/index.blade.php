@@ -24,10 +24,10 @@
 
     <x-messages />
 
-    <div class="card mb-7">
+    <div class="mb-7">
         <div class="table-responsive">
-            <table class="table table-hover table-nowrap table-striped">
-                <thead class="bg-gray-700 text-white">
+            <table class="table table-hover table-nowrap">
+                <thead>
                     <tr>
                         <th scope="col">{{ __('#') }}</th>
                         <th scope="col">{{ __('Department Name') }}</th>
@@ -49,11 +49,11 @@
                             </td>
                             <td class="text-end">
                                 @can('department-edit')
-                                    <a class="btn btn-sm btn-warning" href="{{ route('departments.edit', $department->id) }}"><i class="bi bi-pencil"></i></a>
+                                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm btn-outline-primary">View</a>
                                 @endcan
 
                                 @can('department-delete')
-                                    <a href="#" class="btn btn-circle btn-sm btn btn-neutral text-danger-hover" data-bs-toggle="modal" data-bs-target="#delRoleModal">
+                                    <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delRoleModal">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 @endcan

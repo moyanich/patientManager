@@ -1,12 +1,33 @@
+.table > :not(caption) > * > * {
+    padding: 0.5rem 0.5rem;
+}
+
 table.table-no-padding {
     padding-left: 0;
 }
 
+.table  thead {
+    border-top: 1px solid #ebedf2;
+    border-bottom: 1px solid #ebedf2;
+}
+
 .table thead th {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
     text-transform: capitalize;
-    font-size: 1rem;
 }
 
 .table td {
     font-size: $font-size-base;
+}
+
+.table thead th, 
+.table thead td {
+    color: #7987a1;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom-width: 1px;
+    border-top-width: 0;
 }

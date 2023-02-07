@@ -14,9 +14,8 @@
 @if(session('success'))
     <div class="row">
         <div class="col">
-            <div class="alert bg-transparent text-success border-success alert-dismissible fade show mb-5 bg-white" role="alert">
-                <strong>{{ session('success') }}</strong>
-                
+            <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+                <strong>Success!</strong> {{ session('success') }}
                 <button type="button" class="btn-close text-xs text-success" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
