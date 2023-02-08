@@ -25,12 +25,11 @@
     <x-messages />
 
     <div class="mb-7">
-        <table id="department-datatable" class="table table-hover table-nowrap department-datatable">
+        <table id="department-datatable" class="table table-hover table-nowrap compact department-datatable">
             <thead>
                 <tr>
                     <th scope="col">{{ __('#') }}</th>
                     <th scope="col">{{ __('Department Name') }}</th>
-                    <th scope="col">{{ __('Description') }}</th>
                     <th scope="col">{{ __('Status') }}</th>
                     <th scope="col"></th>
                 </tr>
@@ -39,7 +38,8 @@
         </table>
     </div>
 
-    {{--  
+   
+    {{--  //TODO: use the data from ajax to pass here --}}
     @can('department-delete')
         @foreach ($departments as $key => $department)
             <!-- Modal -->
@@ -54,7 +54,7 @@
                         </div>
                         <div class="modal-body">
                             <p class="text-sm text-gray-500">
-                                {{ __('Are you sure you want to delete this record? All of your data will be permanently removed. This action cannot be undone.') }}
+                                {{ __('Are you sure you want to delete the department record for ') }}<strong>{{ $department->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
                             </p>
                         </div>
                         <div class="modal-footer">
@@ -71,9 +71,8 @@
             </div>
         @endforeach
     @endcan
-    --}}
-
-
+    
+    
 @endsection
 
 
@@ -91,9 +90,8 @@
             serverSide: true,
             ajax: "{!! route('departments.index') !!}",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
-                {data: 'description', name: 'description'},
+                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'name', name: 'name' , className: 'dept-name'},
                 {
                     data: 'status', 
                     name: 'status', 
@@ -102,9 +100,7 @@
                 }, 
                 {
                     data: 'action', 
-                    name: 'action', 
-                    orderable: true, 
-                    searchable: true
+                    name: 'action'
                 },
             ]
         });

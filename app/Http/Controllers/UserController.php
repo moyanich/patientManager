@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use DB;
+use DataTables;
 use Hash;
 use Illuminate\Support\Arr;
 
@@ -34,8 +35,32 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
+        // TODO: turn roles badge in a component
+
+        $users = User::latest()->get();
+        
+        if ($request->ajax()) {
+            $data = User::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('roles', function ($userRow) {
+                    $output = '';
+                    
+                    foreach($userRow->getRoleNames() as $createdUser) {
+                        $output .= '<span class="badge rounded-pill bg-primary px-4 py-2 m-1">' .  $createdUser . '</span>';
+						return $output;
+                    }
+                })
+                ->addColumn('action', function($user){
+                    $actionBtn = '
+                        <a href="' . route('users.show', $user->id) . '" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delUserModal-' . $user->id . '"><i class="bi bi-trash"></i></a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['roles', 'action'])
+                ->make(true);
+        }
+        return view('users.index', compact('users') );
     }
     
     /**

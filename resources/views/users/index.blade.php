@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard', ['page' => __('User Management')])
 
 @section('header')
     <div class="row align-items-center">
@@ -21,96 +21,93 @@
 @endsection
 
 @section('content')
+	<x-messages />
 
-	<div class="card mb-7">
-		<div class="card-header">
-			<h5 class="mb-0">{{ __('Users') }}</h5>
-		</div>
-		
-		{{--  @if ($message = Session::get('success'))
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				<strong><p>{{ $message }}</p></strong>
-				<button type="button" class="btn-close text-xs text-success" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		@endif--}}
-
-		<x-messages />
-
+	<div class="mb-7">
 		<div class="table-responsive">
-			<table class="table table-hover table-nowrap">
-					<thead class="table-light">
-						<tr>
-							<th scope="col">{{ __('#') }}</th>
-							<th scope="col">{{ __('Name') }}</th>
-							<th scope="col">{{ __('Email') }}</th>
-							<th scope="col">{{ __('Roles') }}</th>
-							<th></th>
-						</tr>
-					</thead>
-				<tbody>
-					@foreach ($data as $key => $user)
-						<tr>
-							<td>{{ ++$i }}</td>
-							<td>{{ $user->name }}</td>
-							<td>{{ $user->email }}</td>
-							<td>
-								<div class="d-flex flex-wrap">
-									@if(!empty($user->getRoleNames()))
-										@foreach($user->getRoleNames() as $createdUser)
-											<span class="badge rounded-pill bg-primary px-4 py-2 m-1">{{ $createdUser }}</span>
-										@endforeach
-									@endif
-								</div>
-							</td>
-							<td class="text-end">
-								<a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
-
-								<a href="#" class="btn btn-outline-danger btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#delUserModal">
-									<i class="bi bi-trash"></i>
-								</a>
-							</td>
-						</tr>
-					@endforeach
-					
-				</tbody>
+			<table id="users-datatable" class="table table-hover table-nowrap compact users-datatable">
+				<thead>
+					<tr>
+						<th scope="col">{{ __('#') }}</th>
+						<th scope="col">{{ __('Name') }}</th>
+						<th scope="col">{{ __('Email') }}</th>
+						<th scope="col">{{ __('Roles') }}</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody></tbody>
 			</table>
-			{!! $data->render() !!}
-		</div>
-		<div class="card-footer border-0 py-5">
-
 		</div>
 	</div>
 
-
-
-
+		
 	<!-- Modal -->
-	<div class="modal" id="delUserModal" tabindex="-1" aria-labelledby="delUserModal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content shadow-3">
-				<div class="modal-header">
-					<h5 class="modal-title">{{ __('Delete User') }}</h5>
-					<div class="text-xs ms-auto">
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	@can('user-delete')
+		@foreach ($users as $key => $user)
+		<div class="modal" id="delUserModal-{{ $user->id }}" tabindex="-1" aria-labelledby="delUserModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content shadow-3">
+					<div class="modal-header">
+						<h5 class="modal-title">{{ __('Delete User') }}</h5>
+						<div class="text-xs ms-auto">
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+					</div>
+					<div class="modal-body">
+						<p class="text-sm text-gray-500">
+							{{ __('Are you sure you want to delete the user record for ') }}<strong>{{ $user->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
+
+						<form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline">
+							@method('DELETE')
+							@csrf
+							<button href="" class="btn btn-sm btn-danger cursor-pointer">Delete</button>
+						</form>
 					</div>
 				</div>
-				<div class="modal-body">
-					<p class="text-sm text-gray-500">
-						{{ __('Are you sure you want to delete this record?') }}<strong>{{ $user->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
-
-					{!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-
-						{{ Form::submit('Delete', ['class' => 'btn btn-sm btn-danger cursor-pointer']) }}
-
-					{!! Form::close() !!}
-				</div>
 			</div>
 		</div>
-	</div>
+		@endforeach
+    @endcan
 
 
 @endsection
+
+
+
+
+@push('child-scripts')
+<script>
+    $(document).ready( function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#users-datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{!! route('users.index') !!}",
+            columns: [
+                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'name', name: 'name'},
+				{ data: 'email', name: 'email'},
+				{
+                    data: 'roles', 
+                    name: 'roles'
+                },
+                {
+                    data: 'action', 
+                    name: 'action'
+                },
+            ]
+        });
+
+
+    });
+</script>
+
+@endpush

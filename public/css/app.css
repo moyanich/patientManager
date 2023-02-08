@@ -121533,6 +121533,17 @@ table.table-no-padding {
   border-top-width: 0;
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0em;
+  border: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: transparent;
+  border: none;
+}
+
 /*
 @import "background";
 @import "typography";

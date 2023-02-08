@@ -33,6 +33,8 @@ class DepartmentsController extends Controller
      */
     public function index(Request $request)
     {
+        $departments = Departments::orderBy('id', 'DESC')->get();
+        
         if ($request->ajax()) {
             $data = Departments::latest()->get();
             return DataTables::of($data)
@@ -41,16 +43,16 @@ class DepartmentsController extends Controller
                     return View::make("components.badges")
                     ->with("status", $statusRow->status)->with("message", statusConvert($statusRow->status));
                 })
-                ->addColumn('action', function($row){
+                ->addColumn('action', function($department){
                     $actionBtn = '
-                        <a href="' . route('departments.edit', $row->id) . '" class="btn btn-sm btn-outline-primary">View</a>
-                        <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-{{ $department->id }}"><i class="bi bi-trash"></i></a>';
+                        <a href="' . route('departments.edit', $department->id) . '" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('departments.index');
+        return view('departments.index', compact('departments') );
 
        /* $departments = Departments::orderBy('id', 'DESC')->paginate(10);
         return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 10);
@@ -129,6 +131,6 @@ class DepartmentsController extends Controller
     {
         $department = Departments::findOrFail($department->id);
         $department->delete();
-        return redirect()->route('departments.index', $department->id)->with('success', 'Department Name: ' . $department->name . ' removed sucessfully');
+        return redirect()->route('departments.index', $department->id)->with('success', 'Department record for ' . $department->name . ' removed sucessfully');
     }
 }

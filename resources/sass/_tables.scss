@@ -31,3 +31,16 @@ table.table-no-padding {
     border-bottom-width: 1px;
     border-top-width: 0;
 }
+
+// DataTables
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0em;
+    border: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    background: transparent;
+    border: none;
+}
