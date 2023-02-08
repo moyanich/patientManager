@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
@@ -37,15 +38,8 @@ class DepartmentsController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status', function ($statusRow) {
-                    return view('components.badges', ['status' => $statusRow->status, 'message' => statusConvert($statusRow->status) ]);
-                
-                    
-                    /* 
-                    return view(
-                        'components.badges')->with("status", strtolower($statusRow->status));
-                        return '<x-badges :status="' . strtolower($statusRow->status) .'">
-                   ' . statusConvert($statusRow->status) ?? ''  . '
-                    </x-badges>'; */
+                    return View::make("components.badges")
+                    ->with("status", $statusRow->status)->with("message", statusConvert($statusRow->status));
                 })
                 ->addColumn('action', function($row){
                     $actionBtn = '
