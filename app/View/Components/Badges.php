@@ -12,15 +12,17 @@ class Badges extends Component
      * @var string
      */
     public $status;
+    public $message;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($status)
+    public function __construct($status, $message)
     {
         $this->status = $status;
+        $this->message = $message;
     }
 
     /**

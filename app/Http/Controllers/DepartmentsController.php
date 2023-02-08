@@ -36,8 +36,21 @@ class DepartmentsController extends Controller
             $data = Departments::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('status', function ($statusRow) {
+                    return view('components.badges', ['status' => $statusRow->status, 'message' => statusConvert($statusRow->status) ]);
+                
+                    
+                    /* 
+                    return view(
+                        'components.badges')->with("status", strtolower($statusRow->status));
+                        return '<x-badges :status="' . strtolower($statusRow->status) .'">
+                   ' . statusConvert($statusRow->status) ?? ''  . '
+                    </x-badges>'; */
+                })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '
+                        <a href="' . route('departments.edit', $row->id) . '" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-{{ $department->id }}"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -46,7 +59,13 @@ class DepartmentsController extends Controller
         return view('departments.index');
 
        /* $departments = Departments::orderBy('id', 'DESC')->paginate(10);
-        return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 10); */
+        return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 10);
+        
+        <x-badges :status="strtolower($department->status)">
+                                    {{ statusConvert($department->status) ?? '' }}
+                                </x-badges>
+                                
+                                */
 
     }
 

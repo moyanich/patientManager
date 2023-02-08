@@ -19,72 +19,27 @@
         </div>
     </div>
 @endsection
-@section('content')
 
-<table id="department-datatable" class="table table-bordered department-datatable">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-@endsection
-{{--  
 @section('content')
 
     <x-messages />
 
     <div class="mb-7">
-        <div class="table-responsive">
-            <table class="table table-hover table-nowrap">
-                <thead>
-                    <tr>
-                        <th scope="col">{{ __('#') }}</th>
-                        <th scope="col">{{ __('Department Name') }}</th>
-                        <th scope="col">{{ __('Description') }}</th>
-                        <th scope="col">{{ __('Status') }}</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($departments as $key => $department)
-                        <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{ $department->name }}</td>
-                            <td>{{ $department->description }}</td> 
-                            <td>
-                                <x-badges :status="strtolower($department->status)">
-                                    {{ statusConvert($department->status) ?? '' }}
-                                </x-badges>
-                            </td>
-                            <td class="text-end">
-                                @can('department-edit')
-                                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm btn-outline-primary">View</a>
-                                @endcan
-
-                                @can('department-delete')
-                                    <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-{{ $department->id }}">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                @endcan
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        {!! $departments->render() !!}
-        
+        <table id="department-datatable" class="table table-hover table-nowrap department-datatable">
+            <thead>
+                <tr>
+                    <th scope="col">{{ __('#') }}</th>
+                    <th scope="col">{{ __('Department Name') }}</th>
+                    <th scope="col">{{ __('Description') }}</th>
+                    <th scope="col">{{ __('Status') }}</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 
-
+    {{--  
     @can('department-delete')
         @foreach ($departments as $key => $department)
             <!-- Modal -->
@@ -116,12 +71,12 @@
             </div>
         @endforeach
     @endcan
+    --}}
 
-
-    <button type="button">Test jQuery Code</button>
 
 @endsection
---}}
+
+
 
 @push('child-scripts')
 <script>
@@ -139,6 +94,12 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
                 {data: 'description', name: 'description'},
+                {
+                    data: 'status', 
+                    name: 'status', 
+                    orderable: true, 
+                    searchable: true
+                }, 
                 {
                     data: 'action', 
                     name: 'action', 
