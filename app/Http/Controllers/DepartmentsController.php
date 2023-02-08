@@ -133,4 +133,6 @@ class DepartmentsController extends Controller
         $department->delete();
         return redirect()->route('departments.index', $department->id)->with('success', 'Department record for ' . $department->name . ' removed sucessfully');
     }
+
+    //TODO: LOG TABLE FOR ALL ACTIONS
 }

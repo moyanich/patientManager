@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard', ['page' => __('User Management')])
 
 @section('header')
     <div class="row align-items-center">

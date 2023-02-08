@@ -30,6 +30,7 @@
 					<tr>
 						<th scope="col">{{ __('#') }}</th>
 						<th scope="col">{{ __('Name') }}</th>
+						<th scope="col">{{ __('Username') }}</th>
 						<th scope="col">{{ __('Email') }}</th>
 						<th scope="col">{{ __('Roles') }}</th>
 						<th></th>
@@ -72,42 +73,36 @@
 		</div>
 		@endforeach
     @endcan
-
-
 @endsection
 
 
-
-
 @push('child-scripts')
-<script>
-    $(document).ready( function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $('#users-datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{!! route('users.index') !!}",
-            columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'name', name: 'name'},
-				{ data: 'email', name: 'email'},
-				{
-                    data: 'roles', 
-                    name: 'roles'
-                },
-                {
-                    data: 'action', 
-                    name: 'action'
-                },
-            ]
-        });
-
-
-    });
-</script>
-
+	<script>
+		$(document).ready( function () {
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			$('#users-datatable').DataTable({
+				processing: true,
+				serverSide: true,
+				ajax: "{!! route('users.index') !!}",
+				columns: [
+					{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
+					{ data: 'name', name: 'name'},
+					{ data: 'username', name: 'username'},
+					{ data: 'email', name: 'email'},
+					{
+						data: 'roles', 
+						name: 'roles'
+					},
+					{
+						data: 'action', 
+						name: 'action'
+					},
+				]
+			});
+		});
+	</script>
 @endpush

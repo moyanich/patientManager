@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class)->except('edit');
+    Route::resource('users', UserController::class)->except('show');
 
     Route::get('/patients/summary/{patients}', [PatientsController::class, 'summary'])->name('patients.summary');
 

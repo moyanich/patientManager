@@ -132,7 +132,7 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-sm text-gray-500">
-                            {{ __('Are you sure you want to delete this record? All of your data will be permanently removed. This action cannot be undone.') }}
+                            {{ __('Are you sure you want to delete the department record for ') }}<strong>{{ $department->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
                         </p>
                     </div>
                     <div class="modal-footer">

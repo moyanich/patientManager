@@ -27,7 +27,6 @@ class UserController extends Controller
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +52,7 @@ class UserController extends Controller
                 })
                 ->addColumn('action', function($user){
                     $actionBtn = '
-                        <a href="' . route('users.show', $user->id) . '" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="' . route('users.edit', $user->id) . '" class="btn btn-sm btn-outline-primary">View</a>
                         <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delUserModal-' . $user->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
@@ -96,7 +95,7 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
     
-        return redirect()->route('users.index')->with('success', 'User created successfully');
+        return redirect()->route('users.index')->with('success', 'User record created successfully');
     }
     
     /**
@@ -105,13 +104,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    /*public function show($id)
     {
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
         return view('users.show', compact('user', 'roles', 'userRole'));
-    }
+    } */
     
     /**
      * Show the form for editing the specified resource.
@@ -119,14 +118,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   /* public function edit($id)
+    public function edit($id)
     {
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
     
-        return view('users.edit',compact('user', 'roles', 'userRole'));
-    } */
+        return view('users.edit', compact('user', 'roles', 'userRole'));
+    } 
     
     /**
      * Update the specified resource in storage.
@@ -157,7 +156,7 @@ class UserController extends Controller
     
         $user->assignRole($request->input('roles'));
     
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
+        return redirect()->back()->with('success', 'User updated successfully');
     }
     
     /**
