@@ -366,3 +366,52 @@
 		</div>
 	</li>
 </ul>-
+
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            select: true,
+            dom: 'Bfrtip',
+            ajax: "{{ url('employees') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                { data: 'empID', name: 'empID' },
+                { data: 'first_name', name: 'first_name' },
+                { data: 'last_name', name: 'last_name' },
+                { data: 'jobTitle', name: 'jobTitle' },
+                { data: 'name', name: 'name' },
+                {
+                    data: 'status', 
+                    name: 'status', 
+                    orderable: true, 
+                    searchable: true
+                }, 
+                {
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: true, 
+                    searchable: true
+                },
+            ],
+            columnDefs: [
+                {
+                    targets: -1,
+                    className: 'dt-body-center'
+                }
+            ],
+            buttons: [
+                'copy', 'excel', 'pdf', 'print'
+            ],
+
+            order: [[0, 'desc']],
+        });
+    });
+</script>

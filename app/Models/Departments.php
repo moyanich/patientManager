@@ -18,7 +18,7 @@ class Departments extends Model
     // Timestamps
     public $timestamps = true;
 
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['name', 'description', 'status'];
 
     
 }

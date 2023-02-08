@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
 use App\Models\Departments;
 use App\Models\Status;
+use DataTables;
 
 class DepartmentsController extends Controller
 {
@@ -31,8 +32,22 @@ class DepartmentsController extends Controller
      */
     public function index(Request $request)
     {
-        $departments = Departments::orderBy('id', 'DESC')->paginate(10);
-        return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 10);
+        if ($request->ajax()) {
+            $data = Departments::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('departments.index');
+
+       /* $departments = Departments::orderBy('id', 'DESC')->paginate(10);
+        return view('departments.index', compact('departments'))->with('i', ($request->input('page', 1) - 1) * 10); */
+
     }
 
     /**

@@ -19,7 +19,23 @@
         </div>
     </div>
 @endsection
+@section('content')
 
+<table id="department-datatable" class="table table-bordered department-datatable">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+@endsection
+{{--  
 @section('content')
 
     <x-messages />
@@ -41,7 +57,7 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $department->name }}</td>
-                            <td>{{ $department->description }}</td> {{-- //TODO: Fix text --}}
+                            <td>{{ $department->description }}</td> 
                             <td>
                                 <x-badges :status="strtolower($department->status)">
                                     {{ statusConvert($department->status) ?? '' }}
@@ -65,7 +81,6 @@
         </div>
 
         {!! $departments->render() !!}
-        {{-- //TODO: Fix Pagination --}}
         
     </div>
 
@@ -102,4 +117,39 @@
         @endforeach
     @endcan
 
+
+    <button type="button">Test jQuery Code</button>
+
 @endsection
+--}}
+
+@push('child-scripts')
+<script>
+    $(document).ready( function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#department-datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{!! route('departments.index') !!}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'name', name: 'name'},
+                {data: 'description', name: 'description'},
+                {
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: true, 
+                    searchable: true
+                },
+            ]
+        });
+
+
+    });
+</script>
+
+@endpush
