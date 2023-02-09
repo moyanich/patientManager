@@ -168,6 +168,8 @@ class UserController extends Controller
      */
     public function updatePassword(Request $request, $id)
     {
+        // Update user PASSWORD.
+
         $this->validate($request, [
             'password' => 'same:confirm-password'
         ]);
