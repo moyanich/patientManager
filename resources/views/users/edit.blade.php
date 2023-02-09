@@ -41,7 +41,6 @@
                     @method('PUT')
                     @csrf
 
-
                     <div class="row">
                         <div class="mb-3">
                             <div class="d-flex align-items-center mb-2">
