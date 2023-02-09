@@ -34,17 +34,30 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    // Roles
     Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class)->except('show');
 
+    // Users
+    Route::resource('users', UserController::class)->except('show');
+    //Route::put('/users/{id}', [UserController::class, 'edit']);
+    Route::put('/users/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('users.updatePassword');
+
+    /*
+    Route::put('/employees/{employee}/savenote', [EmployeesController::class, 'savenote'])->name('employees.savenote');
+    */
+
+    // Departments
+    Route::resource('departments', DepartmentsController::class)->except(['show']);;
+
+    // Doctors
+    Route::resource('doctors', DoctorsController::class);
+
+    // Patients
+    Route::resource('/patients', PatientsController::class);
     Route::get('/patients/summary/{patients}', [PatientsController::class, 'summary'])->name('patients.summary');
 
-    Route::resource('departments', DepartmentsController::class)->except([
-        'show'
-    ]);;
 
-    Route::resource('doctors', DoctorsController::class);
-    Route::resource('/patients', PatientsController::class);
+
 
    /* Route::get('/profile{patient}', function ($id) {
         

@@ -158,6 +158,37 @@ class UserController extends Controller
     
         return redirect()->back()->with('success', 'User updated successfully');
     }
+
+    /**
+     * Update the password resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request, $id)
+    {
+        $this->validate($request, [
+            'password' => 'same:confirm-password'
+        ]);
+
+        $input = $request->all();
+        if(!empty($input['password'])){ 
+            $input['password'] = Hash::make($input['password']);
+        } else{
+            $input = Arr::except($input,array('password'));    
+        }
+
+        $user = User::find($id);
+        $user->update($input);
+    
+        return redirect()->back()->with('success', 'User password updated successfully');
+
+    }
+
+
+
+     
     
     /**
      * Remove the specified resource from storage.

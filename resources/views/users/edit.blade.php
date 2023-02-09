@@ -27,9 +27,15 @@
 
         <div class="card card-bordered">
             <div class="card-header d-flex">
-                <h4 class="card-title">Edit User Record</h4>
+                <h4 class="card-title">{{ __('Edit User Record') }}</h4>
                 @can('user-delete')
                     <div class="ms-auto">
+                        @can('user-edit', $user)
+                            <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#passUpdate-{{ $user->id }}">
+                                {{ __('Change user password') }}
+                            </a>
+                        @endcan
+                        
                         <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#sDelUser-{{ $user->id }}">
                             <i class="bi bi-trash"></i>
                         </a>
@@ -90,7 +96,6 @@
                                 <span class="mt-2 invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-
                         <div class="mb-3">
                             <div class="d-flex align-items-center mb-2">
                                 <label for="title" class="form-label required-text">Roles</label>
@@ -110,7 +115,6 @@
                                     </label>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                     <div class="row">
@@ -126,97 +130,102 @@
         </div>
     </div>
 
-
-    @can('user-delete')
-    <!-- Modal -->
-    <div class="modal" id="sDelUser-{{ $user->id }}" tabindex="-1" aria-labelledby="delDepModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow-3">
-                <div class="modal-header">
-                    <h5 class="modal-title"><span class="text-danger text-md"><i class="bi bi-exclamation-diamond-fill"></i></span> {{ __('Delete Department') }}</h5>
-                    <div class="text-xs ms-auto">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  
+    @can('user-edit', $user)
+        <div class="modal" id="passUpdate-{{ $user->id }}" tabindex="-1" aria-labelledby="modal_example" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content shadow-3">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Update User Password') }}</h5>
+                        <div class="text-xs ms-auto">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-body">
-                    <p class="text-sm text-gray-500">
-                        {{ __('Are you sure you want to delete the user record for ') }}<strong>{{ $user->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline">
-                        @method('DELETE')
+
+                    <form action="{{ route('users.updatePassword', $user->id) }}" method="POST" style="display: inline">
+                        @method('PUT')
                         @csrf
-                        <button href="" class="btn btn-sm btn-danger cursor-pointer">Delete</button>
+                        <div class="modal-body">
+
+                            <div class="row mb-4">
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label for="email" class="form-label required-text">Password</label>
+                                        <div class="ms-auto">
+                                        <span class="text-sm text-muted">Required</span>
+                                        </div>
+                                    </div>
+                                    <input id="pass"
+                                        type="password"
+                                        name="password"
+                                        class="form-control @error('password') is-invalid @enderror">
+                                
+                                    @error('password')
+                                        <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label for="email" class="form-label required-text">Confirm Password</label>
+                                        <div class="ms-auto">
+                                        <span class="text-sm text-muted">Required</span>
+                                        </div>
+                                    </div>
+                                    <input id="pass-confirm"
+                                        type="password"
+                                        name="confirm-password"
+                                        class="form-control @error('confirm-password') is-invalid @enderror">
+                                
+                                    @error('confirm-password')
+                                        <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                            <button href="" class="btn btn-sm btn-success cursor-pointer">{{ __('Update Password') }}</button>
+                        </div>
                     </form>
+
                 </div>
             </div>
         </div>
-    </div>
-@endcan
+    @endcan
+
+
+
+
+    @can('user-delete')
+        <!-- Modal -->
+        <div class="modal" id="sDelUser-{{ $user->id }}" tabindex="-1" aria-labelledby="delDepModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content shadow-3">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><span class="text-danger text-md"><i class="bi bi-exclamation-diamond-fill"></i></span> {{ __('Delete Department') }}</h5>
+                        <div class="text-xs ms-auto">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-sm text-gray-500">
+                            {{ __('Are you sure you want to delete the user record for ') }}<strong>{{ $user->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                        
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline">
+                            @method('DELETE')
+                            @csrf
+                            <button href="" class="btn btn-sm btn-danger cursor-pointer">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endcan
 
 @endsection
 
-
-
-{{--  
-@section('content')
-
-
-
-@if (count($errors) > 0)
-  <div class="alert alert-danger">
-    <strong>Whoops!</strong> Something went wrong.<br><br>
-    <ul>
-       @foreach ($errors->all() as $error)
-         <li>{{ $error }}</li>
-       @endforeach
-    </ul>
-  </div>
-@endif
-
-
-{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Email:</strong>
-            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Password:</strong>
-            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Confirm Password:</strong>
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Role:</strong>
-            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</div>
-{!! Form::close() !!}
-
-
-@endsection
-
---}}
