@@ -1,5 +1,5 @@
 <!-- Vertical Navbar -->
-<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 py-lg-0 navbar-light bg-light border-end-lg" id="navbarVertical">
+<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 py-lg-0 navbar-light bg-gray-900 border-end-lg scrollbar" id="navbarVertical" data-bs-theme="dark">
     <div class="container-fluid">
 		<!-- Toggler -->
 		<button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,7 +124,7 @@
 			<!-- Navigation -->
 			<ul class="navbar-nav mb-md-4">
 				<li class="nav-item">
-					<a class="nav-link" href="#settings-collapse" data-bs-toggle="collapse" href="#settings-collapse" role="button" aria-expanded="false" aria-controls="settings-collapse">
+					<a class="nav-link active" href="#settings-collapse" data-bs-toggle="collapse" href="#settings-collapse" role="button" aria-expanded="false" aria-controls="settings-collapse">
 						<i class="bi bi-sliders text-lg"></i> {{ __('Settings') }}
 					</a>
 					<li>
@@ -136,6 +136,7 @@
 										{{ __('Users') }}
 									</x-navlink>
 								</li>
+
 								<li class="nav-item">
 									<x-navlink :href="route('roles.index')" class="{{ request()->routeIs('roles.index') ? 'active' : '' }} ">
 										<i class="bi bi-gear"></i>
@@ -143,7 +144,7 @@
 									</x-navlink>
 								</li>
 								<li class="nav-item">
-									<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('roles.index') ? 'active' : '' }} ">
+									<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
 										<i class="bi bi-gear"></i>
 										{{ __('Departments') }}
 									</x-navlink>
