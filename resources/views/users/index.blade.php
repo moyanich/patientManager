@@ -29,7 +29,8 @@
 				<thead>
 					<tr>
 						<th scope="col">{{ __('#') }}</th>
-						<th scope="col">{{ __('Name') }}</th>
+						<th scope="col">{{ __('First Name') }}</th>
+						<th scope="col">{{ __('Last Name') }}</th>
 						<th scope="col">{{ __('Username') }}</th>
 						<th scope="col">{{ __('Email') }}</th>
 						<th scope="col">{{ __('Roles') }}</th>
@@ -56,7 +57,7 @@
 					</div>
 					<div class="modal-body">
 						<p class="text-sm text-gray-500">
-							{{ __('Are you sure you want to delete the user record for ') }}<strong>{{ $user->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
+							{{ __('Are you sure you want to delete the user record for ') }}<strong>{{ $user->first_name . ' ' . $user->last_name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
 						</p>
 					</div>
 					<div class="modal-footer">
@@ -90,7 +91,8 @@
 				ajax: "{!! route('users.index') !!}",
 				columns: [
 					{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
-					{ data: 'name', name: 'name'},
+					{ data: 'first_name', name: 'first_name'},
+					{ data: 'last_name', name: 'last_name'},
 					{ data: 'username', name: 'username'},
 					{ data: 'email', name: 'email'},
 					{

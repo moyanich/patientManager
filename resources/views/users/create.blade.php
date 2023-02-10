@@ -71,22 +71,37 @@
             </div>
         </div>
 
-
         <div class="row align-items-center g-3 mt-3">
             <x-messages />
         </div>
 
         <div class="row align-items-center g-3 mt-2">
             <div class="col-md-2">
-                <label for="name" class="form-label mb-0 required-text">Full Name</label>
+                <label for="first_name" class="form-label mb-0 required-text">First Name</label>
             </div>
             <div class="col-md-8 col-xl-5">
-                <input id="name"
+                <input id="firstname"
                 type="text"
-                name="name"
-                class="form-control @error('name') is-invalid @enderror">
+                name="first_name"
+                class="form-control @error('first_name') is-invalid @enderror">
             
-                @error('name')
+                @error('first_name')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="last_name" class="form-label mb-0 required-text">Last Name</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="lastname"
+                type="text"
+                name="last_name"
+                class="form-control @error('last_name') is-invalid @enderror">
+            
+                @error('last_name')
                     <span class="mt-2 invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

@@ -64,7 +64,7 @@
             <x-messages />
         </div>
 
-        <div class="row align-items-center g-3 mt-2">
+       {{--  <div class="row align-items-center g-3 mt-2">
             <div class="col-md-2">
                 <label for="name" class="form-label mb-0 required-text">Name</label>
             </div>
@@ -76,6 +76,63 @@
                     class="form-control @error('name') is-invalid @enderror">
                 
                 @error('name')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        --}}
+        
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="roles" class="form-label mb-0 required-text">Roles</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+
+                <div class="form-floating">
+                    <select name="roles" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option selected>Choose One</option>
+                        <option ></option>
+                        @foreach($roles as $key => $value)
+                            <option value="{{ $value }}" @foreach($user->getRoleNames() as $createdUser) 
+                                @if($value == $createdUser) selected @endif
+                            @endforeach> {{ $key }}</option>
+                        @endforeach
+                     
+                    </select>
+                    <label for="floatingSelect">Assigned a role</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="first_name" class="form-label mb-0 required-text">First Name</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="firstname"
+                type="text"
+                name="first_name"
+                value="{{ $user->first_name }}"
+                class="form-control @error('first_name') is-invalid @enderror">
+            
+                @error('first_name')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="last_name" class="form-label mb-0 required-text">Last Name</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="lastname"
+                type="text"
+                name="last_name"
+                value="{{ $user->last_name }}"
+                class="form-control @error('last_name') is-invalid @enderror">
+            
+                @error('last_name')
                     <span class="mt-2 invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -117,26 +174,6 @@
 
         <div class="row align-items-center g-3 mt-2">
             <div class="col-md-2">
-                <label for="title" class="form-label required-text">Roles</label>
-            </div>
-            <div class="col-md-8 col-xl-5">
-                @foreach($roles as $key => $value)
-                    <div class="form-check">
-                        <input name="roles" class="form-check-input" type="radio" value="{{ $value }}" id="rolesCheck" 
-                        @foreach($user->getRoleNames() as $createdUser) 
-                            @if($value == $createdUser) checked @endif
-                        @endforeach>
-                        <label class="form-check-label" for="rolesCheck">
-                            {{ $key }}
-                        </label>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
-
-        <div class="row align-items-center g-3 mt-2">
-            <div class="col-md-2">
                 <label for="name" class="form-label mb-0 required-text">Email Address</label>
             </div>
             <div class="col-md-8 col-xl-5">
@@ -152,9 +189,6 @@
             </div>
         </div>
     </form>
-
-
-
 
     @can('user-edit', $user)
         <div class="modal" id="passUpdate-{{ $user->id }}" tabindex="-1" aria-labelledby="modal_example" aria-hidden="true">
@@ -232,7 +266,7 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-sm text-gray-500">
-                            {{ __('Are you sure you want to delete the user record for ') }}<strong>{{ $user->name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
+                            {{ __('Are you sure you want to delete the user record for ') }}<strong>{{ $user->first_name . ' ' . $user->last_name }}</strong>{{ __('? All of your data will be permanently removed. This action cannot be undone.') }}
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -251,3 +285,30 @@
 
 
 @endsection
+
+
+{{-- 
+    
+    
+     <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="title" class="form-label required-text">Roles</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                @foreach($roles as $key => $value)
+                    <div class="form-check">
+                        <input name="roles" class="form-check-input" type="radio" value="{{ $value }}" id="rolesCheck" 
+                        @foreach($user->getRoleNames() as $createdUser) 
+                            @if($value == $createdUser) checked @endif
+                        @endforeach>
+                        <label class="form-check-label" for="rolesCheck">
+                            {{ $key }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        
+        
+        
+        --}}

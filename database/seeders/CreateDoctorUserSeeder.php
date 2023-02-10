@@ -19,7 +19,9 @@ class CreateDoctorUserSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'Doctoer',
+           // 'name' => 'Doctoer',
+            'first_name' => 'Doctor',
+            'last_name' => 'Smith',
             'username' => 'doctor',
             'email' => 'test@doctor.com',
             'email_verified_at' => now(),
