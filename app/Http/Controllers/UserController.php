@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Status;
 use Spatie\Permission\Models\Role;
 use DB;
 use DataTables;
 use Hash;
-use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -50,6 +52,10 @@ class UserController extends Controller
 						return $output;
                     }
                 })
+                ->addColumn('status', function ($statusRow) {
+                    return View::make("components.badges")
+                    ->with("status", $statusRow->status)->with("message", statusConvert($statusRow->status));
+                })
                 ->addColumn('action', function($user){
                     $actionBtn = '
                         <a href="' . route('users.edit', $user->id) . '" class="btn btn-sm btn-outline-primary">View</a>
@@ -68,9 +74,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {       
+        // https://www.parthpatel.net/laravel-multiple-where-and-or-and-conditions-example/
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles'));
+        $statuses = Status::where('name', 'like', '%active%')->orWhere('name','like','%pending%')->pluck('name', 'id');
+        return view('users.create', compact('roles', 'statuses'));
     }
     
     /**
@@ -88,7 +96,8 @@ class UserController extends Controller
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'status' => 'required',
         ]);
     
         $input = $request->all();
@@ -125,8 +134,8 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-    
-        return view('users.edit', compact('user', 'roles', 'userRole'));
+        $statuses = Status::where('name', 'like', '%active%')->orWhere('name','like','%pending%')->pluck('name', 'id');
+        return view('users.edit', compact('user', 'roles', 'userRole', 'statuses'));
     } 
     
     /**
@@ -144,7 +153,8 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'status' => 'required',
         ]);
     
         $input = $request->all();

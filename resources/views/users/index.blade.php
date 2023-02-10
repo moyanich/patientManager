@@ -34,6 +34,7 @@
 						<th scope="col">{{ __('Username') }}</th>
 						<th scope="col">{{ __('Email') }}</th>
 						<th scope="col">{{ __('Roles') }}</th>
+						<th scope="col">{{ __('Status') }}</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -98,6 +99,12 @@
 					{
 						data: 'roles', 
 						name: 'roles'
+					},
+					{
+						data: 'status', 
+						name: 'status', 
+						orderable: true, 
+						searchable: true
 					},
 					{
 						data: 'action', 

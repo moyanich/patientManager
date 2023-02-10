@@ -188,6 +188,29 @@
                 @enderror
             </div>
         </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="title" class="form-label required-text">Status</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <div class="form-floating">
+                    <select name="status" class="form-select @error('status') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
+                        @foreach($statuses as $key => $value)
+                            <option value="{{ $key }}" @if($key == $user->status) selected @endif>
+                                {{ $value }} 
+                            </option>
+                        @endforeach
+                    </select>
+                    <label for="floatingSelect">Choose a status</label>
+                </div>
+
+                @error('status')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
     </form>
 
     @can('user-edit', $user)

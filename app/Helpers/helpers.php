@@ -82,11 +82,34 @@ if(! function_exists('status')) {
  */
 if(! function_exists('statusConvert')) {
     function statusConvert($status_code) {
-
-        if($status_code == 1) {
-            return 'Active';
-        } else if ($status_code == 2){
-            return 'Inactive';
-        }
+        switch($status_code):
+            case '1':
+                return 'Active';
+            break;
+            case '2':
+                return 'Inactive';
+             break;
+            case '3':
+                return 'New';
+            break;
+            case '4':
+                return 'Pending';
+            break;
+            case '5':
+                return 'Approved';
+            break;
+            case '6':
+                return 'Not Approved';
+            break;
+            case '7':
+                return 'Expired';
+            break;
+            case '8':
+                return 'Cancelled';
+            break;
+            default:
+                return '';
+                break;
+       endswitch;
     }
 }
