@@ -57,6 +57,59 @@
 			</ul>
 
 
+
+			<!-- Divider -->
+			<hr class="navbar-divider my-5 opacity-20">
+			<!-- User Navigation -->
+			<ul class="navbar-nav mb-md-4">
+				<li class="nav-item">
+					<a class="nav-link" href="#user-collapse" data-bs-toggle="collapse" href="#user-collapse" role="button" aria-expanded="false" aria-controls="user-collapse">
+						<i class="bi bi-people text-lg"></i> {{ __('Users') }}
+					</a>
+					<li>
+						<div class="collapse show" id="user-collapse">
+							<ul class="nav flex-column mb-2">
+								<li class="nav-item">
+									<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
+										{{ __('List Users') }}
+									</x-navlink>
+								</li>
+								<li class="nav-item">
+									<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
+										{{ __('Add New User') }}
+									</x-navlink>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</li>
+			</ul>
+			
+			<!-- Department Navigation -->
+			<ul class="navbar-nav mb-md-4">
+				<li class="nav-item">
+					<a class="nav-link" href="#departments-collapse" data-bs-toggle="collapse" href="#departments-collapse" role="button" aria-expanded="false" aria-controls="departments-collapse">
+						<i class="bi bi-building text-lg"></i> {{ __('Departments') }}
+					</a>
+					<li>
+						<div class="collapse show" id="departments-collapse">
+							<ul class="nav flex-column mb-2">
+								<li class="nav-item">
+									<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
+										{{ __('List Departments') }}
+									</x-navlink>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</li>
+			</ul>
+			
+
+
+
+
+
 			<!-- Divider -->
 			<hr class="navbar-divider my-5 opacity-20">
 			<!-- Navigation -->
@@ -88,7 +141,7 @@
 			<!-- Push content down -->
 
 
-			<!-- Divider -->
+			<!-- Doctor Divider -->
 			<hr class="navbar-divider my-5 opacity-20">
 			<!-- Navigation -->
 			<ul class="navbar-nav mb-md-4">
@@ -181,7 +234,15 @@
 						@csrf
 					</form>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						<i class="bi bi-bell"></i> Notifications
+						<span class="badge bg-soft-danger text-danger rounded-pill d-inline-flex align-items-center ms-auto">23</span>
+					</a>
+				</li>
 			</ul>
+
+			
 		</div>
     </div>
 </nav>

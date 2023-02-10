@@ -37,6 +37,7 @@
                 </div>
                 <div class="col-auto d-none d-md-block">
                     <div class="hstack gap-2 justify-content-end">
+                        {{-- //TODO: UPDATE BUTTONS --}}
                         <a href="#!" class="text-sm text-muted text-primary-hover font-semibold me-2 d-none d-md-block"><i class="bi bi-question-circle-fill"></i> <span class="d-none d-sm-inline ms-2">Need help?</span> </a>
                         <button type="button" class="btn btn-sm btn-neutral"><span>Save and create another</span></button> 
                         <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">

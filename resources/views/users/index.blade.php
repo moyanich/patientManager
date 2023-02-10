@@ -25,7 +25,7 @@
 
 	<div class="mb-7">
 		<div class="table-responsive">
-			<table id="users-datatable" class="table table-hover table-nowrap compact users-datatable">
+			<table id="users-datatable" class="table table-hover table-striped table-sm table-nowrap compact users-datatable">
 				<thead>
 					<tr>
 						<th scope="col">{{ __('#') }}</th>

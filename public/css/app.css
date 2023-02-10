@@ -121501,6 +121501,10 @@ body {
   color: #fff;
 }
 
+.navbar-vertical .navbar-nav .nav-link {
+  padding: 0.55rem 1.5rem;
+}
+
 .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
   color: #8957FF;
 }
@@ -121537,6 +121541,10 @@ body {
 
 table.table-no-padding {
   padding-left: 0;
+}
+
+thead, tbody, tfoot, tr, td, th {
+  border-color: #e2e8f0;
 }
 
 .table thead {
