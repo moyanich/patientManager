@@ -22,115 +22,140 @@
 
 @section('content')
 
-    <div class="offset-md-3 col-md-6">
-        <x-messages />
+    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+        @method('PUT')
+        @csrf
 
-        <div class="card card-bordered">
-            <div class="card-header d-flex">
-                <h4 class="card-title">{{ __('Edit User Record') }}</h4>
-                @can('user-delete')
-                    <div class="ms-auto">
+        <div class="py-4 border-bottom">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="d-flex align-items-center gap-4"><div>
+                    <a href="{{ route('users.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
+                </div>
+                    <div class="vr opacity-20 my-1"></div>
+                    <h1 class="h3 ls-tight">{{ __('Edit User') }}</h1>
+                    </div>
+                </div>
+                <div class="col-auto d-none d-md-block">
+                    <div class="hstack gap-2 justify-content-end">
+                        {{-- //TODO: UPDATE BUTTONS --}}
+                        <a href="{{ route('users.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                            {{ __('Cancel') }}
+                        </a>
                         @can('user-edit', $user)
                             <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#passUpdate-{{ $user->id }}">
                                 {{ __('Change user password') }}
                             </a>
                         @endcan
                         
-                        <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#sDelUser-{{ $user->id }}">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </div>
-                @endcan
-            </div>
-            <div class="card-body">
-                <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
-                    @method('PUT')
-                    @csrf
-
-                    <div class="row">
-                        <div class="mb-3">
-                            <div class="d-flex align-items-center mb-2">
-                                <label for="name" class="form-label mb-0 required-text">Name</label>
-                                <div class="ms-auto">
-                                <span class="text-sm text-muted">Required</span>
-                                </div>
-                            </div>
-                            <input id="name"
-                                type="text"
-                                name="name"
-                                value="{{ $user->name }}"
-                                class="form-control @error('name') is-invalid @enderror">
-                            
-                            @error('name')
-                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex align-items-center mb-2">
-                                <label for="username" class="form-label mb-0 required-text">Username</label>
-                            </div>
-                            <input id="username"
-                                type="text"
-                                name="username"
-                                value="{{ $user->username }}"
-                                class="form-control @error('name') is-invalid @enderror" disabled/>
-                            
-                            @error('name')
-                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex align-items-center mb-2">
-                                <label for="name" class="form-label mb-0 required-text">Email Address</label>
-                                <div class="ms-auto">
-                                <span class="text-sm text-muted">Required</span>
-                                </div>
-                            </div>
-                            <input id="email"
-                                type="email"
-                                name="email"
-                                value="{{ $user->email }}"
-                                class="form-control @error('email') is-invalid @enderror">
-                            
-                            @error('email')
-                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex align-items-center mb-2">
-                                <label for="title" class="form-label required-text">Roles</label>
-                                <div class="ms-auto">
-                                <span class="text-sm text-muted">Required</span>
-                                </div>
-                            </div>
-
-                            @foreach($roles as $key => $value)
-                                <div class="form-check">
-                                    <input name="roles" class="form-check-input" type="radio" value="{{ $value }}" id="rolesCheck" 
-                                    @foreach($user->getRoleNames() as $createdUser) 
-                                        @if($value == $createdUser) checked @endif
-                                    @endforeach>
-                                    <label class="form-check-label" for="rolesCheck">
-                                        {{ $key }}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="text-end mt-4">
-                            <a href="{{ route('users.index') }}" class="btn btn-sm bg-gray-100 me-2">
-                                {{ __('Cancel') }}
+                        <input type="submit" value="Update" class="btn btn-sm btn-primary">
+                        @can('user-delete')
+                            <a href="#" class="btn d-inline-flex btn-sm btn-neutral ms-2 text-danger" data-bs-toggle="modal" data-bs-target="#sDelUser-{{ $user->id }}">
+                                <span class="pe-2"><i class="bi bi-trash"></i> </span><span>Remove</span>
                             </a>
-                            <input type="submit" value="Submit" class="btn btn-sm btn-primary">
-                        </div>
+                        @endcan
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
 
-  
+
+        <div class="row align-items-center g-3 mt-3">
+            <x-messages />
+        </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="name" class="form-label mb-0 required-text">Name</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="name"
+                    type="text"
+                    name="name"
+                    value="{{ $user->name }}"
+                    class="form-control @error('name') is-invalid @enderror">
+                
+                @error('name')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="username" class="form-label mb-0 required-text">Username</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="username"
+                    type="text"
+                    name="username"
+                    value="{{ $user->username }}"
+                    class="form-control @error('name') is-invalid @enderror" disabled/>
+                
+                @error('name')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="name" class="form-label mb-0 required-text">Email Address</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="email"
+                    type="email"
+                    name="email"
+                    value="{{ $user->email }}"
+                    class="form-control @error('email') is-invalid @enderror">
+                
+                @error('email')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="title" class="form-label required-text">Roles</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                @foreach($roles as $key => $value)
+                    <div class="form-check">
+                        <input name="roles" class="form-check-input" type="radio" value="{{ $value }}" id="rolesCheck" 
+                        @foreach($user->getRoleNames() as $createdUser) 
+                            @if($value == $createdUser) checked @endif
+                        @endforeach>
+                        <label class="form-check-label" for="rolesCheck">
+                            {{ $key }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="name" class="form-label mb-0 required-text">Email Address</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="email"
+                    type="email"
+                    name="email"
+                    value="{{ $user->email }}"
+                    class="form-control @error('email') is-invalid @enderror">
+                
+                @error('email')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </form>
+
+
+
+
     @can('user-edit', $user)
         <div class="modal" id="passUpdate-{{ $user->id }}" tabindex="-1" aria-labelledby="modal_example" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -194,9 +219,6 @@
         </div>
     @endcan
 
-
-
-
     @can('user-delete')
         <!-- Modal -->
         <div class="modal" id="sDelUser-{{ $user->id }}" tabindex="-1" aria-labelledby="delDepModal" aria-hidden="true">
@@ -227,5 +249,5 @@
         </div>
     @endcan
 
-@endsection
 
+@endsection

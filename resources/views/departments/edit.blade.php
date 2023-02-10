@@ -113,9 +113,7 @@
                 @enderror
             </div>
         </div>
-
     </form>
-
 
 
     @can('department-delete')
