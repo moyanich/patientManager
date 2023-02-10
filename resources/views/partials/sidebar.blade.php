@@ -1,5 +1,5 @@
 <!-- Vertical Navbar -->
-<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 py-lg-0 navbar-light bg-gray-900 border-end-lg scrollbar" id="navbarVertical" data-bs-theme="dark">
+<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 py-lg-0 navbar-dark bg-dark border-end-lg scrollbar" id="navbarVertical" data-bs-theme="dark">
     <div class="container-fluid">
 		<!-- Toggler -->
 		<button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,94 +54,71 @@
 					<i class="bi bi-people"></i> Users
 					</a>
 				</li>
-			</ul>
 
+				<li class="nav-item">
+					<a class="nav-link collapsed" href="#sidebar-patients" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-patients">
+						<i class="bi bi-person-rolodex"></i> {{ __('Patients') }}
+					</a>
+					<div class="collapse" id="sidebar-patients" style="">
+						<ul class="nav nav-sm flex-column">
+							<li class="nav-item">
+								<x-navlink :href="route('patients.index')" class="{{ request()->routeIs('patients.index') ? 'active' : '' }} ">
+									{{ __('All Patients') }}
+								</x-navlink>
+							</li>
+							<li class="nav-item">
+								<x-navlink :href="route('patients.create')" class="{{ request()->routeIs('patients.create') ? 'active' : '' }} ">
+									{{ __('New Patient') }}
+								</x-navlink>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link collapsed {{ request()->routeIs('users.create') ? 'active' : '' }}" href="#sidebar-users" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-files">
+						<i class="bi bi-people"></i> {{ __('Users') }}
+					</a>
+					<div class="collapse" id="sidebar-users" style="">
+						<ul class="nav nav-sm flex-column">
+							<li class="nav-item">
+								<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
+									{{ __('List Users') }}
+								</x-navlink>
+							</li>
+							<li class="nav-item">
+								<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
+									{{ __('Add New User') }}
+								</x-navlink>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="nav-link collapsed {{ request()->routeIs('departments.create') ? 'active' : '' }}" href="#sidebar-departments" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-departments">
+						<i class="bi bi-building"></i> {{ __('Department') }}
+					</a>
+					<div class="collapse" id="sidebar-departments" style="">
+						<ul class="nav nav-sm flex-column">
+							<li class="nav-item">
+								<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
+									{{ __('List Departments') }}
+								</x-navlink>
+							</li>
+							<li class="nav-item">
+								<x-navlink :href="route('departments.create')" class="{{ request()->routeIs('departments.create') ? 'active' : '' }} ">
+									{{ __('Add New Department') }}
+								</x-navlink>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
 
 
 			<!-- Divider -->
-			<hr class="navbar-divider my-5 opacity-20">
-			<!-- User Navigation -->
-			<ul class="navbar-nav mb-md-4">
-				<li class="nav-item">
-					<a class="nav-link" href="#user-collapse" data-bs-toggle="collapse" href="#user-collapse" role="button" aria-expanded="false" aria-controls="user-collapse">
-						<i class="bi bi-people text-lg"></i> {{ __('Users') }}
-					</a>
-					<li>
-						<div class="collapse show" id="user-collapse">
-							<ul class="nav flex-column mb-2">
-								<li class="nav-item">
-									<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
-										{{ __('List Users') }}
-									</x-navlink>
-								</li>
-								<li class="nav-item">
-									<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
-										{{ __('Add New User') }}
-									</x-navlink>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</li>
-			</ul>
-			
-			<!-- Department Navigation -->
-			<ul class="navbar-nav mb-md-4">
-				<li class="nav-item">
-					<a class="nav-link" href="#departments-collapse" data-bs-toggle="collapse" href="#departments-collapse" role="button" aria-expanded="false" aria-controls="departments-collapse">
-						<i class="bi bi-building text-lg"></i> {{ __('Departments') }}
-					</a>
-					<li>
-						<div class="collapse show" id="departments-collapse">
-							<ul class="nav flex-column mb-2">
-								<li class="nav-item">
-									<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
-										{{ __('List Departments') }}
-									</x-navlink>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</li>
-			</ul>
-			
-
-
-
-
-
-			<!-- Divider -->
-			<hr class="navbar-divider my-5 opacity-20">
-			<!-- Navigation -->
-			<ul class="navbar-nav mb-md-4">
-				<li class="nav-item">
-					<a class="nav-link" href="#patients-collapse" data-bs-toggle="collapse" href="#patients-collapse" role="button" aria-expanded="false" aria-controls="settings-collapse">
-						<i class="bi bi-person-video2 text-lg"></i> {{ __('Patients') }}
-					</a>
-					<li>
-						<div class="collapse show" id="patients-collapse">
-							<ul class="nav flex-column mb-2">
-								<li class="nav-item">
-									<x-navlink :href="route('patients.index')" class="{{ request()->routeIs('patients.index') ? 'active' : '' }} ">
-										<i class="bi bi-person-rolodex"></i>
-										{{ __('All Patients') }}
-									</x-navlink>
-								</li>
-								<li class="nav-item">
-									<x-navlink :href="route('patients.create')" class="{{ request()->routeIs('patients.create') ? 'active' : '' }} ">
-										<i class="bi bi-person-plus"></i>
-										{{ __('New Patient') }}
-									</x-navlink>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</li>
-			</ul>
-			<!-- Push content down -->
-
-
-			<!-- Doctor Divider -->
 			<hr class="navbar-divider my-5 opacity-20">
 			<!-- Navigation -->
 			<ul class="navbar-nav mb-md-4">
@@ -184,22 +161,9 @@
 						<div class="collapse show" id="settings-collapse">
 							<ul class="nav flex-column mb-2">
 								<li class="nav-item">
-									<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
-										<i class="bi bi-people"></i>
-										{{ __('Users') }}
-									</x-navlink>
-								</li>
-
-								<li class="nav-item">
 									<x-navlink :href="route('roles.index')" class="{{ request()->routeIs('roles.index') ? 'active' : '' }} ">
 										<i class="bi bi-gear"></i>
 										{{ __('Roles') }}
-									</x-navlink>
-								</li>
-								<li class="nav-item">
-									<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
-										<i class="bi bi-gear"></i>
-										{{ __('Departments') }}
 									</x-navlink>
 								</li>
 							</ul>

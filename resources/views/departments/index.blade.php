@@ -63,7 +63,7 @@
                             <form action="{{ route('departments.destroy', $department->id) }}" method="POST" style="display: inline">
                                 @method('DELETE')
                                 @csrf
-                                <button href="" class="btn btn-sm btn-danger cursor-pointer">Delete</button>
+                                <button href="" class="btn btn-sm btn-danger text-danger-hover cursor-pointer">Delete</button>
                             </form>
                         </div>
                     </div>
