@@ -9,61 +9,113 @@
         <!-- Actions -->
         <div class="col-md-6 col-12 text-md-end">
             <div class="mx-n1">
-                <a href="{{ route('patients.index') }}" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                <a href="{{ route('doctors.index') }}" class="btn d-inline-flex btn-sm btn-primary mx-1">
 					<span class=" pe-2">
 						<i class="bi bi-arrow-left"></i>
 					</span>
-                	<span>{{ __('Back') }}</span>
+                	<span>{{ __('Back to Doctor List') }}</span>
                 </a>
             </div>
         </div>
     </div>
 @endsection
 
-
 @section('content')
 
-    <div class="card">
-        <h5 class="card-header">Profile Details</h5>
-        <div class="card-body">
-            <div class="d-flex align-items-start align-items-sm-center gap-4">
-                <img src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-                <div class="button-wrapper">
-                    <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                    <span class="d-none d-sm-block">Upload new photo</span>
-                    <i class="bx bx-upload d-block d-sm-none"></i>
-                    <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
-                    </label>
-                    <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                    <i class="bx bx-reset d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Reset</span>
-                    </button>
+    <form action="{{ route('doctors.store') }}" method="POST">
+        @csrf
 
-                    <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+        <div class="py-4 border-bottom">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="d-flex align-items-center gap-4"><div>
+                    <a href="{{ route('doctors.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
+                </div>
+                    <div class="vr opacity-20 my-1"></div>
+                    <h1 class="h3 ls-tight">{{ __('Add a new Doctor') }}</h1>
+                    </div>
+                </div>
+                <div class="col-auto d-none d-md-block">
+                    <div class="hstack gap-2 justify-content-end">
+                        {{-- //TODO: UPDATE BUTTONS --}}
+                        <a href="#!" class="text-sm text-muted text-primary-hover font-semibold me-2 d-none d-md-block"><i class="bi bi-question-circle-fill"></i> <span class="d-none d-sm-inline ms-2">Need help?</span> </a>
+                        <button type="button" class="btn btn-sm btn-neutral"><span>Save and create another</span></button> 
+                        <a href="{{ route('doctors.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                            {{ __('Cancel') }}
+                        </a>
+
+                        <input type="submit" value="Save" class="btn btn-sm btn-primary">
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="card-body">
-
+        <div class="row align-items-center g-3 mt-3">
             <x-messages />
+        </div>
 
-            {!! Form::open(['action' => 'App\Http\Controllers\DoctorsController@store', 'method' => 'POST']) !!}
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="employee_no" class="form-label mb-0 required-text">Employee No.</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="employee_no"
+                    type="text"
+                    name="employee_no"
+                    class="form-control @error('employee_no') is-invalid @enderror">
+                
+                @error('employee_no')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
 
-                <div class="row">
-                    <div class="col-md-8">
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="first_name" class="form-label">First Name</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <input id="first_name"
+                    type="text"
+                    name="first_name"
+                    class="form-control @error('first_name') is-invalid @enderror">
 
-                        <div class="mb-3 row">
-                            {{ Form::label('employee_no', 'Employee No.', ['class' => 'col-sm-4 col-form-label required-text']) }}
-                            <div class="col-sm-8">
-                                {{Form::text('employee_no', '', ['class' => 'form-control', 'placeholder' => '']) }}
+                @error('first_name')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
 
-                                @error('employee_no')
-                                    <p class="text-xs text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
 
+        {{--  
+        <div class="row align-items-center g-3 mt-2">
+            <div class="col-md-2">
+                <label for="title" class="form-label required-text">Status</label>
+            </div>
+            <div class="col-md-8 col-xl-5">
+                <div class="form-floating">
+                    <select name="status" class="form-select @error('status') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
+                        @foreach($statuses as $key => $value)
+                            <option value="{{ $key }}"> 
+                                {{ $value }} 
+                            </option>
+                        @endforeach
+                    </select>
+                    <label for="floatingSelect">Choose a status</label>
+                </div>
+                @error('status')
+                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        --}}
+    </form>
+
+@endsection
+
+{{--  
+       
                         <div class="mb-3 row">
                             {{ Form::label('first_name', 'First Name', ['class' => 'col-sm-4 col-form-label required-text']) }}
                             <div class="col-sm-8">
@@ -148,7 +200,7 @@
 
                 </div>
 
-            {!! Form::close() !!}
+     
 
 
         </div>
@@ -158,9 +210,6 @@
     
     </div>
 
-
-
-@endsection
 
 
 
@@ -183,3 +232,5 @@ Education/Degree
 Blood Group
 Education/Degree
 Status - Active Inactive
+
+--}}

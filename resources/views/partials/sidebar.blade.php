@@ -76,7 +76,29 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link collapsed {{ request()->routeIs('users.create') ? 'active' : '' }}" href="#sidebar-users" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-files">
+					<a class="nav-link collapsed {{ request()->routeIs('doctors.create') ? 'active' : '' }}" href="#sidebar-doctors" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-doctors">
+						<i class="bi bi-person-video2"></i> {{ __('Doctors') }}
+					</a>
+					<div class="collapse" id="sidebar-doctors" style="">
+						<ul class="nav nav-sm flex-column">
+							<li class="nav-item">
+								<x-navlink :href="route('doctors.index')" class="{{ request()->routeIs('doctors.index') ? 'active' : '' }} ">
+									{{ __('List Doctors') }}
+								</x-navlink>
+							</li>
+							<li class="nav-item">
+								<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
+									{{ __('Add New Doctor') }}
+								</x-navlink>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+
+
+				<li class="nav-item">
+					<a class="nav-link collapsed {{ request()->routeIs('users.create') ? 'active' : '' }}" href="#sidebar-users" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-users">
 						<i class="bi bi-people"></i> {{ __('Users') }}
 					</a>
 					<div class="collapse" id="sidebar-users" style="">
