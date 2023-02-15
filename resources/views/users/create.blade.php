@@ -32,7 +32,7 @@
                     <a href="{{ route('users.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
                 </div>
                     <div class="vr opacity-20 my-1"></div>
-                    <h1 class="h3 ls-tight">{{ __('Add a new user') }}</h1>
+                    <h1 class="h3 ls-tight">{{ __('Create User') }}</h1>
                     </div>
                 </div>
                 <div class="col-auto d-none d-md-block">

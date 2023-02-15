@@ -62,13 +62,15 @@
 					<div class="collapse" id="sidebar-patients" style="">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<x-navlink :href="route('patients.index')" class="{{ request()->routeIs('patients.index') ? 'active' : '' }} ">
-									{{ __('All Patients') }}
+								<x-navlink :href="route('patients.create')" class="{{ request()->routeIs('patients.create') ? 'active' : '' }} ">
+									<i class="bi bi-plus"></i>
+									{{ __('Create Patient') }}
 								</x-navlink>
 							</li>
 							<li class="nav-item">
-								<x-navlink :href="route('patients.create')" class="{{ request()->routeIs('patients.create') ? 'active' : '' }} ">
-									{{ __('New Patient') }}
+								<x-navlink :href="route('patients.index')" class="{{ request()->routeIs('patients.index') ? 'active' : '' }} ">
+									<i class="bi bi-card-list"></i>
+									{{ __('All Patients') }}
 								</x-navlink>
 							</li>
 						</ul>
@@ -82,13 +84,15 @@
 					<div class="collapse" id="sidebar-doctors" style="">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<x-navlink :href="route('doctors.index')" class="{{ request()->routeIs('doctors.index') ? 'active' : '' }} ">
-									{{ __('List Doctors') }}
+								<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
+									<i class="bi bi-plus"></i>
+									{{ __('Create Doctor') }}
 								</x-navlink>
 							</li>
 							<li class="nav-item">
-								<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
-									{{ __('Add New Doctor') }}
+								<x-navlink :href="route('doctors.index')" class="{{ request()->routeIs('doctors.index') ? 'active' : '' }} ">
+									<i class="bi bi-card-list"></i>
+									{{ __('List Doctors') }}
 								</x-navlink>
 							</li>
 						</ul>
@@ -104,13 +108,15 @@
 					<div class="collapse" id="sidebar-users" style="">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
-									{{ __('List Users') }}
+								<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
+									<i class="bi bi-plus"></i>
+									{{ __('Create User') }}
 								</x-navlink>
 							</li>
 							<li class="nav-item">
-								<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
-									{{ __('Add New User') }}
+								<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
+									<i class="bi bi-card-list"></i>
+									{{ __('List Users') }}
 								</x-navlink>
 							</li>
 						</ul>
@@ -125,13 +131,15 @@
 					<div class="collapse" id="sidebar-departments" style="">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
-									{{ __('List Departments') }}
+								<x-navlink :href="route('departments.create')" class="{{ request()->routeIs('departments.create') ? 'active' : '' }} ">
+									<i class="bi bi-plus"></i>
+									{{ __('Create Department') }}
 								</x-navlink>
 							</li>
 							<li class="nav-item">
-								<x-navlink :href="route('departments.create')" class="{{ request()->routeIs('departments.create') ? 'active' : '' }} ">
-									{{ __('Add New Department') }}
+								<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
+									<i class="bi bi-card-list"></i>
+									{{ __('List Departments') }}
 								</x-navlink>
 							</li>
 						</ul>

@@ -31,7 +31,7 @@
                     <a href="{{ route('departments.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
                 </div>
                     <div class="vr opacity-20 my-1"></div>
-                    <h1 class="h3 ls-tight">{{ __('Add a new Department') }}</h1>
+                    <h1 class="h3 ls-tight">{{ __('Create Department') }}</h1>
                     </div>
                 </div>
                 <div class="col-auto d-none d-md-block">

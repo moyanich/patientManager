@@ -27,7 +27,8 @@ class StoreDoctorsRequest extends FormRequest
             'employee_no' => 'required|unique:doctors,employee_no|max:24',
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'sometimes|email',
+            'email' => 'nullable|sometimes|email',
+            'dob' => 'nullable|sometimes|date',
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDoctorsRequest;
 use App\Http\Requests\UpdateDoctorsRequest;
+use App\Models\Departments;
 use App\Models\Doctors;
 
 class DoctorsController extends Controller
@@ -60,9 +61,10 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        //
+       // $departments = Departments::orderBy('id', 'DESC')->get();
 
-        return view('doctors.create');
+        $departments = Departments::pluck('name', 'id')->prepend('Please select', '');
+        return view('doctors.create', compact('departments'));
     }
 
     /**
@@ -80,8 +82,9 @@ class DoctorsController extends Controller
         $doctor->email = $request->input('email');
         $doctor->designation = $request->input('designation');
         $doctor->degree = $request->input('degrees');
-
+        $doctor->specialist_area  = $request->input('specialist_area');
         
+        $doctor->dob = $request->input('dob');
 
         $doctor->save();
 
