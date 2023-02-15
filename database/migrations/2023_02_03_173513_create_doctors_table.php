@@ -20,19 +20,19 @@ class CreateDoctorsTable extends Migration
             $table->string('last_name', 255);
             $table->string('email', 55)->nullable();
             $table->string('designation', 255)->nullable();
-            
-            $table->string('department', 255)->nullable();
             $table->string('specialist_area', 255)->nullable();
             
             $table->date('dob')->nullable();
             $table->unsignedBigInteger('gender_id')->nullable();
-
-
-            $table->string('degree', 255)->nullable();
-
             $table->string('contact_1', 14)->nullable();
             $table->string('contact_2', 14)->nullable();
-            
+            $table->string('address', 255)->nullable();
+
+            $table->string('kin_name', 255)->nullable();
+            $table->string('kin_phone', 14)->nullable();
+            $table->string('kin_email', 55)->nullable();
+
+            $table->string('information', 255)->nullable();
            
            // $table->integer('experience', 10);
             $table->timestamps();

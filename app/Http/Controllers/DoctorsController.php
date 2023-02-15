@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDoctorsRequest;
 use App\Http\Requests\UpdateDoctorsRequest;
 use App\Models\Departments;
 use App\Models\Doctors;
+use App\Models\Genders;
 
 class DoctorsController extends Controller
 {
@@ -61,10 +62,11 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-       // $departments = Departments::orderBy('id', 'DESC')->get();
+       $departments = Departments::orderBy('id', 'DESC')->get();
+       $genders = Genders::pluck('name', 'id'); 
 
-        $departments = Departments::pluck('name', 'id')->prepend('Please select', '');
-        return view('doctors.create', compact('departments'));
+       // $departments = Departments::pluck('name', 'id');
+        return view('doctors.create', compact('departments', 'genders'));
     }
 
     /**
@@ -79,15 +81,22 @@ class DoctorsController extends Controller
         $doctor->employee_no = $request->input('employee_no');
         $doctor->first_name = $request->input('first_name');
         $doctor->last_name = $request->input('last_name');
+        $doctor->dob = $request->input('dob');
+        $doctor->gender_id = $request->input('gender_id');
         $doctor->email = $request->input('email');
         $doctor->designation = $request->input('designation');
-        $doctor->degree = $request->input('degrees');
         $doctor->specialist_area  = $request->input('specialist_area');
-        
-        $doctor->dob = $request->input('dob');
-
+        $doctor->information = $request->input('information');
+    
+        $doctor->kin_name = $request->input('kin_name');
+        $doctor->kin_phone = $request->input('kin_phone');
+        $doctor->kin_email = $request->input('kin_email');
+    
         $doctor->save();
 
+
+        $doctor->departments()->attach( $request->input('departments'));
+       
         return redirect()->route('doctors.show', ['doctor' => $doctor])->with('success', 'New doctor profile created successfully. Go ahead and complete the profile below'); // Redirect to doctor profile
     }
 
@@ -100,6 +109,7 @@ class DoctorsController extends Controller
     public function show(Doctors $doctors)
     {
         //
+        return view('doctors.show');
     }
 
     /**

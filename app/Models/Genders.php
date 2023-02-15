@@ -19,4 +19,11 @@ class Genders extends Model
     public $timestamps = true;
 
     protected $fillable = ['name'];
+
+    public function Doctors() {
+        return $this->hasMany(Doctors::class, 'gender_id', 'id');
+    }
+
+
+
 }

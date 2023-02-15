@@ -20,6 +20,19 @@ class CreateDepartmentsTable extends Migration
             $table->string('status', 1);
             $table->timestamps();
         });
+
+        // departments_doctors
+        Schema::create('departments_doctors', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('doctors_id');
+            $table->unsignedBigInteger('departments_id');
+            $table->unique(['departments_id','doctors_id']);
+            $table->foreign('departments_id')->references('id')->on('departments')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('doctors_id')->references('id')->on('doctors')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->timestamps();
+            $table->index(['doctors_id', 'departments_id']);
+        });
     }
 
     /**
@@ -30,5 +43,7 @@ class CreateDepartmentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('departments');
+        Schema::dropIfExists('departments_doctors');
     }
+    
 }

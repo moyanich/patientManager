@@ -29,8 +29,7 @@ class Doctors extends Model
         'last_name',
         'email',
         'designation',
-        'degrees',
-        'department',
+        'information',
         'specialist_area',
         'dob',
         'gender_id',
@@ -38,12 +37,31 @@ class Doctors extends Model
         'contact_2',
         'title',
         'degree',
+        'kin_name',
+        'kin_phone',
+        'kin_email',
+        'address',
+           
     ];
 
     protected $dates = [
         'dob'
     ];
 
+    /**
+     * 
+     */
+    public function Genders() {
+        return $this->hasMany(Genders::class, 'gender_id', 'id');
+    }
+   
+    /**
+     * Doctor Department Relationship
+     */
+    public function departments()
+    {
+        return $this->belongsToMany(Departments::class);
+    }
 
 
     

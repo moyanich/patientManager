@@ -20,6 +20,14 @@ class Departments extends Model
 
     protected $fillable = ['name', 'description', 'status'];
 
+    /**
+     * Doctor Department Relationship
+     */
+    public function doctor()
+    {
+        return $this->belongsToMany(Doctors::class);
+    }
+
     
 }
 
