@@ -71,6 +71,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-10">
+
                 <div class="row mb-4">
                     <div class="col-12 col-md-2">
                         <label for="employee_no" class="form-label required-text">Employee No.</label>
@@ -112,73 +113,6 @@
 
                 <div class="row mb-4">
                     <div class="col-12 col-md-4">
-                        <label for="dob" class="form-label">Date of Birth</label>
-                        <input id="dob"
-                            type="date"
-                            name="dob"
-                            value = "{{ old('dob') }}"
-                            class="form-control @error('dob') is-invalid @enderror">
-        
-                        @error('dob')
-                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <label for="genders" class="form-label required-text">Gender</label>
-                        <select name="gender" class="form-select form-control form-select-sm">
-                            @foreach($genders as $key => $gender)
-                                <option value="{{ $key }}"> {{ $gender }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-5">
-                       ll
-                    </div>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-12 col-md-4">
-                        <label for="contact_1" class="form-label">Contact Number 1</label>
-                        <input id="contact_1"
-                            type="text"
-                            name="contact_1"
-                            value = "{{ old('contact_1') }}"
-                            class="form-control @error('contact_1') is-invalid @enderror">
-        
-                        @error('contact_1')
-                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <label for="contact_2" class="form-label">Contact Number 2</label>
-                        <input id="contact_2"
-                            type="text"
-                            name="contact_2"
-                            value = "{{ old('contact_2') }}"
-                            class="form-control @error('contact_2') is-invalid @enderror">
-        
-                        @error('contact_2')
-                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input id="email"
-                            type="email"
-                            name="email"
-                            value = "{{ old('email') }}"
-                            class="form-control @error('email') is-invalid @enderror">
-        
-                        @error('email')
-                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-12 col-md-4">
                         <label for="designation" class="form-label">Designation</label>
                         <input id="designation"
                             type="text"
@@ -214,6 +148,99 @@
                 </div>
 
                 <div class="row mb-4">
+                    <div class="col-12 col-md-4">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input id="dob"
+                            type="date"
+                            name="dob"
+                            value = "{{ old('dob') }}"
+                            class="form-control @error('dob') is-invalid @enderror">
+        
+                        @error('dob')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="genders" class="form-label required-text">Gender</label>
+                        <select name="gender" class="form-select form-control form-select-sm">
+                            @foreach($genders as $key => $gender)
+                                <option value="{{ $key }}"> {{ $gender }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input id="email"
+                            type="email"
+                            name="email"
+                            value = "{{ old('email') }}"
+                            class="form-control @error('email') is-invalid @enderror">
+        
+                        @error('email')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12 col-md-4">
+                        <label for="contact_1" class="form-label">Contact Number 1</label>
+                        <input id="contact_1"
+                            type="text"
+                            name="contact_1"
+                            value = "{{ old('contact_1') }}"
+                            class="form-control @error('contact_1') is-invalid @enderror">
+        
+                        @error('contact_1')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label for="contact_2" class="form-label">Contact Number 2</label>
+                        <input id="contact_2"
+                            type="text"
+                            name="contact_2"
+                            value = "{{ old('contact_2') }}"
+                            class="form-control @error('contact_2') is-invalid @enderror">
+        
+                        @error('contact_2')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea id="address"
+                        name="address"
+                        value="{{ old('address') }}"
+                        rows="10"
+                        class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+    
+                        @error('information')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12 col-md-4">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea id="address"
+                        name="address"
+                        value="{{ old('address') }}"
+                        rows="10"
+                        class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+    
+                        @error('information')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+
+                </div>
+
+                <div class="row mb-4">
                     <div class="col-12">
                         <label for="information" class="form-label">Additonal Information</label>
                         <textarea id="information"
@@ -222,9 +249,9 @@
                         rows="10"
                         class="form-control @error('information') is-invalid @enderror">{{ old('information') }}</textarea>
     
-                    @error('information')
-                        <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                    @enderror
+                        @error('information')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
