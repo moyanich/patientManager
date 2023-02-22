@@ -55,22 +55,26 @@
         </div>
 
         <div class="row g-5 mt-2">
-            <div class="col-12 col-md-2">
-                <div class="">
-                    <div>
-                        <img src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded" height="100" width="100%" id="uploadedAvatar">
+            <div class="col-12">
+                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <img src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
+                    <div class="button-wrapper">
+                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                        <span class="d-none d-sm-block">Upload new photo</span>
+                        <i class="bx bx-upload d-block d-sm-none"></i>
+                        <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                        </label>
+                        <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                        <i class="bx bx-reset d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Reset</span>
+                        </button>
+        
                         <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
                     </div>
-                    <div class="button-wrapper">
-                        <label for="upload" class="btn btn-primary btn-sm" tabindex="0">
-                            <span class="d-none d-sm-block">Upload photo</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
-                        </label>
-                    </div>
                 </div>
+
             </div>
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-md-12">
 
                 <div class="row mb-4">
                     <div class="col-12 col-md-2">
@@ -137,13 +141,18 @@
                             <span class="mt-2 invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
+                    {{-- //TODO Add error to field --}}
                     <div class="col-12 col-md-4">
                         <label for="departments" class="form-label required-text">Department</label>
-                        <select name="departments[]" class="form-select form-control form-select-sm js-example-basic-multiple js-states select2-multiple" multiple>
+                        <select name="departments[]" class="form-select form-control form-select-sm js-example-basic-multiple js-states select2-multiple @error('departments[]') is-invalid @enderror"" multiple>
                             @foreach($departments as $department)
                                 <option value="{{ $department->id }}"> {{ $department->name }}</option>
                             @endforeach
                         </select>
+
+                        @error('departments[]')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -169,6 +178,12 @@
                         </select>
                     </div>
                     <div class="col-12 col-md-5">
+                        
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6">
                         <label for="email" class="form-label">Email Address</label>
                         <input id="email"
                             type="email"
@@ -180,10 +195,7 @@
                             <span class="mt-2 invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-3">
                         <label for="contact_1" class="form-label">Contact Number 1</label>
                         <input id="contact_1"
                             type="text"
@@ -195,7 +207,7 @@
                             <span class="mt-2 invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-3">
                         <label for="contact_2" class="form-label">Contact Number 2</label>
                         <input id="contact_2"
                             type="text"
@@ -207,24 +219,10 @@
                             <span class="mt-2 invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
-                    <div class="col-12 col-md-4">
-                        <label for="address" class="form-label">Address</label>
-                        <textarea id="address"
-                        name="address"
-                        value="{{ old('address') }}"
-                        rows="10"
-                        class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
-    
-                        @error('information')
-                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-
                 </div>
 
                 <div class="row mb-4">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12">
                         <label for="address" class="form-label">Address</label>
                         <textarea id="address"
                         name="address"

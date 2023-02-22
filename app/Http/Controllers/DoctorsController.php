@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateDoctorsRequest;
 use App\Models\Departments;
 use App\Models\Doctors;
 use App\Models\Genders;
+use DataTables;
 
 class DoctorsController extends Controller
 {

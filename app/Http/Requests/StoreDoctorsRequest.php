@@ -29,6 +29,11 @@ class StoreDoctorsRequest extends FormRequest
             'last_name' => 'required',
             'email' => 'nullable|sometimes|email',
             'dob' => 'nullable|sometimes|date',
+            'contact_1'=> 'nullable|numeric',
+            'contact_2'=> 'nullable|numeric',
+            'kin_email' => 'nullable|sometimes|email',
+            'kin_phone' => 'nullable|numeric',
+            'departments' => 'required',
         ];
     }
 

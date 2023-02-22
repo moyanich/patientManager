@@ -30,7 +30,7 @@
             <thead>
                 <tr>
                     <th scope="col">{{ __('#') }}</th>
-                    <th scope="col">{{ __('doctor Name') }}</th>
+                    <th scope="col">{{ __('Name') }}</th>
                     <th scope="col">{{ __('Status') }}</th>
                     <th scope="col"></th>
                 </tr>
@@ -92,7 +92,7 @@
             ajax: "{!! route('doctors.index') !!}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'name', name: 'name' , className: 'dept-name'},
+                { data: 'first_name', name: 'first_name' , className: 'dept-name'},
                 {
                     data: 'status', 
                     name: 'status', 

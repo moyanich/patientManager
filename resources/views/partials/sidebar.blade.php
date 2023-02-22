@@ -63,7 +63,7 @@
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
 								<x-navlink :href="route('patients.create')" class="{{ request()->routeIs('patients.create') ? 'active' : '' }} ">
-									<i class="bi bi-plus"></i>
+									<i class="bi bi-plus-circle-fill"></i>
 									{{ __('Create Patient') }}
 								</x-navlink>
 							</li>
@@ -85,7 +85,7 @@
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
 								<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
-									<i class="bi bi-plus"></i>
+									<i class="bi bi-plus-circle-fill"></i>
 									{{ __('Create Doctor') }}
 								</x-navlink>
 							</li>
@@ -109,7 +109,7 @@
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
 								<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
-									<i class="bi bi-plus"></i>
+									<i class="bi bi-plus-circle-fill"></i>
 									{{ __('Create User') }}
 								</x-navlink>
 							</li>
@@ -132,7 +132,7 @@
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
 								<x-navlink :href="route('departments.create')" class="{{ request()->routeIs('departments.create') ? 'active' : '' }} ">
-									<i class="bi bi-plus"></i>
+									<i class="bi bi-plus-circle-fill"></i>
 									{{ __('Create Department') }}
 								</x-navlink>
 							</li>
@@ -167,7 +167,7 @@
 								</li>
 								<li class="nav-item">
 									<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
-										<i class="bi bi-person-plus"></i>
+										<i class="bi bi-plus-circle-fill"></i>
 										{{ __('New Doctor') }}
 									</x-navlink>
 								</li>

@@ -24,12 +24,12 @@ class CreateDoctorsTable extends Migration
             
             $table->date('dob')->nullable();
             $table->unsignedBigInteger('gender_id')->nullable();
-            $table->string('contact_1', 14)->nullable();
-            $table->string('contact_2', 14)->nullable();
+            $table->string('contact_1', 16)->nullable();
+            $table->string('contact_2', 16)->nullable();
             $table->string('address', 255)->nullable();
 
             $table->string('kin_name', 255)->nullable();
-            $table->string('kin_phone', 14)->nullable();
+            $table->string('kin_phone', 16)->nullable();
             $table->string('kin_email', 55)->nullable();
 
             $table->string('information', 255)->nullable();
