@@ -56,8 +56,24 @@ class DoctorsController extends Controller
 
                 ->addColumn('departments', function($doctor) {
                     // Get departments associated with doctor.
-                    $doctors = $doctor->departments->pluck('name')->toArray();
-                    return $doctors;
+                    $output = '';
+                    $departments = $doctor->departments->pluck('name')->toArray();
+                   // $doctors = implode(', ', $doctors);
+
+                    //$departments = '<p>' . implode(', ', $departments) . '</p>';
+                
+                    for ($i = 0; $i < count($departments); $i++) {
+                        $departments[$i] =  $departments[$i];
+
+                        $output .= '
+                        <a href="' . route('doctors.edit', $doctor->id) . '" class="btn btn-sm btn-outline-primary">' . $departments[$i] . '</a> ';
+
+                        
+                    }
+                    
+                    return $output;
+
+                    
                 })
 
                 ->addColumn('action', function($doctor) {
@@ -66,7 +82,7 @@ class DoctorsController extends Controller
                         <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $doctor->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['contactInfo', 'action'])
+                ->rawColumns(['departments', 'contactInfo', 'action'])
                 ->make(true);
         }
 

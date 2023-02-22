@@ -102,9 +102,9 @@
                 { data: 'last_name', name: 'last_name'},
                 { data: 'email', name: 'email'},
                 { data: 'contactInfo', name: 'contactInfo'},
-                { data: 'departments', name: 'departments'},
+                { data: 'departments', name: 'departments', className: 'dept_name'},
                 
-                { data: 'specialist_area', name: 'specialist_area' , className: 'dept-name'},
+                { data: 'specialist_area', name: 'specialist_area'},
 
                 
 
