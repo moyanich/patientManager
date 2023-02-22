@@ -34,22 +34,82 @@ class DoctorsController extends Controller
     public function index(Request $request)
     {
         $doctors = Doctors::orderBy('id', 'DESC')->get();
+
+       
         
         if ($request->ajax()) {
             $data = Doctors::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('status', function ($statusRow) {
+               /* ->addColumn('status', function ($statusRow) {
                     return View::make("components.badges")
                     ->with("status", $statusRow->status)->with("message", statusConvert($statusRow->status));
+                }) */
+                ->addColumn('contactInfo', function($doctor) {
+                    if(!empty($doctor->contact_1) || !empty($doctor->contact_2)) {
+                        $output = '';
+                        $output .= '<p><i class="bi bi-telephone-fill"></i> ' . $doctor->contact_1 . '</p>';
+                        $output .= '<p><i class="bi bi-telephone-fill"></i> ' . $doctor->contact_2 . '</p>';
+                        return $output;
+                    }
                 })
-                ->addColumn('action', function($doctor){
+
+                ->addColumn('departments', function($doctor) {
+
+                   /* if(!empty($doctor->departments)) {
+                        foreach($doctor->departments as $doctor_has_dept) {
+                          return $doctor_has_dept->name;                       
+                        }
+                    } 
+
+                   $results = Doctors::with('departments')->where('id', $doctor->id)->get(); 
+                   
+
+
+                    $results = Doctors::with('departments')->get();
+                    foreach($results as $result) {
+                        return $result->name;  
+                    } 
+                    $tags = Doctors::where('id', '=', $doctor->id)
+                    ->with('departments')
+                    ->first();
+
+                    return $tags; */
+
+                    // Get departments associated with doctor.
+                    $users = $doctor->departments->pluck('name')->toArray();
+                   
+                    return $users;
+                  
+
+                   
+
+
+                   /* foreach($tags as $tag) {
+                        return $tag->name;
+                    }*/
+                    //return $results->pivot->name;
+
+
+                   
+
+
+                   /* //$department = $doctor->getDepartments()->get();
+
+                    $department = $this->through('departments')->has('doctors');
+
+                    return $department;*/
+
+                   
+                })
+
+                ->addColumn('action', function($doctor) {
                     $actionBtn = '
                         <a href="' . route('doctors.edit', $doctor->id) . '" class="btn btn-sm btn-outline-primary">View</a>
                         <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $doctor->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['contactInfo', 'action'])
                 ->make(true);
         }
 
@@ -86,15 +146,15 @@ class DoctorsController extends Controller
         $doctor->gender_id = $request->input('gender_id');
         $doctor->email = $request->input('email');
         $doctor->designation = $request->input('designation');
+        $doctor->contact_1 = $request->input('contact_1');
+        $doctor->contact_2 = $request->input('contact_2');
         $doctor->specialist_area  = $request->input('specialist_area');
         $doctor->information = $request->input('information');
     
         $doctor->kin_name = $request->input('kin_name');
         $doctor->kin_phone = $request->input('kin_phone');
         $doctor->kin_email = $request->input('kin_email');
-    
         $doctor->save();
-
 
         $doctor->departments()->attach( $request->input('departments'));
        

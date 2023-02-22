@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Doctors extends Model
 {
     use HasFactory;
@@ -56,13 +57,14 @@ class Doctors extends Model
     }
    
     /**
-     * Doctor Department Relationship
+     * The departments that belong to the doctor
      */
     public function departments()
     {
-        return $this->belongsToMany(Departments::class);
+        return $this->belongsToMany(Departments::class, 'departments_doctors', 'departments_id', 'doctors_id');
     }
 
+  
 
     
 }

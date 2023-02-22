@@ -506,3 +506,47 @@
 
 @endsection
 --}}
+
+
+/* if(!empty($doctor->departments)) {
+	foreach($doctor->departments as $doctor_has_dept) {
+	  return $doctor_has_dept->name;                       
+	}
+} 
+
+$results = Doctors::with('departments')->where('id', $doctor->id)->get(); 
+
+
+
+$results = Doctors::with('departments')->get();
+foreach($results as $result) {
+	return $result->name;  
+} 
+$tags = Doctors::where('id', '=', $doctor->id)
+->with('departments')
+->first();
+
+return $tags; */
+
+$users = $doctor->departments->pluck('name')->toArray();
+
+return $users;
+
+
+
+
+
+/* foreach($tags as $tag) {
+	return $tag->name;
+}*/
+//return $results->pivot->name;
+
+
+
+
+
+/* //$department = $doctor->getDepartments()->get();
+
+$department = $this->through('departments')->has('doctors');
+
+return $department;*/

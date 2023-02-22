@@ -30,7 +30,13 @@
             <thead>
                 <tr>
                     <th scope="col">{{ __('#') }}</th>
-                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('First Name') }}</th>
+                    <th scope="col">{{ __('Last Name') }}</th>
+                    <th scope="col">{{ __('Email Address') }}</th>
+                    <th scope="col">{{ __('Phone Numbers') }}</th>
+                    <th scope="col">{{ __('Departments') }}</th>
+                    
+                    <th scope="col">{{ __('Specialist Area') }}</th>                    
                     <th scope="col">{{ __('Status') }}</th>
                     <th scope="col"></th>
                 </tr>
@@ -92,13 +98,23 @@
             ajax: "{!! route('doctors.index') !!}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'first_name', name: 'first_name' , className: 'dept-name'},
-                {
+                { data: 'first_name', name: 'first_name'},
+                { data: 'last_name', name: 'last_name'},
+                { data: 'email', name: 'email'},
+                { data: 'contactInfo', name: 'contactInfo'},
+                { data: 'departments', name: 'departments'},
+                
+                { data: 'specialist_area', name: 'specialist_area' , className: 'dept-name'},
+
+                
+
+
+               /* {
                     data: 'status', 
                     name: 'status', 
                     orderable: true, 
                     searchable: true
-                }, 
+                }, */
                 {
                     data: 'action', 
                     name: 'action'

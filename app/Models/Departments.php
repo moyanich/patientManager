@@ -21,12 +21,15 @@ class Departments extends Model
     protected $fillable = ['name', 'description', 'status'];
 
     /**
-     * Doctor Department Relationship
+     * The The doctors that belong to the departments
      */
-    public function doctor()
+    public function doctors()
     {
-        return $this->belongsToMany(Doctors::class);
+        return $this->belongsToMany(Doctors::class, 'departments_doctors', 'doctors_id', 'departments_id');
     }
+
+  
+
 
     
 }
