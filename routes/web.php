@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     */
 
     // Departments
-    Route::resource('departments', DepartmentsController::class)->except(['show']);;
+    Route::resource('departments', DepartmentsController::class);
 
     // Doctors
     Route::resource('doctors', DoctorsController::class);
@@ -59,10 +59,14 @@ Route::middleware('auth')->group(function () {
 
 
 
-   /* Route::get('/profile{patient}', function ($id) {
+   /* 
+    Route::resource('departments', DepartmentsController::class)->except(['show']);
+   
+   
+   Route::get('/profile{patient}', function ($id) {
         
-    }); */
-    //Route::resource('/patients//{patients}/profile', PatientsController::class);
+    });
+    //Route::resource('/patients//{patients}/profile', PatientsController::class); */
 
 });
 

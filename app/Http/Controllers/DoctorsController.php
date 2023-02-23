@@ -34,11 +34,9 @@ class DoctorsController extends Controller
     public function index(Request $request)
     {
         $doctors = Doctors::orderBy('id', 'DESC')->get();
-
-       
         
         if ($request->ajax()) {
-            $data = Doctors::latest()->get();
+            $data = Doctors::get();
             return DataTables::of($data)
                 ->addIndexColumn()
                /* ->addColumn('status', function ($statusRow) {
@@ -53,25 +51,25 @@ class DoctorsController extends Controller
                         return $output;
                     }
                 })
-
                 ->addColumn('departments', function($doctor) {
                     // Get departments associated with doctor.
+
+                    // TODO raw query
                     $output = '';
                     $departments = $doctor->departments->pluck('name')->toArray();
-                   // $doctors = implode(', ', $doctors);
 
-                    //$departments = '<p>' . implode(', ', $departments) . '</p>';
+                    return  $departments;
+                    /*$output .= '<ul class="departments-list">';
                 
                     for ($i = 0; $i < count($departments); $i++) {
                         $departments[$i] =  $departments[$i];
 
-                        $output .= '
-                        <a href="' . route('doctors.edit', $doctor->id) . '" class="btn btn-sm btn-outline-primary">' . $departments[$i] . '</a> ';
-
-                        
+                        $output .= '<li class="departments-list-item">
+                        <span class="badge rounded-pill text-bg-primary"><a href="' . route('doctors.edit', $doctor->id) . '" class="">' . $departments[$i] . '</a></span></li>';
                     }
+                    $output .= '</ul>';
                     
-                    return $output;
+                    return $output;*/
 
                     
                 })

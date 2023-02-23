@@ -26,23 +26,25 @@
     <x-messages />
 
     <div class="mb-7">
-        <table id="doctors-datatable" class="table table-hover table-nowrap compact doctors-datatable">
-            <thead>
-                <tr>
-                    <th scope="col">{{ __('#') }}</th>
-                    <th scope="col">{{ __('First Name') }}</th>
-                    <th scope="col">{{ __('Last Name') }}</th>
-                    <th scope="col">{{ __('Email Address') }}</th>
-                    <th scope="col">{{ __('Phone Numbers') }}</th>
-                    <th scope="col">{{ __('Departments') }}</th>
-                    
-                    <th scope="col">{{ __('Specialist Area') }}</th>                    
-                    <th scope="col">{{ __('Status') }}</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="table-responsive">
+            <table id="doctors-datatable" class="table table-hover table-nowrap compact doctors-datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">{{ __('#') }}</th>
+                        <th scope="col">{{ __('First Name') }}</th>
+                        <th scope="col">{{ __('Last Name') }}</th>
+                        <th scope="col">{{ __('Email Address') }}</th>
+                        <th scope="col">{{ __('Phone Numbers') }}</th>
+                        <th scope="col">{{ __('Departments') }}</th>
+                        
+                        <th scope="col">{{ __('Specialist Area') }}</th>                    
+                        <th scope="col">{{ __('Status') }}</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
    

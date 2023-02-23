@@ -53,7 +53,6 @@
             </div>
         </div>
 
-
         <div class="row align-items-center g-3 mt-3">
             <x-messages />
         </div>
@@ -114,7 +113,6 @@
             </div>
         </div>
     </form>
-
 
     @can('department-delete')
         <!-- Modal -->

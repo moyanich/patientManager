@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
 use App\Models\Departments;
+use App\Models\Doctors;
 use App\Models\Status;
 use DataTables;
+use DB;
+use Illuminate\Database\Query\JoinClause;
+
 
 class DepartmentsController extends Controller
 {
@@ -45,7 +49,7 @@ class DepartmentsController extends Controller
                 })
                 ->addColumn('action', function($department){
                     $actionBtn = '
-                        <a href="' . route('departments.edit', $department->id) . '" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="' . route('departments.show', $department->id) . '" class="btn btn-sm btn-outline-primary">View</a>
                         <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
@@ -93,6 +97,43 @@ class DepartmentsController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Departments $department
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Departments $department)
+    {
+
+        //$department = Departments::find($id);
+        $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
+       
+       /*  $doctors = DB::table('departments_doctors')
+        ->leftJoin('doctors', function (JoinClause $join) use($department) {
+            $join->on('departments_doctors.doctors_id ', '=', 'doctors.id')
+                 ->where('departments_doctors.departments_id', '=', $department->id);
+        })
+        ->get(); */
+
+        $doctors = DB::table('departments_doctors')
+            ->join('doctors', 'departments_doctors.doctors_id', '=', 'doctors.id')->where(
+                'departments_doctors.departments_id', '=', $department->id
+            )
+            ->get();
+
+            
+       
+
+       /* SELECT * FROM `departments_doctors` 
+LEFT JOIN doctors
+ON departments_doctors.doctors_id = doctors.id
+WHERE departments_id = 1 */
+
+        return view('departments.show', ['department' => $department, 'statuses' => $statuses, 'doctors' => $doctors]);
+
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Departments  $departments
@@ -136,3 +177,81 @@ class DepartmentsController extends Controller
 
     //TODO: LOG TABLE FOR ALL ACTIONS
 }
+
+
+
+/*
+$department = Departments::find($department);
+        //return view('departments.show');
+        $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
+        //$departments = $doctor->departments->pluck('name')->toArray();
+       // $doctors = $department->doctors->pluck('name')->toArray();
+
+       // $doctors = $doctors->department->pluck('name')->toArray();
+
+       /*
+        $employees = DB::select('select employees.id, employees.firstname, employees.lastname, employees.email, employees.photo, departments.name as department, jobs.name as job, status_codes.name as status
+            FROM employees
+            LEFT JOIN departments ON (SELECT department_id from employee_job_histories WHERE employee_job_histories.employee_id = employees.id ORDER BY start_date DESC LIMIT 1) = departments.id
+            
+            LEFT JOIN jobs ON (SELECT job_id from employee_job_histories WHERE employee_job_histories.employee_id = employees.id ORDER BY start_date DESC LIMIT 1) = jobs.id
+
+            LEFT JOIN status_codes ON (SELECT status_id from employee_job_histories WHERE employee_job_histories.employee_id = employees.id ORDER BY start_date DESC LIMIT 1) = status_codes.id
+            ');  
+                 
+
+       $departments = Departments::select('departments.*', 
+                DB::raw('CONCAT(employees.firstname, " " , employees.lastname) as managerName'), 
+                DB::raw('CONCAT(userSup.firstname, " " , userSup.lastname) as supervisorName'))
+                    ->leftJoin('employees', 'departments.manager_id', '=', 'employees.id')
+                    ->leftJoin('employees as userSup', 'departments.supervisor_id', '=', 'userSup.id')
+                    ->orderBy('id', 'asc')->paginate(15);
+                    
+
+
+        $doctors = Departments::select('select id, departments.name') ->leftJoin('departments_doctors', 'id', '=', 'department_id'); 
+        
+        $users = DB::table('users')
+            ->select('name', 'email as user_email')
+            ->get();
+       
+
+        //$doctors = Doctors::select('select *')->get();
+       // $doctors = Doctors::orderBy('id')->get()->pluck('id', 'first_name')->toArray();
+    
+    
+       $doctors = DB::table('doctors')
+        ->leftJoin('departments_doctors', 'doctors.id', '=', 'departments_doctors.doctors_id')
+        ->get();
+        */
+
+       /* $doctors = DB::table('doctors')
+        ->join('departments_doctors', function (JoinClause $join) {
+            $join->on('doctors.id', '=', 'departments_doctors.doctors_id')
+                ->where('departments_doctors.departments_id', '=', $department->id);
+        }) 
+
+
+        $doctors = DB::table('doctors')
+        ->join('departments_doctors', function (JoinClause $join) {
+            $join->on('doctors.id', '=', 'departments_doctors.doctors_id')
+                 ->where('departments_doctors.doctors_id', '=', 1);
+        })
+        ->get();
+
+      
+
+        
+
+
+        
+
+
+        /*
+       $departments = $doctor->departments->pluck('name')->toArray();
+        $doctors = Doctors::orderBy('first_name', 'DESC')->get();
+       $doctors = $doctors->doctors();
+
+       $doctors = $doctors->department->pluck('name')->toArray();
+
+        */
