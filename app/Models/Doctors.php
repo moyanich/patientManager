@@ -61,7 +61,9 @@ class Doctors extends Model
      */
     public function departments()
     {
-        return $this->belongsToMany(Departments::class, 'departments_doctors', 'departments_id', 'doctors_id');
+      //  return $this->belongsToMany(Departments::class, 'departments_doctors', 'departments_id', 'doctors_id');
+
+      return $this->belongsToMany(Departments::class);
     }
 
   

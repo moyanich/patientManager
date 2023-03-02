@@ -104,9 +104,8 @@ class DepartmentsController extends Controller
      */
     public function show(Departments $department)
     {
-
         //$department = Departments::find($id);
-        $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
+       // $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
        
        /*  $doctors = DB::table('departments_doctors')
         ->leftJoin('doctors', function (JoinClause $join) use($department) {
@@ -129,7 +128,7 @@ LEFT JOIN doctors
 ON departments_doctors.doctors_id = doctors.id
 WHERE departments_id = 1 */
 
-        return view('departments.show', ['department' => $department, 'statuses' => $statuses, 'doctors' => $doctors]);
+        return view('departments.show', ['department' => $department, 'doctors' => $doctors]);
 
     }
 

@@ -33,7 +33,7 @@ class PermissionTableSeeder extends Seeder
             'patient-delete',
             'doctor-list',
             'doctor-create',
-            'doctor--edit',
+            'doctor-edit',
             'doctor-delete',
          ];
       

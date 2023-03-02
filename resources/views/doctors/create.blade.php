@@ -222,12 +222,12 @@
                 </div>
 
                 <div class="row mb-4">
-                    <div class="col-12">
+                    <div class="col-6">
                         <label for="address" class="form-label">Address</label>
                         <textarea id="address"
                         name="address"
                         value="{{ old('address') }}"
-                        rows="10"
+                        rows="5"
                         class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
     
                         @error('information')
@@ -235,16 +235,12 @@
                         @enderror
                     </div>
 
-
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-12">
+                    <div class="col-6">
                         <label for="information" class="form-label">Additonal Information</label>
                         <textarea id="information"
                         name="information"
                         value="{{ old('information') }}"
-                        rows="10"
+                        rows="5"
                         class="form-control @error('information') is-invalid @enderror">{{ old('information') }}</textarea>
     
                         @error('information')
@@ -253,7 +249,6 @@
                     </div>
                 </div>
 
-                
                 <div class="row g-5 mt-2">
                     <hr/>
                     <div class="col-12">

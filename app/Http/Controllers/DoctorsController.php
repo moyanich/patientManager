@@ -44,21 +44,33 @@ class DoctorsController extends Controller
                     ->with("status", $statusRow->status)->with("message", statusConvert($statusRow->status));
                 }) */
                 ->addColumn('contactInfo', function($doctor) {
-                    if(!empty($doctor->contact_1) || !empty($doctor->contact_2)) {
+                    if(!empty($doctor->contact_1) ) {
                         $output = '';
                         $output .= '<p><i class="bi bi-telephone-fill"></i> ' . $doctor->contact_1 . '</p>';
-                        $output .= '<p><i class="bi bi-telephone-fill"></i> ' . $doctor->contact_2 . '</p>';
-                        return $output;
                     }
+
+                    if(!empty($doctor->contact_2)) {
+                        $output .= '<p><i class="bi bi-telephone-fill"></i> ' . $doctor->contact_2 . '</p>';
+                    }
+
+                    return $output;
                 })
                 ->addColumn('departments', function($doctor) {
                     // Get departments associated with doctor.
+
 
                     // TODO raw query
                     $output = '';
                     $departments = $doctor->departments->pluck('name')->toArray();
 
-                    return  $departments;
+                    foreach ($departments as $dept) {
+                        $output .= $dept . '<br/>';
+                    }
+
+                    return $output;
+                    
+
+                    //return  $departments;
                     /*$output .= '<ul class="departments-list">';
                 
                     for ($i = 0; $i < count($departments); $i++) {
@@ -76,7 +88,7 @@ class DoctorsController extends Controller
 
                 ->addColumn('action', function($doctor) {
                     $actionBtn = '
-                        <a href="' . route('doctors.edit', $doctor->id) . '" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="' . route('doctors.show', $doctor->id) . '" class="btn btn-sm btn-outline-primary">View</a>
                         <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $doctor->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
@@ -153,6 +165,8 @@ class DoctorsController extends Controller
     public function edit(Doctors $doctors)
     {
         //
+
+       // return view('doctors.edit');
     }
 
     /**
