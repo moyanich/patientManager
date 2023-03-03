@@ -62,12 +62,10 @@
                     </div>
                 </div>
             </header>
-            <main class="py-10 bg-surface-primary">
+            <main class="bg-surface-primary">
                 <!-- Container -->
                 <div class="container-fluid px-6 pb-10">
-
                    @yield('content')
-
                </div>
             </main>
         </div>

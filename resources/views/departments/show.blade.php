@@ -1,10 +1,15 @@
 @extends('layouts.dashboard', ['page' => __('Department Management')])
 
+{{--  
 @section('header')
     <div class="row align-items-center">
-        <div class="col-md-6 col-12 mb-3 mb-md-0">
+        <div class="col-md-6 col-12 mb-3 mb-md-0 d-flex">
             <!-- Title -->
-            <h1 class="h2 mb-0 ls-tight">{{ __('Department') }}</h1>
+            <h1 class="h2 mb-0 ls-tight">{{  $department->name . __(' Department') }}</h1>
+
+            <x-badges-inner :status="strtolower($department->status)">
+               {{ statusConvert($department->status) }}
+            </x-badges-inner>
         </div>
         <!-- Actions -->
         <div class="col-md-6 col-12 text-md-end">
@@ -19,6 +24,36 @@
         </div>
     </div>
 @endsection
+--}}
+
+
+@section('header')
+    <div class="row align-items-center">
+        <div class="col-md-6 col-12 mb-3 mb-md-0 d-flex">
+            <!-- Title -->
+            <h1 class="h2 mb-0 ls-tight">{{  $department->name . __(' Department') }}</h1>
+
+            <x-badges-inner :status="strtolower($department->status)">
+               {{ statusConvert($department->status) }}
+            </x-badges-inner>
+
+            <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm bg-gray-100 me-2">
+                {{ __('Edit') }}
+            </a>
+        </div>
+        <!-- Actions -->
+        <div class="col-md-6 col-12 text-md-end">
+            <div class="mx-n1">
+                <a href="{{ route('departments.index') }}" type="button" class="text-xs" aria-label="Close"><i class="bi bi-list-task"></i>{{ __(' Departments List') }}</a>
+               
+            </div>
+               
+        </div>
+    </div>
+@endsection
+
+
+
 
 @section('content')
 
@@ -26,14 +61,15 @@
         <div class="row align-items-center">
             <div class="col">
                 <div class="d-flex align-items-center gap-4"><div>
-                <a href="{{ route('departments.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
+                <a href="{{ route('departments.index') }}" type="button" class="text-xs" aria-label="Close"><i class="bi bi-list-task"></i>{{ __(' Departments List') }}</a>
+                
             </div>
                 <div class="vr opacity-20 my-1"></div>
-                <h1 class="h3 ls-tight">{{  $department->name . __(' Department') }} <span>badge  {{ $department->status }} </span></h1>{{-- //TODO: ADD STATUS BADGE --}}
+                <h1 class="h3 ls-tight">{{  $department->name . __(' Department') }}</h1>
 
-                <x-badges :status="strtolower($department->status)">
-                    :message="{{ statusConvert($department->status) ?? '' }}"
-                </x-badges>
+                <x-badges-inner :status="strtolower($department->status)">
+                   {{ statusConvert($department->status) }}
+                </x-badges-inner>
 
                 </div>
             </div>
@@ -54,7 +90,7 @@
 
     <div class="row align-items-center g-3 mt-2">
         <div class="col-10">
-            <h3 class="mb-3">{{ $department->name }}</h3>
+           
             <p class="mb-3">{{ $department->description }}</p>
             
         </div>
