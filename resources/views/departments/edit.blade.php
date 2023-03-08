@@ -20,7 +20,6 @@
     </div>
 @endsection
 
-
 @section('content')
 
     <form action="{{ route('departments.update', $department->id) }}" method="POST" enctype="multipart/form-data">

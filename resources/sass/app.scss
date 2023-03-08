@@ -1,21 +1,22 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
-@import "@webpixels/css";
 // Import the default variables and function
 @import "@webpixels/css/core/functions";
 
-// Variables
+@import "@webpixels/css";
+// Theme variables
 @import 'variables';
 
 // Webpixels CSS
 @import "@webpixels/css/base";
 @import "@webpixels/css/forms";
 @import "@webpixels/css/components";
-
+@import "@webpixels/css/utilities";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
 
 /* === Core Styles === */
 @import 'typography';
@@ -30,10 +31,15 @@
 
 /* === Core Styles === */
 @import "badges";
+@import 'buttons';
 @import "cards";
 @import "forms";
 @import "tables";
+
+
+
 /*
+
 @import "background";
 @import "typography";
 @import "reset";
@@ -42,13 +48,11 @@
 @import "demo";
 @import "dashboard";
 
-
 /*=== Layout === 
 @import "navbar";
 @import "sidebar";
 @import "footer";
 @import "layout";
 @import "settings-panel";
-
 
 */

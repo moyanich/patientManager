@@ -1,22 +1,19 @@
 @switch($status)
 
     @case('1') {{-- Active --}}
-        <span class="badge badge-lg badge-dot text-black">
-            <i class="bg-success"></i> 
+        <span class="badge rounded bg-opacity-30 bg-success text-success">
             {{ $message }}
         </span>
     @break
 
     @case('2') {{-- Inactive --}}
-        <span class="badge badge-lg badge-dot text-black">
-            <i class="bg-danger"></i>  
+        <span class="badge rounded bg-opacity-30 bg-warning text-warning">
             {{ $message }}
         </span>
     @break
 
     @case('3') {{-- New --}}
-        <span class="badge badge-lg badge-dot text-black">
-            <i class="bg-tertiary"></i>  
+        <span class="badge rounded bg-opacity-30 bg-tertiary text-tertiary">
             {{ $message }}
         </span>
     @break

@@ -131,17 +131,18 @@
 					<div class="collapse" id="sidebar-departments" style="">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<x-navlink :href="route('departments.create')" class="{{ request()->routeIs('departments.create') ? 'active' : '' }} ">
-									<i class="bi bi-plus-circle-fill"></i>
-									{{ __('Create Department') }}
-								</x-navlink>
-							</li>
-							<li class="nav-item">
 								<x-navlink :href="route('departments.index')" class="{{ request()->routeIs('departments.index') ? 'active' : '' }} ">
 									<i class="bi bi-card-list"></i>
 									{{ __('List Departments') }}
 								</x-navlink>
 							</li>
+							<li class="nav-item">
+								<x-navlink :href="route('departments.create')" class="{{ request()->routeIs('departments.create') ? 'active' : '' }} ">
+									<i class="bi bi-plus-circle-fill"></i>
+									{{ __('Add Department') }}
+								</x-navlink>
+							</li>
+							
 						</ul>
 					</div>
 				</li>

@@ -1,5 +1,5 @@
 @if(count($errors) > 0)
-    <div class="alert alert-danger alert-dismissible fade show mb-5" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert">
         <strong>{{ __('Whoops! ') }}</strong>{{ __('Something went wrong.') }}<br><br>
         <ul>
             @foreach ($errors->all() as $error)
@@ -21,7 +21,6 @@
         </div>
     </div>
 @endif
-
 
 
 @if(session('error'))

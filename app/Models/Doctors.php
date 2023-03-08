@@ -42,7 +42,6 @@ class Doctors extends Model
         'kin_phone',
         'kin_email',
         'address',
-           
     ];
 
     protected $dates = [
@@ -65,6 +64,16 @@ class Doctors extends Model
 
       return $this->belongsToMany(Departments::class);
     }
+
+    /**
+     * The department that belong to the doctor
+     */
+    public function doctor()
+    {
+        return $this->belongsTo(Doctors::class, 'doctor_id');
+    }
+
+
 
   
 

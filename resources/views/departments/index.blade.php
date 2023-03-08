@@ -13,7 +13,7 @@
 					<span class=" pe-2">
 						<i class="bi bi-plus"></i>
 					</span>
-                	<span>{{ __('New Department') }}</span>
+                	<span>{{ __('Add Department') }}</span>
                 </a>
             </div>
         </div>
@@ -25,19 +25,19 @@
     <x-messages />
 
     <div class="mb-7">
-        <table id="department-datatable" class="table table-hover table-nowrap compact department-datatable">
+        <table id="department-datatable" class="table table-nowrap compact department-datatable">
             <thead>
                 <tr>
                     <th scope="col">{{ __('#') }}</th>
                     <th scope="col">{{ __('Department Name') }}</th>
+                    <th scope="col">{{ __('Department Head') }}</th>
                     <th scope="col">{{ __('Status') }}</th>
-                    <th scope="col"></th>
+                    <th scope="col">{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
-
    
     {{--  //TODO: use the data from ajax to pass here --}}
     @can('department-delete')
@@ -71,8 +71,6 @@
             </div>
         @endforeach
     @endcan
-    
-    
 @endsection
 
 
@@ -92,6 +90,7 @@
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'name', name: 'name' , className: 'dept-name'},
+                { data: 'doctors_id', name: 'doctors_id'},
                 {
                     data: 'status', 
                     name: 'status', 

@@ -29,60 +29,35 @@
 
 @section('header')
     <div class="row align-items-center">
-        <div class="col-md-6 col-12 mb-3 mb-md-0 d-flex">
-            <!-- Title -->
-            <h1 class="h2 mb-0 ls-tight">{{  $department->name . __(' Department') }}</h1>
+        <div class="col">
+            <div class="d-flex align-items-center gap-4">
+                <h1 class="h3 ls-tight">{{  $department->name . __(' Department') }}</h1>
 
-            <x-badges-inner :status="strtolower($department->status)">
-               {{ statusConvert($department->status) }}
-            </x-badges-inner>
-
-            <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm bg-gray-100 me-2">
-                {{ __('Edit') }}
-            </a>
+                <x-badges-inner :status="strtolower($department->status)">
+                    {{ statusConvert($department->status) }}
+                </x-badges-inner>
+            </div>
         </div>
+
         <!-- Actions -->
         <div class="col-md-6 col-12 text-md-end">
             <div class="mx-n1">
                 <a href="{{ route('departments.index') }}" type="button" class="text-xs" aria-label="Close"><i class="bi bi-list-task"></i>{{ __(' Departments List') }}</a>
-               
             </div>
-               
         </div>
     </div>
 @endsection
 
-
-
-
 @section('content')
 
-    <div class="py-4 border-bottom">
-        <div class="row align-items-center">
-            <div class="col">
-                <div class="d-flex align-items-center gap-4"><div>
-                <a href="{{ route('departments.index') }}" type="button" class="text-xs" aria-label="Close"><i class="bi bi-list-task"></i>{{ __(' Departments List') }}</a>
-                
-            </div>
-                <div class="vr opacity-20 my-1"></div>
-                <h1 class="h3 ls-tight">{{  $department->name . __(' Department') }}</h1>
-
-                <x-badges-inner :status="strtolower($department->status)">
-                   {{ statusConvert($department->status) }}
-                </x-badges-inner>
-
-                </div>
-            </div>
-            <div class="col-auto d-none d-md-block">
-                <div class="hstack gap-2 justify-content-end">
-                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm bg-gray-100 me-2">
-                        {{ __('Edit') }}
-                    </a>
-                    
-                </div>
-            </div>
+    <div class="row align-items-center justify-content-end">
+        <div class="col-auto d-none d-md-block">
+            <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm bg-gray-100 me-2">
+                {{ __('Edit') }}
+            </a>
         </div>
     </div>
+
 
     <div class="row align-items-center g-3 mt-3">
         <x-messages />
@@ -90,9 +65,17 @@
 
     <div class="row align-items-center g-3 mt-2">
         <div class="col-10">
-           
+            <h4>Description:</h4>
             <p class="mb-3">{{ $department->description }}</p>
-            
+        </div>
+    </div>
+
+    <div class="row align-items-center g-3 mt-2">
+        <div class="col-10">
+            <h4>Head of Department:</h4>
+            <p class="mb-3">{{ $department->doctors_id }}</p>
+
+            {{ $deptHead->first_name}}
         </div>
     </div>
 
@@ -116,11 +99,7 @@
                 @endforeach
             </table>
         </div>
-     </div>
+    </div>
     
-
-
-   
-
 
 @endsection

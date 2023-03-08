@@ -49,8 +49,8 @@ class DepartmentsController extends Controller
                 })
                 ->addColumn('action', function($department){
                     $actionBtn = '
-                        <a href="' . route('departments.show', $department->id) . '" class="btn btn-sm btn-outline-primary">View</a>
-                        <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
+                        <a href="' . route('departments.show', $department->id) . '" class="btn btn-sm btn-grey text-dark"><i class="bi bi-pencil-square"></i></a>
+                        <a href="#" class="btn btn-sm btn-grey btn-circle text-warning" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -76,8 +76,9 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
+        $doctors = Doctors::select(DB::raw("CONCAT(first_name,' ',last_name) as full_name"),'id')->pluck('full_name', 'id');
         $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
-        return view('departments.create', ['statuses' => $statuses]);
+        return view('departments.create', ['statuses' => $statuses, 'doctors' => $doctors]);
     }
 
     /**
@@ -91,6 +92,7 @@ class DepartmentsController extends Controller
         $department = new Departments();
         $department->name = $request->input('name');
         $department->description = $request->input('description');
+        $department->doctors_id = $request->input('deptHead');
         $department->status = $request->input('status');
         $department->save();
         return redirect()->route('departments.create', ['department' => $department])->with('success', 'Department record created!'); //
@@ -114,21 +116,20 @@ class DepartmentsController extends Controller
         })
         ->get(); */
 
+       // $deptHead = Doctors::where('id', '=', $department->doctors_id)->pluck('first_name');
+       $deptHead = Doctors::with('department')->get();
+
+       // $deptHead = Departments::with('doctor')->get();
+
+        //dd($deptHead);
+
         $doctors = DB::table('departments_doctors')
             ->join('doctors', 'departments_doctors.doctors_id', '=', 'doctors.id')->where(
                 'departments_doctors.departments_id', '=', $department->id
             )
             ->get();
 
-            
-       
-
-       /* SELECT * FROM `departments_doctors` 
-LEFT JOIN doctors
-ON departments_doctors.doctors_id = doctors.id
-WHERE departments_id = 1 */
-
-        return view('departments.show', ['department' => $department, 'doctors' => $doctors]);
+        return view('departments.show', ['department' => $department, 'doctors' => $doctors, 'deptHead' => $deptHead ]);
 
     }
 
