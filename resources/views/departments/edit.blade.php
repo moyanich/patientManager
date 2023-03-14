@@ -22,6 +22,8 @@
 
 @section('content')
 
+<div class="row">
+    <div class="col-12 col-md-8">
     <div class="card">
         <div class="card-body">
 
@@ -29,14 +31,10 @@
                 <x-messages />
             </div>
 
-
             <div class="py-4 border-bottom">
                 <div class="row align-items-center">
                     <div class="col">
-                        <div class="d-flex align-items-center gap-4"><div>
-                        <a href="{{ route('departments.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
-                    </div>
-                        <div class="vr opacity-20 my-1"></div>
+                        <div class="d-flex align-items-center gap-4">
                         <h1 class="h3 ls-tight">{{ $department->name }}</h1>
                         </div>
                     </div>
@@ -44,20 +42,14 @@
                         <div class="hstack gap-2 justify-content-end">
                             {{-- //TODO: UPDATE BUTTONS --}}
                             @can('department-delete')
-                                <a href="#" class="btn d-inline-flex btn-sm btn-neutral ms-2 text-danger" data-bs-toggle="modal" data-bs-target="#sDelDepModal-{{ $department->id }}">
-                                    <span class="pe-2"><i class="bi bi-trash"></i> </span><span>Remove</span>
+                                <a href="#" class="btn btn-sm btn-danger d-inline-flex cursor-pointer ms-2 text-white" data-bs-toggle="modal" data-bs-target="#sDelDepModal-{{ $department->id }}">
+                                    <span class="pe-2"><i class="bi bi-trash"></i> </span><span>Delete</span>
                                 </a>
                             @endcan
-                            <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
-                                {{ __('Cancel') }}
-                            </a>
-                            <input type="submit" value="Update" class="btn btn-sm btn-primary">
                         </div>
                     </div>
                 </div>
             </div>
-
-
 
             <form action="{{ route('departments.update', $department->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
@@ -67,7 +59,7 @@
                     <div class="col-md-2">
                         <label for="name" class="form-label mb-0 required-text">Department Name</label>
                     </div>
-                    <div class="col-md-8 col-xl-5">
+                    <div class="col-md-10">
                         <input id="name"
                         type="text"
                         name="name"
@@ -84,7 +76,7 @@
                     <div class="col-md-2">
                         <label for="description" class="form-label">Description</label>
                     </div>
-                    <div class="col-md-8 col-xl-5">
+                    <div class="col-md-10">
                         <textarea id="description"
                             name="description"
                             style="height: 150px"
@@ -97,11 +89,41 @@
                     </div>
                 </div>
 
+
+
+                <div class="row align-items-center g-3 mt-2">
+                    <div class="col-md-2">
+                        <label for="deptHead" class="form-label required-text">Department Head</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-floating">
+                            <select name="deptHead" class="form-select @error('deptHead') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
+                                @foreach($doctors as $doctor_key => $doctor)
+                                    @foreach($deptHead as $key => $doctor_head)
+                                        <option value="{{ $doctor_key }}" @if($doctor_key == $doctor_head->id) selected @endif>
+                                            {{ $doctor }} 
+                                        </option>
+                                    @endforeach
+                                @endforeach
+                            </select>
+                            <label for="floatingSelect">Choose a status</label>
+                        </div>
+
+                        @error('status')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+
+
+
+
                 <div class="row align-items-center g-3 mt-2">
                     <div class="col-md-2">
                         <label for="title" class="form-label required-text">Status</label>
                     </div>
-                    <div class="col-md-8 col-xl-5">
+                    <div class="col-md-10">
                         <div class="form-floating">
                             <select name="status" class="form-select @error('status') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
                                 @foreach($statuses as $key => $value)
@@ -119,17 +141,26 @@
                     </div>
                 </div>
 
-                <div>
-                    <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
-                        {{ __('Cancel') }}
-                    </a>
-                    <input type="submit" value="Update" class="btn btn-sm btn-primary">
-
+                <div class="row">
+                    <div class="text-end mt-5 pt-5">
+                        <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                            {{ __('Cancel') }}
+                        </a>
+                        <input type="submit" value="Update" class="btn btn-sm btn-primary">
+                    </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
 
+<div class="col-12 col-md-4">
+    <div class="card">
+        <div class="card-body">
+hee
+        </div>
+    </div>
+</div>
     @can('department-delete')
         <!-- Modal -->
         <div class="modal" id="sDelDepModal-{{ $department->id }}" tabindex="-1" aria-labelledby="delDepModal" aria-hidden="true">

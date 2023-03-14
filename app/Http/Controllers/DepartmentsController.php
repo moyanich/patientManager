@@ -67,7 +67,7 @@ class DepartmentsController extends Controller
                     $actionBtn = '
                         <a href="' . route('departments.show', $department->id) . '" class="btn btn-sm bg-info text-white"><i class="bi bi-eye"></i></a>
                         <a href="' . route('departments.edit', $department->id) . '" class="btn btn-sm bg-indigo-200 text-white"><i class="bi bi-pencil-square"></i></a>
-                        <a href="#" class="btn btn-sm bg-tertiary text-white" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
+                        <a href="#" class="btn btn-sm btn-danger text-white" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['departmentHead', 'action'])
@@ -93,7 +93,7 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
-        $doctors = Doctors::select(DB::raw("CONCAT(first_name,' ',last_name) as full_name"),'id')->pluck('full_name', 'id');
+        $doctors = Doctors::select(DB::raw("CONCAT(first_name,' ',last_name) as full_name"),'id')->pluck('full_name', 'id')->prepend('Select a Doctor', '');
         $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
         return view('departments.create', ['statuses' => $statuses, 'doctors' => $doctors]);
     }
@@ -163,8 +163,22 @@ class DepartmentsController extends Controller
      */
     public function edit(Departments $department)
     {
+        $doctors = Doctors::select(DB::raw("CONCAT(first_name,' ',last_name) as full_name"),'doctors.id')->orderBy('first_name')->get()->pluck('full_name', 'id')->prepend('Select Doctor', '');
+
+        /*$deptHead = DB::table('dept_heads')
+            ->join('doctors', 'dept_heads.doctor_id', '=', 'doctors.id')->where(
+                'dept_heads.department_id', '=', $department->id
+            ) 
+            ->select('doctors.id')->pluck('id'); */
+
+        $deptHead = DB::table('dept_heads')->select('doctors.id')->leftJoin('doctors', 'dept_heads.doctor_id', '=', 'doctors.id')->where('dept_heads.department_id', '=', $department->id )->limit('1')->get();
+
+      //  dd( $deptHead);
+
+
         $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
-        return view('departments.edit', ['department' => $department, 'statuses' => $statuses ]);        
+
+        return view('departments.edit', ['department' => $department, 'statuses' => $statuses, 'doctors' => $doctors, 'deptHead' => $deptHead ]);        
     }
 
     /**

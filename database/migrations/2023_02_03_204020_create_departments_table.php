@@ -19,6 +19,7 @@ class CreateDepartmentsTable extends Migration
             $table->string('description', 255)->nullable();
             $table->string('status', 1);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         // departments_doctors
@@ -31,6 +32,7 @@ class CreateDepartmentsTable extends Migration
             $table->foreign('doctors_id')->references('id')->on('doctors')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
             $table->index(['doctors_id', 'departments_id']);
         });
 
@@ -45,6 +47,14 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::dropIfExists('departments');
         Schema::dropIfExists('departments_doctors');
+
+        Schema::table('departments', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('departments_doctors', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
     
 }
