@@ -17,9 +17,7 @@ class CreateDepartmentsTable extends Migration
             $table->id();
             $table->string('name', 255)->unique();
             $table->string('description', 255)->nullable();
-            $table->unsignedBigInteger('doctors_id')->nullable();
             $table->string('status', 1);
-            $table->foreign('doctors_id')->references('id')->on('doctors')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
 
@@ -35,6 +33,7 @@ class CreateDepartmentsTable extends Migration
             $table->timestamps();
             $table->index(['doctors_id', 'departments_id']);
         });
+
     }
 
     /**

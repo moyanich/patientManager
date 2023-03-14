@@ -1,13 +1,13 @@
 @switch($status)
 
     @case('1') {{-- Active --}}
-        <span class="badge rounded bg-opacity-30 bg-success text-success">
+        <span class="badge rounded bg-opacity-30 bg-gradient bg-primary text-primary">
             {{ $message }}
         </span>
     @break
 
     @case('2') {{-- Inactive --}}
-        <span class="badge rounded bg-opacity-30 bg-warning text-warning">
+        <span class="badge rounded bg-opacity-30 bg-tertiary text-tertiary">
             {{ $message }}
         </span>
     @break

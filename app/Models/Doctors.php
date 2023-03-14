@@ -73,9 +73,7 @@ class Doctors extends Model
         return $this->belongsTo(Doctors::class, 'doctor_id');
     }
 
-
-
-  
+ 
 
     
 }

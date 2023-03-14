@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
 use App\Models\Departments;
+use App\Models\DeptHead;
 use App\Models\Doctors;
 use App\Models\Status;
 use DataTables;
@@ -43,17 +44,33 @@ class DepartmentsController extends Controller
             $data = Departments::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('departmentHead', function ($department) {
+                    $deptHead = DB::table('dept_heads')
+                    ->join('doctors', 'dept_heads.doctor_id', '=', 'doctors.id')->where(
+                        'dept_heads.department_id', '=', $department->id
+                    ) 
+                    ->select(DB::raw("CONCAT(first_name,' ',last_name) as full_name"),'doctors.id')
+                    ->pluck('full_name', 'id')->toArray();
+
+                    foreach ($deptHead as $key => $doctor) {
+                        $newName = '
+                        <a href="' . route('doctors.show', $key) . '" class="btn btn-sm btn-grey text-dark">' . $doctor . '</a>';
+                        return $newName;
+                    }
+                        
+                })
                 ->addColumn('status', function ($statusRow) {
                     return View::make("components.badges")
                     ->with("status", $statusRow->status)->with("message", statusConvert($statusRow->status));
                 })
                 ->addColumn('action', function($department){
                     $actionBtn = '
-                        <a href="' . route('departments.show', $department->id) . '" class="btn btn-sm btn-grey text-dark"><i class="bi bi-pencil-square"></i></a>
-                        <a href="#" class="btn btn-sm btn-grey btn-circle text-warning" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
+                        <a href="' . route('departments.show', $department->id) . '" class="btn btn-sm bg-info text-white"><i class="bi bi-eye"></i></a>
+                        <a href="' . route('departments.edit', $department->id) . '" class="btn btn-sm bg-indigo-200 text-white"><i class="bi bi-pencil-square"></i></a>
+                        <a href="#" class="btn btn-sm bg-tertiary text-white" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['departmentHead', 'action'])
                 ->make(true);
         }
         return view('departments.index', compact('departments') );
@@ -92,10 +109,15 @@ class DepartmentsController extends Controller
         $department = new Departments();
         $department->name = $request->input('name');
         $department->description = $request->input('description');
-        $department->doctors_id = $request->input('deptHead');
         $department->status = $request->input('status');
         $department->save();
-        return redirect()->route('departments.create', ['department' => $department])->with('success', 'Department record created!'); //
+
+        DeptHead::create([
+            'department_id' => $department->id,
+            'doctor_id' => $request->input('deptHead'),
+        ]);
+
+        return redirect()->route('departments.create', ['department' => $department])->with('success', 'Department record created!'); 
     }
 
     /**

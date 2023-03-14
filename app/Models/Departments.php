@@ -18,7 +18,7 @@ class Departments extends Model
     // Timestamps
     public $timestamps = true;
 
-    protected $fillable = ['name', 'description', 'doctor_id', 'status'];
+    protected $fillable = ['name', 'description', 'status'];
 
     /**
      * The The doctors that belong to the departments
@@ -28,14 +28,15 @@ class Departments extends Model
         return $this->belongsToMany(Doctors::class, 'departments_doctors', 'doctors_id', 'departments_id');
     }
 
+   
     /**
      * 
      * 
      */
-    public function department()
+   /* public function department()
     {
-        return $this->belongsTo(Departments::class);
-    }
+        return $this->belongsTo(Departments::class, 'doctor_id');
+    } */
 
    
   

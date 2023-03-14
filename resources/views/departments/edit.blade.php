@@ -22,96 +22,113 @@
 
 @section('content')
 
-    <form action="{{ route('departments.update', $department->id) }}" method="POST" enctype="multipart/form-data">
-        @method('PUT')
-        @csrf
-        <div class="py-4 border-bottom">
-            <div class="row align-items-center">
-                <div class="col">
-                    <div class="d-flex align-items-center gap-4"><div>
-                    <a href="{{ route('departments.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
-                </div>
-                    <div class="vr opacity-20 my-1"></div>
-                    <h1 class="h3 ls-tight">{{ __('Edit Department') }}</h1>
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row align-items-center g-3 mt-3">
+                <x-messages />
+            </div>
+
+
+            <div class="py-4 border-bottom">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="d-flex align-items-center gap-4"><div>
+                        <a href="{{ route('departments.index') }}" type="button" class="btn-close text-xs" aria-label="Close"></a>
                     </div>
-                </div>
-                <div class="col-auto d-none d-md-block">
-                    <div class="hstack gap-2 justify-content-end">
-                        {{-- //TODO: UPDATE BUTTONS --}}
-                        @can('department-delete')
-                            <a href="#" class="btn d-inline-flex btn-sm btn-neutral ms-2 text-danger" data-bs-toggle="modal" data-bs-target="#sDelDepModal-{{ $department->id }}">
-                                <span class="pe-2"><i class="bi bi-trash"></i> </span><span>Remove</span>
+                        <div class="vr opacity-20 my-1"></div>
+                        <h1 class="h3 ls-tight">{{ $department->name }}</h1>
+                        </div>
+                    </div>
+                    <div class="col-auto d-none d-md-block">
+                        <div class="hstack gap-2 justify-content-end">
+                            {{-- //TODO: UPDATE BUTTONS --}}
+                            @can('department-delete')
+                                <a href="#" class="btn d-inline-flex btn-sm btn-neutral ms-2 text-danger" data-bs-toggle="modal" data-bs-target="#sDelDepModal-{{ $department->id }}">
+                                    <span class="pe-2"><i class="bi bi-trash"></i> </span><span>Remove</span>
+                                </a>
+                            @endcan
+                            <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                                {{ __('Cancel') }}
                             </a>
-                        @endcan
-                        <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
-                            {{ __('Cancel') }}
-                        </a>
-                        <input type="submit" value="Update" class="btn btn-sm btn-primary">
+                            <input type="submit" value="Update" class="btn btn-sm btn-primary">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row align-items-center g-3 mt-3">
-            <x-messages />
-        </div>
 
-        <div class="row align-items-center g-3 mt-2">
-            <div class="col-md-2">
-                <label for="name" class="form-label mb-0 required-text">Department Name</label>
-            </div>
-            <div class="col-md-8 col-xl-5">
-                <input id="name"
-                type="text"
-                name="name"
-                value="{{ $department->name }}"
-                class="form-control @error('name') is-invalid @enderror">
-                
-                @error('name')
-                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
 
-        <div class="row align-items-center g-3 mt-2">
-            <div class="col-md-2">
-                <label for="description" class="form-label">Description</label>
-            </div>
-            <div class="col-md-8 col-xl-5">
-                <textarea id="description"
-                    name="description"
-                    style="height: 150px"
-                    class="form-control @error('description') is-invalid @enderror">{{ $department->description }}
-                </textarea>
-                
-                @error('description')
-                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="row align-items-center g-3 mt-2">
-            <div class="col-md-2">
-                <label for="title" class="form-label required-text">Status</label>
-            </div>
-            <div class="col-md-8 col-xl-5">
-                <div class="form-floating">
-                    <select name="status" class="form-select @error('status') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
-                        @foreach($statuses as $key => $value)
-                            <option value="{{ $key }}" @if($key == $department->status) selected @endif>
-                                {{ $value }} 
-                            </option>
-                        @endforeach
-                    </select>
-                    <label for="floatingSelect">Choose a status</label>
+            <form action="{{ route('departments.update', $department->id) }}" method="POST" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+            
+                <div class="row align-items-center g-3 mt-2">
+                    <div class="col-md-2">
+                        <label for="name" class="form-label mb-0 required-text">Department Name</label>
+                    </div>
+                    <div class="col-md-8 col-xl-5">
+                        <input id="name"
+                        type="text"
+                        name="name"
+                        value="{{ $department->name }}"
+                        class="form-control @error('name') is-invalid @enderror">
+                        
+                        @error('name')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
 
-                @error('status')
-                    <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+                <div class="row align-items-center g-3 mt-2">
+                    <div class="col-md-2">
+                        <label for="description" class="form-label">Description</label>
+                    </div>
+                    <div class="col-md-8 col-xl-5">
+                        <textarea id="description"
+                            name="description"
+                            style="height: 150px"
+                            class="form-control @error('description') is-invalid @enderror">{{ $department->description }}
+                        </textarea>
+                        
+                        @error('description')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row align-items-center g-3 mt-2">
+                    <div class="col-md-2">
+                        <label for="title" class="form-label required-text">Status</label>
+                    </div>
+                    <div class="col-md-8 col-xl-5">
+                        <div class="form-floating">
+                            <select name="status" class="form-select @error('status') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
+                                @foreach($statuses as $key => $value)
+                                    <option value="{{ $key }}" @if($key == $department->status) selected @endif>
+                                        {{ $value }} 
+                                    </option>
+                                @endforeach
+                            </select>
+                            <label for="floatingSelect">Choose a status</label>
+                        </div>
+
+                        @error('status')
+                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div>
+                    <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                        {{ __('Cancel') }}
+                    </a>
+                    <input type="submit" value="Update" class="btn btn-sm btn-primary">
+
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 
     @can('department-delete')
         <!-- Modal -->

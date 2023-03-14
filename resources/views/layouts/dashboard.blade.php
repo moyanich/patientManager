@@ -33,7 +33,7 @@
         @include('partials.sidebar')
         
         <!-- Main content -->
-        <div class="h-screen flex-grow-1 overflow-y-lg-auto bg-surface-primary">
+        <div class="h-screen flex-grow-1 overflow-y-lg-auto bg-surface-secondary">
 
             <div class="bg-gray-900 border-bottom py-6">
                 <div class="container-fluid">
@@ -50,7 +50,7 @@
                 </div>
              </div>
 
-            <header class="bg-surface-primary border-top">
+            <header class="bg-surface-secondary border-top">
                 <div class="container-fluid px-6 pb-10">
                     <div class="py-5 border-bottom">
                         <!-- Page heading -->
@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </header>
-            <main class="bg-surface-primary">
+            <main class="bg-surface-secondary">
                 <!-- Container -->
                 <div class="container-fluid px-6 pb-10">
                    @yield('content')

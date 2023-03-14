@@ -38,89 +38,94 @@
 @endsection
 
 @section('content')
+    <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center g-3 mt-3">
+                <div class="col-12">
+                    <x-messages />
+                </div>
+            </div>
 
-    <div class="row align-items-center g-3 mt-3">
-        <div class="col-12 col-md-8">
-            <x-messages />
+            <div class="row align-items-center g-3 mt-2">
+                <div class="col-12">
+                    <form action="{{ route('departments.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label required-text">Department Name</label>
+                            <input id="name"
+                                type="text"
+                                name="name"
+                                class="form-control @error('name') is-invalid @enderror">
+                            
+                            @error('name')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea id="description"
+                                name="description"
+                                style="height: 150px"
+                                class="form-control @error('description') is-invalid @enderror">
+                            </textarea>
+                            
+                            @error('description')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="deptHead" class="form-label required-text">Department Head</label>
+                            <div class="form-floating">
+                                <select name="deptHead" class="form-select @error('deptHead') is-invalid @enderror" id="selectHead" aria-label="Department Head">
+                                    @foreach($doctors as $key => $value)
+                                        <option value="{{ $key }}"> 
+                                            {{ $value }} 
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="selectHead">Choose a Doctor</label>
+                            </div>
+                            @error('deptHead')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="title" class="form-label required-text">Status</label>
+                            <div class="form-floating">
+                                <select name="status" class="form-select @error('status') is-invalid @enderror" id="selectStatus" aria-label="Status">
+                                    @foreach($statuses as $key => $value)
+                                        <option value="{{ $key }}"> 
+                                            {{ $value }} 
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="selectStatus">Choose a status</label>
+                            </div>
+                            @error('status')
+                                <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="row">
+                            <div class="text-end mt-4">
+                                <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
+                                    {{ __('Cancel') }}
+                                </a>
+                                <input type="submit" value="Save" class="btn btn-sm btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="row align-items-center g-3 mt-2">
-        <div class="col-12 col-md-8">
-            <form action="{{ route('departments.store') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label required-text">Department Name</label>
-                    <input id="name"
-                        type="text"
-                        name="name"
-                        class="form-control @error('name') is-invalid @enderror">
-                    
-                    @error('name')
-                        <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-        
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea id="description"
-                        name="description"
-                        style="height: 150px"
-                        class="form-control @error('description') is-invalid @enderror">
-                    </textarea>
-                    
-                    @error('description')
-                        <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-        
-                <div class="mb-3">
-                    <label for="deptHead" class="form-label required-text">Department Head</label>
-                    <div class="form-floating">
-                        <select name="deptHead" class="form-select @error('deptHead') is-invalid @enderror" id="selectHead" aria-label="Department Head">
-                            @foreach($doctors as $key => $value)
-                                <option value="{{ $key }}"> 
-                                    {{ $value }} 
-                                </option>
-                            @endforeach
-                        </select>
-                        <label for="selectHead">Choose a Doctor</label>
-                    </div>
-                    @error('deptHead')
-                        <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-        
-                <div class="mb-3">
-                    <label for="title" class="form-label required-text">Status</label>
-                    <div class="form-floating">
-                        <select name="status" class="form-select @error('status') is-invalid @enderror" id="selectStatus" aria-label="Status">
-                            @foreach($statuses as $key => $value)
-                                <option value="{{ $key }}"> 
-                                    {{ $value }} 
-                                </option>
-                            @endforeach
-                        </select>
-                        <label for="selectStatus">Choose a status</label>
-                    </div>
-                    @error('status')
-                        <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="row">
-                    <div class="text-end mt-4">
-                        <a href="{{ route('departments.index') }}" class="btn btn-sm bg-gray-100 me-2">
-                            {{ __('Cancel') }}
-                        </a>
-                        <input type="submit" value="Save" class="btn btn-sm btn-primary">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
 @endsection
+
+
+
 
 
 

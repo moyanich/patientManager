@@ -73,9 +73,9 @@
     <div class="row align-items-center g-3 mt-2">
         <div class="col-10">
             <h4>Head of Department:</h4>
-            <p class="mb-3">{{ $department->doctors_id }}</p>
+            <p class="mb-3">{{-- $department->doctors_id --}}</p>
 
-            {{ $deptHead->first_name}}
+            {{-- $deptHead->first_name --}}
         </div>
     </div>
 
@@ -90,13 +90,13 @@
                         <th scope="col">Name</th>
                     </tr>
                 </thead>
-
+{{-- 
                 @foreach ($doctors as $doctor)
                     <tr>
                         <td></td>
                         <td>{{ $doctor->first_name . ' ' . $doctor->last_name  }}</td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </table>
         </div>
     </div>

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             DepartmentsSeeder::class,
            // RoleSeeder::class,
             GendersSeeder::class,
+            DoctorsSeeder::class,
             BloodGroupsSeeder::class,
             ParishSeeder::class,
             PatientsSeeder::class,
