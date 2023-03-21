@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     */
 
     // Departments
-    Route::resource('departments', DepartmentsController::class);
+    Route::resource('departments', DepartmentsController::class)->except('show');
 
     // Doctors
     Route::resource('doctors', DoctorsController::class);

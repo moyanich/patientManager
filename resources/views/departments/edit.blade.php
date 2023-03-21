@@ -27,9 +27,7 @@
     <div class="card">
         <div class="card-body">
 
-            <div class="row align-items-center g-3 mt-3">
-                <x-messages />
-            </div>
+            <x-messages />
 
             <div class="py-4 border-bottom">
                 <div class="row align-items-center">
@@ -158,6 +156,7 @@
 <div class="col-12 col-md-4">
     <div class="card">
         <div class="card-body">
+            <h4>Department Doctors</h4>
 hee
         </div>
     </div>

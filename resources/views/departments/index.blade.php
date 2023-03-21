@@ -24,6 +24,7 @@
     <div class="card">
         <div class="card-body">
             <x-messages />
+            
             <div class="mb-7">
                 <div class="table-responsive">
                     <table id="department-datatable" class="table table-nowrap compact department-datatable">
