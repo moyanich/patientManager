@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
 use App\Models\Departments;
-use App\Models\DeptHead;
+use App\Models\DepartmentHead;
 use App\Models\Doctors;
 use App\Models\Status;
 use DataTables;
@@ -44,10 +44,10 @@ class DepartmentsController extends Controller
             $data = Departments::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('departmentHead', function ($department) {
-                    $deptHead = DB::table('dept_heads')
-                    ->join('doctors', 'dept_heads.doctor_id', '=', 'doctors.id')->where(
-                        'dept_heads.department_id', '=', $department->id
+                ->addColumn('department_head', function ($department) {
+                    $deptHead = DB::table('department_head')
+                    ->join('doctors', 'department_head.doctor_id', '=', 'doctors.id')->where(
+                        'department_head.department_id', '=', $department->id
                     ) 
                     ->select(DB::raw("CONCAT(first_name,' ',last_name) as full_name"),'doctors.id')
                     ->pluck('full_name', 'id')->toArray();
@@ -70,7 +70,7 @@ class DepartmentsController extends Controller
                         <a href="#" class="btn btn-sm btn-danger text-white" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $department->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['departmentHead', 'action'])
+                ->rawColumns(['department_head', 'action'])
                 ->make(true);
         }
         return view('departments.index', compact('departments') );
@@ -112,7 +112,7 @@ class DepartmentsController extends Controller
         $department->status = $request->input('status');
         $department->save();
 
-        DeptHead::create([
+        DepartmentHead::create([
             'department_id' => $department->id,
             'doctor_id' => $request->input('deptHead'),
         ]);
@@ -171,7 +171,7 @@ class DepartmentsController extends Controller
             ) 
             ->select('doctors.id')->pluck('id'); */
 
-        $deptHead = DB::table('dept_heads')->select('doctors.id')->leftJoin('doctors', 'dept_heads.doctor_id', '=', 'doctors.id')->where('dept_heads.department_id', '=', $department->id )->limit('1')->get();
+        $deptHead = DB::table('department_head')->select('doctors.id')->leftJoin('doctors', 'department_head.doctor_id', '=', 'doctors.id')->where('department_head.department_id', '=', $department->id )->limit('1')->get();
 
       //  dd( $deptHead);
 
@@ -195,6 +195,11 @@ class DepartmentsController extends Controller
         $department->description = $request->input('description');
         $department->status = $request->input('status');
         $department->save();
+
+        DepartmentHead::updateOrInsert(
+            ['department_id' => $department->id, 'doctor_id' => $request->input('deptHead')],
+            ['doctor_id' => $request->input('deptHead')]
+        );
         return redirect()->back()->with('success', 'Record updated sucessfully!!');
     }
 

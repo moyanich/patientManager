@@ -93,7 +93,7 @@
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'name', name: 'name' , className: 'dept-name'},
-                { data: 'departmentHead', name: 'departmentHead'},
+                { data: 'department_head', name: 'department_head'},
                 {
                     data: 'status', 
                     name: 'status', 

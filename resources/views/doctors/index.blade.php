@@ -103,10 +103,10 @@
                 { data: 'first_name', name: 'first_name'},
                 { data: 'last_name', name: 'last_name'},
                 { data: 'email', name: 'email'},
-                { data: 'contactInfo', name: 'contactInfo'},
-                { data: 'departments', name: 'departments', className: 'dept_name'},
+               // { data: 'contactInfo', name: 'contactInfo'},
+                //{ data: 'departments', name: 'departments', className: 'dept_name'},
                 
-                { data: 'specialist_area', name: 'specialist_area'},
+               // { data: 'specialist_area', name: 'specialist_area'},
 
                 
 

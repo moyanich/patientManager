@@ -97,16 +97,17 @@
                     </div>
                     <div class="col-md-10">
                         <div class="form-floating">
-                            <select name="deptHead" class="form-select @error('deptHead') is-invalid @enderror" id="floatingSelect" aria-label="Floating label select example">
+                            <select name="deptHead" class="form-select @error('deptHead') is-invalid @enderror" id="doctorsSelect" aria-label="doctors">
                                 @foreach($doctors as $doctor_key => $doctor)
-                                    @foreach($deptHead as $key => $doctor_head)
-                                        <option value="{{ $doctor_key }}" @if($doctor_key == $doctor_head->id) selected @endif>
-                                            {{ $doctor }} 
-                                        </option>
-                                    @endforeach
+                                    <option value="{{ $doctor_key }}" 
+                                        @foreach($deptHead as $key => $doctor_head)
+                                            @if($doctor_key == $doctor_head->id) selected @endif
+                                        @endforeach>
+                                        {{ $doctor }} 
+                                    </option>
                                 @endforeach
                             </select>
-                            <label for="floatingSelect">Choose a status</label>
+                            <label for="doctorsSelect">Assign Head of Department</label>
                         </div>
 
                         @error('status')

@@ -43,7 +43,7 @@ class DoctorsController extends Controller
                     return View::make("components.badges")
                     ->with("status", $statusRow->status)->with("message", statusConvert($statusRow->status));
                 }) */
-                ->addColumn('contactInfo', function($doctor) {
+               /* ->addColumn('contactInfo', function($doctor) {
                     if(!empty($doctor->contact_1) ) {
                         $output = '';
                         $output .= '<p><i class="bi bi-telephone-fill"></i> ' . $doctor->contact_1 . '</p>';
@@ -81,10 +81,10 @@ class DoctorsController extends Controller
                     }
                     $output .= '</ul>';
                     
-                    return $output;*/
+                    return $output; ---
 
                     
-                })
+                })*/
 
                 ->addColumn('action', function($doctor) {
                     $actionBtn = '
@@ -92,7 +92,8 @@ class DoctorsController extends Controller
                         <a href="#" class="btn btn-sm btn-circle btn-outline-dark link-warning-hover" data-bs-toggle="modal" data-bs-target="#delDepModal-' . $doctor->id . '"><i class="bi bi-trash"></i></a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['departments', 'contactInfo', 'action'])
+                //->rawColumns(['departments', 'contactInfo', 'action'])
+                ->rawColumns(['contactInfo', 'action'])
                 ->make(true);
         }
 

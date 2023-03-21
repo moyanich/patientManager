@@ -5,19 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DeptHead extends Model
+class DepartmentHead extends Model
 {
     use HasFactory;
 
     /**
      * Table Name
      */
-    protected $table = 'dept_heads';
+    protected $table = 'department_head';
 
     /**
      * Primary Key
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'department_id';
+
+    public $incrementing = false;
  
     /**
      * Timestamps
