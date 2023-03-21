@@ -119,15 +119,11 @@ class DepartmentsController extends Controller
         $doctors = Doctors::select(DB::raw("CONCAT(first_name,' ',last_name) as full_name"),'doctors.id')->orderBy('first_name')->get()->pluck('full_name', 'id')->prepend('Select Doctor', '');
 
         $department_doctors = DB::table('doctors')->select(DB::raw("CONCAT(first_name,' ',last_name) as fullName"),'doctors.id')->leftJoin('departments_doctors', 'departments_doctors.doctors_id', '=', 'doctors.id')->where('departments_doctors.departments_id', '=', $department->id )->orderBy('first_name')->get();
-        
-     
 
         $department_head_doctor = DB::table('department_head')->select('doctors.id')->leftJoin('doctors', 'department_head.doctor_id', '=', 'doctors.id')->where('department_head.department_id', '=', $department->id )->limit('1')->get();
 
         $statuses = Status::where('name', 'like', '%active%')->pluck('name', 'id');
 
-       // return view('departments.edit', ['department' => $department, 'statuses' => $statuses, 'doctors' => $doctors, 'department_head_doctor' => $department_head_doctor, compact('department_doctors') ]);       
-        
         return view('departments.edit', compact('department', 'statuses', 'doctors', 'department_head_doctor','department_doctors'));
     }
 

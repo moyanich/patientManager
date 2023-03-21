@@ -150,21 +150,17 @@
         <div class="col-12 col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h4>Department Doctors</h4>
+                    <h3>Department Doctors</h3>
                     <hr/>
-                    <ul>
+                    <ul class="list-group list-group-flush">
                         @foreach ($department_doctors as $key => $doctor )
-                            <li><a href="">{{ $doctor->fullName }}</a></li>
+                            <li><a href="{{ route('doctors.show', $doctor->id) }}" class="list-group-item list-group-item-action">{{ $doctor->fullName }}</a></li>
                         @endforeach
                     </ul>
-
-                   
-
                 </div>
             </div>
         </div>
     </div>
-
 
     {{--  Modal --}}
     @can('department-delete')

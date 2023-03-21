@@ -36,6 +36,18 @@ class CreateDepartmentsTable extends Migration
             $table->index(['doctors_id', 'departments_id']);
         });
 
+        // department_head
+        Schema::create('department_head', function (Blueprint $table) {
+            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('doctor_id')->nullable();
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
+            $table->primary('department_id');
+            $table->index(['doctor_id', 'department_id']);
+            $table->softDeletes();
+        });
+
     }
 
     /**
@@ -47,12 +59,17 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::dropIfExists('departments');
         Schema::dropIfExists('departments_doctors');
+        Schema::dropIfExists('department_head');
 
         Schema::table('departments', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
 
         Schema::table('departments_doctors', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('department_head', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }
