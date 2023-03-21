@@ -144,7 +144,7 @@ class DepartmentsController extends Controller
 
         DepartmentHead::updateOrInsert(
             ['department_id' => $department->id],
-            ['doctor_id' => $request->input('deptHead')]
+            ['doctor_id' => $request->input('deptHead'), 'created_at' => now()]
         );
         return redirect()->back()->with('success', 'Record updated sucessfully!!');
     }
