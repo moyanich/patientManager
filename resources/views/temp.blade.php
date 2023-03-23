@@ -1011,3 +1011,13 @@ $department = Departments::find($department);
 --}}
 
 ////////////////////////
+
+<div class="relative w-full mb-3 px-4">
+    {{ Form::label('file', 'Update Document', ['class' => 'block uppercase text-blueGray-600 text-xs font-bold mb-2']) }}
+
+    <input type="file" name="file" class="border-0 px-3 py-3 text-blueGray-600 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" accept=".jpg,.jpeg,.bmp,.png,.gif,.doc,.docx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip">
+
+    @error('file')
+        <p class="text-xs text-red-600">{{ $message }}</p>
+    @enderror
+</div>

@@ -27,6 +27,7 @@ class Doctors extends Model
     protected $fillable = [
         'employee_no',
         'first_name',
+        'middle_name',
         'last_name',
         'email',
         'designation',

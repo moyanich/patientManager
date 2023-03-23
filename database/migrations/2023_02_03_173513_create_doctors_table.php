@@ -17,6 +17,7 @@ class CreateDoctorsTable extends Migration
             $table->id();
             $table->char('employee_no', 100)->unique();
             $table->string('first_name', 150);
+            $table->string('middle_name', 255)->nullable();
             $table->string('last_name', 255);
             $table->string('email', 55)->nullable();
             $table->string('designation', 255)->nullable();

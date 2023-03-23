@@ -77,6 +77,7 @@
 					</div>
 				</li>
 
+				<!-- Doctors -->
 				<li class="nav-item">
 					<a class="nav-link collapsed {{ request()->routeIs('doctors.create') ? 'active' : '' }}" href="#sidebar-doctors" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-doctors">
 						<i class="bi bi-person-video2"></i> {{ __('Doctors') }}
@@ -84,46 +85,23 @@
 					<div class="collapse" id="sidebar-doctors" style="">
 						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
-									<i class="bi bi-plus-circle-fill"></i>
-									{{ __('Create Doctor') }}
-								</x-navlink>
-							</li>
-							<li class="nav-item">
 								<x-navlink :href="route('doctors.index')" class="{{ request()->routeIs('doctors.index') ? 'active' : '' }} ">
 									<i class="bi bi-card-list"></i>
 									{{ __('List Doctors') }}
 								</x-navlink>
 							</li>
-						</ul>
-					</div>
-				</li>
-
-
-
-				<li class="nav-item">
-					<a class="nav-link collapsed {{ request()->routeIs('users.create') ? 'active' : '' }}" href="#sidebar-users" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-users">
-						<i class="bi bi-people"></i> {{ __('Users') }}
-					</a>
-					<div class="collapse" id="sidebar-users" style="">
-						<ul class="nav nav-sm flex-column">
 							<li class="nav-item">
-								<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
+								<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
 									<i class="bi bi-plus-circle-fill"></i>
-									{{ __('Create User') }}
+									{{ __('Add Doctor') }}
 								</x-navlink>
 							</li>
-							<li class="nav-item">
-								<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
-									<i class="bi bi-card-list"></i>
-									{{ __('List Users') }}
-								</x-navlink>
-							</li>
+							
 						</ul>
 					</div>
 				</li>
 
-
+				<!-- Departments -->
 				<li class="nav-item">
 					<a class="nav-link collapsed {{ request()->routeIs('departments.create') ? 'active' : '' }}" href="#sidebar-departments" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-departments">
 						<i class="bi bi-building"></i> {{ __('Department') }}
@@ -149,36 +127,7 @@
 			</ul>
 
 
-			<!-- Divider -->
-			<hr class="navbar-divider my-5 opacity-20">
-			<!-- Navigation -->
-			<ul class="navbar-nav mb-md-4">
-				<li class="nav-item">
-					<a class="nav-link" href="#doctor-collapse" data-bs-toggle="collapse" href="#doctor-collapse" role="button" aria-expanded="false" aria-controls="settings-collapse">
-						<i class="bi bi-person-video2 text-lg"></i> {{ __('Doctors') }}
-					</a>
-					<li>
-						<div class="collapse show" id="doctor-collapse">
-							<ul class="nav flex-column mb-2">
-								<li class="nav-item">
-									<x-navlink :href="route('doctors.index')" class="{{ request()->routeIs('doctors.index') ? 'active' : '' }} ">
-										<i class="bi bi-person-rolodex"></i>
-										{{ __('All Doctors') }}
-									</x-navlink>
-								</li>
-								<li class="nav-item">
-									<x-navlink :href="route('doctors.create')" class="{{ request()->routeIs('doctors.create') ? 'active' : '' }} ">
-										<i class="bi bi-plus-circle-fill"></i>
-										{{ __('New Doctor') }}
-									</x-navlink>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</li>
-			</ul>
-			<!-- Push content down -->
-
+			
 
 			<!-- Divider -->
 			<hr class="navbar-divider my-5 opacity-20">
@@ -207,6 +156,31 @@
 						<span class="badge bg-soft-danger text-danger rounded-pill d-inline-flex align-items-center ms-auto">23</span>
 					</a>
 				</li>
+
+
+				<!-- Users -->
+				<li class="nav-item">
+					<a class="nav-link collapsed {{ request()->routeIs('users.create') ? 'active' : '' }}" href="#sidebar-users" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-users">
+						<i class="bi bi-people"></i> {{ __('Users') }}
+					</a>
+					<div class="collapse" id="sidebar-users" style="">
+						<ul class="nav nav-sm flex-column">
+							<li class="nav-item">
+								<x-navlink :href="route('users.create')" class="{{ request()->routeIs('users.create') ? 'active' : '' }} ">
+									<i class="bi bi-plus-circle-fill"></i>
+									{{ __('Create User') }}
+								</x-navlink>
+							</li>
+							<li class="nav-item">
+								<x-navlink :href="route('users.index')" class="{{ request()->routeIs('users.index') ? 'active' : '' }} ">
+									<i class="bi bi-card-list"></i>
+									{{ __('List Users') }}
+								</x-navlink>
+							</li>
+						</ul>
+					</div>
+				</li>
+
 			</ul>
 			
 			<!-- Push content down -->

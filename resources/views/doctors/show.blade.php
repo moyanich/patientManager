@@ -20,6 +20,12 @@
     </div>
 @endsection
 
+@section('content')
+{{-- employee_no
+@if($doctor->photo)
+<img class="h-28 w-28 mask mask-circle" src="{{ asset('/storage/images/'.$doctor->photo) }}" alt="{{ $employee->completename??'' }} photo">
+@endif
+--}}
 
 <div class="card">
     <h5 class="card-header">Profile Details</h5>
@@ -42,3 +48,5 @@
         </div>
     </div>
 </div>
+
+@endsection

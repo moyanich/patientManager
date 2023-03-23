@@ -125,6 +125,7 @@ class DoctorsController extends Controller
         $doctor = new Doctors();
         $doctor->employee_no = $request->input('employee_no');
         $doctor->first_name = $request->input('first_name');
+        $doctor->middle_name = $request->input('middle_name');
         $doctor->last_name = $request->input('last_name');
         $doctor->dob = $request->input('dob');
         $doctor->gender_id = $request->input('gender_id');
@@ -138,6 +139,7 @@ class DoctorsController extends Controller
         $doctor->kin_name = $request->input('kin_name');
         $doctor->kin_phone = $request->input('kin_phone');
         $doctor->kin_email = $request->input('kin_email');
+
         $doctor->save();
 
         $doctor->departments()->attach( $request->input('departments'));
@@ -180,6 +182,13 @@ class DoctorsController extends Controller
     public function update(UpdateDoctorsRequest $request, Doctors $doctors)
     {
         //
+
+         /* Store Profile Image */
+        /* if($request->hasFile('photo')){
+            $filename = $request->photo->getClientOriginalName();
+            $request->photo->storeAs('images', $filename, 'public');
+            $employee->update(['photo' => $filename]);
+        }  */ 
     }
 
     /**
