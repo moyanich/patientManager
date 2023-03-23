@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             BloodGroupsSeeder::class,
             ParishSeeder::class,
             PatientsSeeder::class,
+
+            DepartmentsDoctorsSeeder::class,
             
         ]);
     }

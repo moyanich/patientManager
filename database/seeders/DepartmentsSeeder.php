@@ -15,4 +15,7 @@ class DepartmentsSeeder extends Seeder
     {
         \App\Models\Departments::factory(20)->create();
     }
+
+
+
 }
