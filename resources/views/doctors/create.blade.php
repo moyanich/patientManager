@@ -18,7 +18,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <div class="row align-items-center g-3 mt-3">
+            <div class="row align-items-center g-3">
                 <div class="col-12">
                     <x-messages />
                 </div>
@@ -28,8 +28,8 @@
                 <div class="col-12">
                     <form action="{{ route('doctors.store') }}" method="POST">
                         @csrf
-                        
-                        <div class="row g-5 mt-2">
+
+                        <div class="row g-5">
                             <div class="col-12 col-md-12">
                                 <div class="row mb-4">
                                     <div class="col-12 col-md-4">
@@ -46,8 +46,7 @@
                                     </div>
                                 </div>
 
-                                
-
+                                {{-- Name --}}
                                 <div class="row mb-4">
                                     <div class="col-12 col-md-4">
                                         <label for="first_name" class="form-label">First Name</label>
@@ -87,7 +86,7 @@
                                     </div>
                                 </div>
 
-
+                                {{-- Gender, DOB--}}
                                 <div class="row mb-4">
                                     <div class="col-12 col-md-4">
                                         <label for="dob" class="form-label">Date of Birth</label>
@@ -110,19 +109,11 @@
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-5">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input id="email"
-                                            type="email"
-                                            name="email"
-                                            value = "{{ old('email') }}"
-                                            class="form-control @error('email') is-invalid @enderror">
-                        
-                                        @error('email')
-                                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
-                                        @enderror
+                                       
                                     </div>
                                 </div>
 
+                                {{-- Designation --}}
                                 <div class="row mb-4">
                                     <div class="col-12 col-md-4">
                                         <label for="designation" class="form-label">Designation</label>
@@ -152,7 +143,7 @@
                                     {{-- //TODO Add error to field --}}
                                     <div class="col-12 col-md-4">
                                         <label for="departments" class="form-label required-text">Department</label>
-                                        <select name="departments[]" class="form-select form-control form-select-sm js-example-basic-multiple js-states select2-multiple @error('departments[]') is-invalid @enderror"" multiple>
+                                        <select name="departments[]" class="form-select form-control form-select-md js-example-basic-multiple js-states select2-multiple @error('departments[]') is-invalid @enderror"" multiple>
                                             @foreach($departments as $department)
                                                 <option value="{{ $department->id }}"> {{ $department->name }}</option>
                                             @endforeach
@@ -164,10 +155,22 @@
                                     </div>
                                 </div>
 
-
+                                {{-- Contact --}}
                                 <div class="row mb-4">
+                                    <div class="col-12 col-md-6">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input id="email"
+                                            type="email"
+                                            name="email"
+                                            value = "{{ old('email') }}"
+                                            class="form-control @error('email') is-invalid @enderror">
+                        
+                                        @error('email')
+                                            <span class="mt-2 invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                     <div class="col-12 col-md-3">
-                                        <label for="contact_1" class="form-label">Contact Number 1</label>
+                                        <label for="contact_1" class="form-label">Home Phone</label>
                                         <input id="contact_1"
                                             type="text"
                                             name="contact_1"
@@ -179,7 +182,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-12 col-md-3">
-                                        <label for="contact_2" class="form-label">Contact Number 2</label>
+                                        <label for="contact_2" class="form-label">Mobile Phone</label>
                                         <input id="contact_2"
                                             type="text"
                                             name="contact_2"
@@ -190,7 +193,11 @@
                                             <span class="mt-2 invalid-feedback">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                </div>
+
+                                {{-- Address --}}
+                                <div class="row mb-4">
+                                    <div class="col">
                                         <label for="address" class="form-label">Address</label>
                                         <textarea id="address"
                                         name="address"
@@ -202,15 +209,12 @@
                                             <span class="mt-2 invalid-feedback">{{ $message }}</span>
                                         @enderror
                                     </div>
-
                                 </div>
 
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                       
-                                    </div>
 
-                                    <div class="col-6">
+                                {{-- Additonal Information --}}
+                                <div class="row mb-4">
+                                    <div class="col">
                                         <label for="information" class="form-label">Additonal Information</label>
                                         <textarea id="information"
                                         name="information"
