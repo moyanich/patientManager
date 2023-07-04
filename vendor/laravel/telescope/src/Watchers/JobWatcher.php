@@ -7,6 +7,7 @@ use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Queue;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Laravel\Telescope\EntryType;
 use Laravel\Telescope\EntryUpdate;
@@ -19,6 +20,16 @@ use RuntimeException;
 
 class JobWatcher extends Watcher
 {
+    /**
+     * The list of ignored jobs classes.
+     *
+     * @var array<int, class-string>
+     */
+    protected $ignoredJobClasses = [
+        \Laravel\Scout\Jobs\MakeSearchable::class, // @phpstan-ignore-line
+        \Laravel\Telescope\Jobs\ProcessPendingUpdates::class,
+    ];
+
     /**
      * Register the watcher.
      *
@@ -49,6 +60,13 @@ class JobWatcher extends Watcher
             return;
         }
 
+<<<<<<< Updated upstream
+=======
+        if (in_array(get_class($payload['data']['command']), $this->ignoredJobClasses)) {
+            return;
+        }
+
+>>>>>>> Stashed changes
         $content = array_merge([
             'status' => 'pending',
         ], $this->defaultJobData($connection, $queue, $payload, $this->data($payload)));
@@ -110,7 +128,7 @@ class JobWatcher extends Watcher
                 'status' => 'failed',
                 'exception' => [
                     'message' => $event->exception->getMessage(),
-                    'trace' => $event->exception->getTrace(),
+                    'trace' => collect($event->exception->getTrace())->map(fn ($trace) => Arr::except($trace, ['args']))->all(),
                     'line' => $event->exception->getLine(),
                     'line_preview' => ExceptionContext::get($event->exception),
                 ],

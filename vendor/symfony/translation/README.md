@@ -26,7 +26,11 @@ echo $translator->trans('Hello World!'); // outputs « Bonjour ! »
 Sponsor
 -------
 
+<<<<<<< Updated upstream
 The Translation component for Symfony 5.4/6.0 is [backed][1] by:
+=======
+The Translation component for Symfony 6.3 is [backed][1] by:
+>>>>>>> Stashed changes
 
  * [Crowdin][2], a cloud-based localization management software helping teams to go global and stay agile.
  * [Lokalise][3], a continuous localization and translation management platform that integrates into your development workflow so you can ship localized products, faster.

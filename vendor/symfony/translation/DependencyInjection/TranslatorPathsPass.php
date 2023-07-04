@@ -56,6 +56,9 @@ class TranslatorPathsPass extends AbstractRecursivePass
         $this->resolverServiceId = $resolverServiceId;
     }
 
+    /**
+     * @return void
+     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->translatorServiceId)) {

@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class TranslatorPass implements CompilerPassInterface
 {
+<<<<<<< Updated upstream
     private $translatorServiceId;
     private $readerServiceId;
     private $loaderTag;
@@ -37,6 +38,11 @@ class TranslatorPass implements CompilerPassInterface
         $this->updateCommandServiceId = $updateCommandServiceId;
     }
 
+=======
+    /**
+     * @return void
+     */
+>>>>>>> Stashed changes
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->translatorServiceId)) {

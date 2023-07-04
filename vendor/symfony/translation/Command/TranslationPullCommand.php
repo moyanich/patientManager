@@ -84,10 +84,14 @@ final class TranslationPullCommand extends Command
         }
     }
 
+<<<<<<< Updated upstream
     /**
      * {@inheritdoc}
      */
     protected function configure()
+=======
+    protected function configure(): void
+>>>>>>> Stashed changes
     {
         $keys = $this->providerCollection->keys();
         $defaultProvider = 1 === \count($keys) ? $keys[0] : null;

@@ -68,7 +68,7 @@ class PoFileDumper extends FileDumper
         return $output;
     }
 
-    private function getStandardRules(string $id)
+    private function getStandardRules(string $id): array
     {
         // Partly copied from TranslatorTrait::trans.
         $parts = [];

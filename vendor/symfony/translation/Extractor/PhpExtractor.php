@@ -129,9 +129,15 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     ];
 
     /**
+<<<<<<< Updated upstream
      * {@inheritdoc}
      */
     public function extract($resource, MessageCatalogue $catalog)
+=======
+     * @return void
+     */
+    public function extract(string|iterable $resource, MessageCatalogue $catalog)
+>>>>>>> Stashed changes
     {
         $files = $this->extractFiles($resource);
         foreach ($files as $file) {
@@ -142,7 +148,11 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     }
 
     /**
+<<<<<<< Updated upstream
      * {@inheritdoc}
+=======
+     * @return void
+>>>>>>> Stashed changes
      */
     public function setPrefix(string $prefix)
     {
@@ -168,7 +178,7 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     /**
      * Seeks to a non-whitespace token.
      */
-    private function seekToNextRelevantToken(\Iterator $tokenIterator)
+    private function seekToNextRelevantToken(\Iterator $tokenIterator): void
     {
         for (; $tokenIterator->valid(); $tokenIterator->next()) {
             $t = $tokenIterator->current();
@@ -178,7 +188,7 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
         }
     }
 
-    private function skipMethodArgument(\Iterator $tokenIterator)
+    private function skipMethodArgument(\Iterator $tokenIterator): void
     {
         $openBraces = 0;
 
@@ -203,7 +213,7 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
      * Extracts the message from the iterator while the tokens
      * match allowed message tokens.
      */
-    private function getValue(\Iterator $tokenIterator)
+    private function getValue(\Iterator $tokenIterator): string
     {
         $message = '';
         $docToken = '';
@@ -261,6 +271,8 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
 
     /**
      * Extracts trans message from PHP tokens.
+     *
+     * @return void
      */
     protected function parseTokens(array $tokens, MessageCatalogue $catalog, string $filename)
     {

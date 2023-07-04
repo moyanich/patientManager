@@ -32,7 +32,11 @@ interface MetadataAwareInterface
     /**
      * Adds metadata to a message domain.
      *
+<<<<<<< Updated upstream
      * @param mixed $value
+=======
+     * @return void
+>>>>>>> Stashed changes
      */
     public function setMetadata(string $key, $value, string $domain = 'messages');
 
@@ -41,6 +45,8 @@ interface MetadataAwareInterface
      *
      * Passing an empty domain will delete all metadata. Passing an empty key will
      * delete all metadata for the given domain.
+     *
+     * @return void
      */
     public function deleteMetadata(string $key = '', string $domain = 'messages');
 }

@@ -48,7 +48,9 @@
                 <div class="card-header"><h5>Arguments</h5></div>
 
                 <div class="code-bg p-4 mb-0 text-white">
-                    <vue-json-pretty :data="slotProps.entry.content.arguments"></vue-json-pretty>
+                    <copy-clipboard :data="slotProps.entry.content.arguments">
+                        <vue-json-pretty :data="slotProps.entry.content.arguments"></vue-json-pretty>
+                    </copy-clipboard>
                 </div>
             </div>
         </div>

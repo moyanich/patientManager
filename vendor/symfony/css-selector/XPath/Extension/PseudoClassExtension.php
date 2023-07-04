@@ -32,6 +32,7 @@ class PseudoClassExtension extends AbstractExtension
     public function getPseudoClassTranslators(): array
     {
         return [
+<<<<<<< Updated upstream
             'root' => [$this, 'translateRoot'],
             'first-child' => [$this, 'translateFirstChild'],
             'last-child' => [$this, 'translateLastChild'],
@@ -40,12 +41,28 @@ class PseudoClassExtension extends AbstractExtension
             'only-child' => [$this, 'translateOnlyChild'],
             'only-of-type' => [$this, 'translateOnlyOfType'],
             'empty' => [$this, 'translateEmpty'],
+=======
+            'root' => $this->translateRoot(...),
+            'scope' => $this->translateScopePseudo(...),
+            'first-child' => $this->translateFirstChild(...),
+            'last-child' => $this->translateLastChild(...),
+            'first-of-type' => $this->translateFirstOfType(...),
+            'last-of-type' => $this->translateLastOfType(...),
+            'only-child' => $this->translateOnlyChild(...),
+            'only-of-type' => $this->translateOnlyOfType(...),
+            'empty' => $this->translateEmpty(...),
+>>>>>>> Stashed changes
         ];
     }
 
     public function translateRoot(XPathExpr $xpath): XPathExpr
     {
         return $xpath->addCondition('not(parent::*)');
+    }
+
+    public function translateScopePseudo(XPathExpr $xpath): XPathExpr
+    {
+        return $xpath->addCondition('1');
     }
 
     public function translateFirstChild(XPathExpr $xpath): XPathExpr
