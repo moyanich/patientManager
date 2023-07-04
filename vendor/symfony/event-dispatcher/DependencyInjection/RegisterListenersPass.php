@@ -77,9 +77,6 @@ class RegisterListenersPass implements CompilerPassInterface
         return $this;
     }
 
-    /**
-     * @return void
-     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->dispatcherService) && !$container->hasAlias($this->dispatcherService)) {
@@ -115,7 +112,7 @@ class RegisterListenersPass implements CompilerPassInterface
                     $event['method'] = 'on'.preg_replace_callback([
                         '/(?<=\b|_)[a-z]/i',
                         '/[^a-z0-9]/i',
-                    ], fn ($matches) => strtoupper($matches[0]), $event['event']);
+                    ], function ($matches) { return strtoupper($matches[0]); }, $event['event']);
                     $event['method'] = preg_replace('/[^a-z0-9]/i', '', $event['method']);
 
                     if (null !== ($class = $container->getDefinition($id)->getClass()) && ($r = $container->getReflectionClass($class, false)) && !$r->hasMethod($event['method']) && $r->hasMethod('__invoke')) {
@@ -223,11 +220,7 @@ class ExtractingEventDispatcher extends EventDispatcher implements EventSubscrib
     public static $aliases = [];
     public static $subscriber;
 
-<<<<<<< Updated upstream
     public function addListener(string $eventName, $listener, int $priority = 0)
-=======
-    public function addListener(string $eventName, callable|array $listener, int $priority = 0): void
->>>>>>> Stashed changes
     {
         $this->listeners[] = [$eventName, $listener[1], $priority];
     }

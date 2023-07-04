@@ -25,11 +25,7 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-<<<<<<< Updated upstream
             "dev-main": "2.5-dev"
-=======
-            "dev-main": "3.4-dev"
->>>>>>> Stashed changes
         },
         "thanks": {
             "name": "symfony/contracts",

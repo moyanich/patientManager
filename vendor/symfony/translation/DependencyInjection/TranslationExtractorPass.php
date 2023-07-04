@@ -21,7 +21,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class TranslationExtractorPass implements CompilerPassInterface
 {
-<<<<<<< Updated upstream
     private $extractorServiceId;
     private $extractorTag;
 
@@ -35,11 +34,6 @@ class TranslationExtractorPass implements CompilerPassInterface
         $this->extractorTag = $extractorTag;
     }
 
-=======
-    /**
-     * @return void
-     */
->>>>>>> Stashed changes
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->extractorServiceId)) {

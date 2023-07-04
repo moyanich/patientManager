@@ -52,11 +52,7 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return void
->>>>>>> Stashed changes
      */
     public function setLocale(string $locale)
     {
@@ -131,7 +127,7 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
         return $this->messages;
     }
 
-    private function collectMessage(?string $locale, ?string $domain, string $id, string $translation, ?array $parameters = []): void
+    private function collectMessage(?string $locale, ?string $domain, string $id, string $translation, ?array $parameters = [])
     {
         if (null === $domain) {
             $domain = 'messages';

@@ -34,13 +34,6 @@
                 {{slotProps.entry.content.response_status !== undefined ? slotProps.entry.content.response_status : 'N/A'}}
             </td>
         </tr>
-
-        <tr>
-            <td class="table-fit text-muted">Duration</td>
-            <td>
-                {{slotProps.entry.content.duration || '-'}}ms
-            </td>
-        </tr>
         </template>
 
         <div slot="after-attributes-card" slot-scope="slotProps">
@@ -54,9 +47,8 @@
                     </li>
                 </ul>
                 <div class="code-bg p-4 mb-0 text-white">
-                    <copy-clipboard :data="slotProps.entry.content[currentRequestTab]">
-                        <vue-json-pretty :data="slotProps.entry.content[currentRequestTab]"></vue-json-pretty>
-                    </copy-clipboard>
+                    <vue-json-pretty :data="slotProps.entry.content.payload" v-if="currentRequestTab=='payload'"></vue-json-pretty>
+                    <vue-json-pretty :data="slotProps.entry.content.headers" v-if="currentRequestTab=='headers'"></vue-json-pretty>
                 </div>
             </div>
             <div class="card mt-5" v-if="slotProps.entry.content.response_status">
@@ -69,16 +61,8 @@
                     </li>
                 </ul>
                 <div class="code-bg p-4 mb-0 text-white">
-                    <template v-if="currentResponseTab=='response'">
-                        <copy-clipboard :data="slotProps.entry.content.response">
-                            <vue-json-pretty :data="slotProps.entry.content.response"></vue-json-pretty>
-                        </copy-clipboard>
-                    </template>
-                    <template v-if="currentResponseTab=='headers'">
-                        <copy-clipboard :data="slotProps.entry.content.response_headers">
-                            <vue-json-pretty :data="slotProps.entry.content.response_headers"></vue-json-pretty>
-                        </copy-clipboard>
-                    </template>
+                    <vue-json-pretty :data="slotProps.entry.content.response" v-if="currentResponseTab=='response'"></vue-json-pretty>
+                    <vue-json-pretty :data="slotProps.entry.content.response_headers" v-if="currentResponseTab=='headers'"></vue-json-pretty>
                 </div>
             </div>
         </div>

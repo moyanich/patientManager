@@ -74,14 +74,10 @@ final class TranslationPushCommand extends Command
         }
     }
 
-<<<<<<< Updated upstream
     /**
      * {@inheritdoc}
      */
     protected function configure()
-=======
-    protected function configure(): void
->>>>>>> Stashed changes
     {
         $keys = $this->providers->keys();
         $defaultProvider = 1 === \count($keys) ? $keys[0] : null;

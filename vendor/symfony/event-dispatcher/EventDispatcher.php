@@ -136,30 +136,18 @@ class EventDispatcher implements EventDispatcherInterface
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
      */
     public function addListener(string $eventName, $listener, int $priority = 0)
-=======
-     * @return void
-     */
-    public function addListener(string $eventName, callable|array $listener, int $priority = 0)
->>>>>>> Stashed changes
     {
         $this->listeners[$eventName][$priority][] = $listener;
         unset($this->sorted[$eventName], $this->optimized[$eventName]);
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
      */
     public function removeListener(string $eventName, $listener)
-=======
-     * @return void
-     */
-    public function removeListener(string $eventName, callable|array $listener)
->>>>>>> Stashed changes
     {
         if (empty($this->listeners[$eventName])) {
             return;
@@ -188,11 +176,7 @@ class EventDispatcher implements EventDispatcherInterface
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return void
->>>>>>> Stashed changes
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
@@ -210,11 +194,7 @@ class EventDispatcher implements EventDispatcherInterface
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return void
->>>>>>> Stashed changes
      */
     public function removeSubscriber(EventSubscriberInterface $subscriber)
     {
@@ -238,8 +218,6 @@ class EventDispatcher implements EventDispatcherInterface
      * @param callable[] $listeners The event listeners
      * @param string     $eventName The name of the event to dispatch
      * @param object     $event     The event object to pass to the event handlers/listeners
-     *
-     * @return void
      */
     protected function callListeners(iterable $listeners, string $eventName, object $event)
     {
@@ -256,7 +234,7 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * Sorts the internal list of listeners for the given event by priority.
      */
-    private function sortListeners(string $eventName): void
+    private function sortListeners(string $eventName)
     {
         krsort($this->listeners[$eventName]);
         $this->sorted[$eventName] = [];

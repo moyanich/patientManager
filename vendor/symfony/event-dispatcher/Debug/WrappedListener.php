@@ -126,24 +126,4 @@ final class WrappedListener
             $this->stoppedPropagation = true;
         }
     }
-<<<<<<< Updated upstream
-=======
-
-    private function parseListener(array $listener): array
-    {
-        if ($listener[0] instanceof \Closure) {
-            foreach ((new \ReflectionFunction($listener[0]))->getAttributes(\Closure::class) as $attribute) {
-                if ($name = $attribute->getArguments()['name'] ?? false) {
-                    return [$name, $attribute->getArguments()['class'] ?? $name];
-                }
-            }
-        }
-
-        if (\is_object($listener[0])) {
-            return [get_debug_type($listener[0]), $listener[0]::class];
-        }
-
-        return [$listener[0], $listener[0]];
-    }
->>>>>>> Stashed changes
 }

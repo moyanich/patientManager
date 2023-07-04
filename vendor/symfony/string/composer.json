@@ -24,7 +24,6 @@
         "symfony/polyfill-php80": "~1.15"
     },
     "require-dev": {
-<<<<<<< Updated upstream
         "symfony/error-handler": "^4.4|^5.0|^6.0",
         "symfony/http-client": "^4.4|^5.0|^6.0",
         "symfony/translation-contracts": "^1.1|^2",
@@ -32,16 +31,6 @@
     },
     "conflict": {
         "symfony/translation-contracts": ">=3.0"
-=======
-        "symfony/error-handler": "^5.4|^6.0",
-        "symfony/intl": "^6.2",
-        "symfony/http-client": "^5.4|^6.0",
-        "symfony/translation-contracts": "^2.5|^3.0",
-        "symfony/var-exporter": "^5.4|^6.0"
-    },
-    "conflict": {
-        "symfony/translation-contracts": "<2.5"
->>>>>>> Stashed changes
     },
     "autoload": {
         "psr-4": { "Symfony\\Component\\String\\": "" },

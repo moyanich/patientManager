@@ -49,11 +49,7 @@ class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, 
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return void
->>>>>>> Stashed changes
      */
     public function setLocale(string $locale)
     {
@@ -115,7 +111,7 @@ class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, 
     /**
      * Logs for missing translations.
      */
-    private function log(string $id, ?string $domain, ?string $locale): void
+    private function log(string $id, ?string $domain, ?string $locale)
     {
         if (null === $domain) {
             $domain = 'messages';

@@ -53,25 +53,15 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
      */
     public function addListener(string $eventName, $listener, int $priority = 0)
-=======
-     * @return void
-     */
-    public function addListener(string $eventName, callable|array $listener, int $priority = 0)
->>>>>>> Stashed changes
     {
         $this->dispatcher->addListener($eventName, $listener, $priority);
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return void
->>>>>>> Stashed changes
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
@@ -79,15 +69,9 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
      */
     public function removeListener(string $eventName, $listener)
-=======
-     * @return void
-     */
-    public function removeListener(string $eventName, callable|array $listener)
->>>>>>> Stashed changes
     {
         if (isset($this->wrappedListeners[$eventName])) {
             foreach ($this->wrappedListeners[$eventName] as $index => $wrappedListener) {
@@ -99,19 +83,15 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
             }
         }
 
-        $this->dispatcher->removeListener($eventName, $listener);
+        return $this->dispatcher->removeListener($eventName, $listener);
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return void
->>>>>>> Stashed changes
      */
     public function removeSubscriber(EventSubscriberInterface $subscriber)
     {
-        $this->dispatcher->removeSubscriber($subscriber);
+        return $this->dispatcher->removeSubscriber($subscriber);
     }
 
     /**
@@ -268,9 +248,6 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
         return array_merge(...array_values($this->orphanedEvents));
     }
 
-    /**
-     * @return void
-     */
     public function reset()
     {
         $this->callStack = null;
@@ -293,8 +270,6 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
 
     /**
      * Called before dispatching the event.
-     *
-     * @return void
      */
     protected function beforeDispatch(string $eventName, object $event)
     {
@@ -302,8 +277,6 @@ class TraceableEventDispatcher implements EventDispatcherInterface, ResetInterfa
 
     /**
      * Called after dispatching the event.
-     *
-     * @return void
      */
     protected function afterDispatch(string $eventName, object $event)
     {

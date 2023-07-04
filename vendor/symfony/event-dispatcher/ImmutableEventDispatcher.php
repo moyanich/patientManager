@@ -34,25 +34,15 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
      */
     public function addListener(string $eventName, $listener, int $priority = 0)
-=======
-     * @return never
-     */
-    public function addListener(string $eventName, callable|array $listener, int $priority = 0)
->>>>>>> Stashed changes
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return never
->>>>>>> Stashed changes
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
@@ -60,25 +50,15 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
      */
     public function removeListener(string $eventName, $listener)
-=======
-     * @return never
-     */
-    public function removeListener(string $eventName, callable|array $listener)
->>>>>>> Stashed changes
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
     /**
-<<<<<<< Updated upstream
      * {@inheritdoc}
-=======
-     * @return never
->>>>>>> Stashed changes
      */
     public function removeSubscriber(EventSubscriberInterface $subscriber)
     {

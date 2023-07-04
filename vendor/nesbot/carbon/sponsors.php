@@ -27,25 +27,10 @@ function getOpenCollectiveSponsors(): string
 
     $list = array_map(static function (array $member) {
         $createdAt = CarbonImmutable::parse($member['createdAt']);
-<<<<<<< Updated upstream
         $monthlyContribution = (float) ($member['totalAmountDonated'] / (1 + $createdAt->diffInMonths()));
 
         if (
             CarbonImmutable::parse($member['lastTransactionAt'])->isAfter('last month') &&
-=======
-        $lastTransactionAt = CarbonImmutable::parse($member['lastTransactionAt']);
-
-        if ($createdAt->format('d H:i:s.u') > $lastTransactionAt->format('d H:i:s.u')) {
-            $createdAt = $createdAt
-                ->setDay($lastTransactionAt->day)
-                ->modify($lastTransactionAt->format('H:i:s.u'));
-        }
-
-        $monthlyContribution = (float) ($member['totalAmountDonated'] / ceil($createdAt->floatDiffInMonths()));
-
-        if (
-            $lastTransactionAt->isAfter('last month') &&
->>>>>>> Stashed changes
             $member['lastTransactionAmount'] > $monthlyContribution
         ) {
             $monthlyContribution = (float) $member['lastTransactionAmount'];

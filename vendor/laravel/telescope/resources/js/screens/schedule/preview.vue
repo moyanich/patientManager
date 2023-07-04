@@ -52,9 +52,7 @@
             <div class="card mt-5">
                 <div class="card-header"><h5>Output</h5></div>
 
-                <copy-clipboard :data="slotProps.entry.content.output">
-                    <pre class="code-bg p-4 mb-0 text-white">{{ slotProps.entry.content.output }}</pre>
-                </copy-clipboard>
+                <pre class="code-bg p-4 mb-0 text-white">{{ slotProps.entry.content.output }}</pre>
             </div>
         </div>
     </preview-screen>
