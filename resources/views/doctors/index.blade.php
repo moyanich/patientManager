@@ -30,14 +30,15 @@
             <table id="doctors-datatable" class="table table-hover table-nowrap compact doctors-datatable">
                 <thead>
                     <tr>
-                        <th scope="col">{{ __('#') }}</th>
+                        <th scope="col">{{ __('id') }}</th>
                         <th scope="col">{{ __('First Name') }}</th>
                         <th scope="col">{{ __('Last Name') }}</th>
                         <th scope="col">{{ __('Email Address') }}</th>
                         <th scope="col">{{ __('Phone Numbers') }}</th>
-                        <th scope="col">{{ __('Departments') }}</th>
-                        
-                        <th scope="col">{{ __('Specialist Area') }}</th>                    
+                        <th scope="col">{{ __('Specialist Area') }}</th>
+
+                        {{-- <th scope="col">{{ __('Departments') }}</th> --}}
+
                         <th scope="col">{{ __('Status') }}</th>
                         <th scope="col"></th>
                     </tr>
@@ -47,7 +48,7 @@
         </div>
     </div>
 
-   
+
     {{--  //TODO: use the data from ajax to pass here --}}
     @can('doctor-delete')
         @foreach ($doctors as $key => $doctor)
@@ -68,7 +69,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-neutral" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                            
+
                             <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST" style="display: inline">
                                 @method('DELETE')
                                 @csrf
@@ -80,8 +81,8 @@
             </div>
         @endforeach
     @endcan
-    
-    
+
+
 @endsection
 
 
@@ -103,22 +104,23 @@
                 { data: 'first_name', name: 'first_name'},
                 { data: 'last_name', name: 'last_name'},
                 { data: 'email', name: 'email'},
-               // { data: 'contactInfo', name: 'contactInfo'},
+                { data: 'contact_1', name: 'contact_1'},
+                { data: 'specialist_area', name: 'specialist_area'},
                 //{ data: 'departments', name: 'departments', className: 'dept_name'},
-                
+
                // { data: 'specialist_area', name: 'specialist_area'},
 
-                
+
 
 
                /* {
-                    data: 'status', 
-                    name: 'status', 
-                    orderable: true, 
+                    data: 'status',
+                    name: 'status',
+                    orderable: true,
                     searchable: true
                 }, */
                 {
-                    data: 'action', 
+                    data: 'action',
                     name: 'action'
                 },
             ]
