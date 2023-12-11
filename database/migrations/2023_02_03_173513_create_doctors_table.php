@@ -19,18 +19,23 @@ class CreateDoctorsTable extends Migration
             $table->string('middle_name', 255)->nullable();
             $table->string('last_name', 255);
             $table->string('email', 55)->nullable();
-            $table->string('designation', 255)->nullable();
-            $table->string('specialist_area', 255)->nullable();
-
+            $table->string('phone_1', 16)->nullable();
+            $table->string('phone_2', 16)->nullable();
             $table->date('dob')->nullable();
+            $table->string('specialist_area', 255)->nullable();
             $table->unsignedBigInteger('gender_id')->nullable();
-            $table->string('contact_1', 16)->nullable();
-            $table->string('contact_2', 16)->nullable();
-            $table->string('address', 255)->nullable();
+
+            $table->string('designation', 255)->nullable();
+
+
+            $table->string('address_line_1', 255)->nullable();
+            $table->string('address_line_2', 255)->nullable();
 
             $table->string('kin_name', 255)->nullable();
             $table->string('kin_phone', 16)->nullable();
             $table->string('kin_email', 55)->nullable();
+
+            //add qualifications
 
             $table->string('information', 255)->nullable();
 

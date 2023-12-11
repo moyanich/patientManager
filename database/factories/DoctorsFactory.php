@@ -14,7 +14,6 @@ class DoctorsFactory extends Factory
     public function definition()
     {
         return [
-            'employee_no' => $this->faker->unique()->randomDigit(),
             'first_name'  => $this->faker->unique()->firstName(),
             'last_name'  => $this->faker->unique()->lastName(),
             'email'  => $this->faker->email(),
